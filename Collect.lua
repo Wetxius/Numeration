@@ -9,7 +9,7 @@ local spellName = addon.spellName
 local deathlogHealFilter = {
 	[spellName[5394]] = true,	-- Healing Stream Totem
 	[spellName[23881]] = true,	-- Bloodthirst
-	[spellName[15286]] = true	-- Vampiric Embrace
+	[spellName[15286]] = true,	-- Vampiric Embrace
 }
 local deathlogTrackBuffs = {
 	-- Death Knight
@@ -25,7 +25,7 @@ local deathlogTrackBuffs = {
 	-- Mage
 	[spellName[45438]] = true,	-- Ice Block
 	-- Paladin
-	[spellName[498]] = true		-- Divine Protection
+	[spellName[498]] = true,	-- Divine Protection
 	[spellName[642]] = true,	-- Divine Shield
 	[spellName[1022]] = true,	-- Hand of Protection
 	[spellName[1044]] = true,	-- Hand of Freedom
