@@ -9,16 +9,22 @@ local spellName = addon.spellName
 local deathlogHealFilter = {
 	[spellName[5394]] = true,	-- Healing Stream Totem
 	[spellName[23881]] = true,	-- Bloodthirst
-	[spellName[15286]] = true,	-- Vampiric Embrace
+	[spellName[15290]] = true,	-- Vampiric Embrace
+	[spellName[115547]] = true,	-- Glyph of Avenging Wrath
+	[spellName[127626]] = true,	-- Devouring Plague
+	[spellName[112974]] = true,	-- Leeching Poison
+	[spellName[63106]] = true,	-- Siphon Life
+	[spellName[108366]] = true,	-- Soul Leech
 }
 local deathlogTrackBuffs = {
 	-- Death Knight
 	[spellName[48707]] = true,	-- Anti-Magic Shell
 	[spellName[48792]] = true,	-- Icebound Fortitude
 	[spellName[55233]] = true,	-- Vampiric Blood
-	--Druid
+	-- Druid
 	[spellName[22812]] = true,	-- Barkskin
 	[spellName[61336]] = true,	-- Survival Instincts
+	[spellName[106922]] = true,	-- Might of Ursoc
 	-- Hunter
 	[spellName[19263]] = true,	-- Deterrence
 	[spellName[5384]] = true,	-- Feign Death
@@ -42,9 +48,11 @@ local deathlogTrackBuffs = {
 	[spellName[1966]] = true,	-- Feint
 	-- Shaman
 	[spellName[30823]] = true,	-- Shamanistic Rage
+	[spellName[108271]] = true,	-- Astral Shift
+	-- Warlock
+	[spellName[104773]] = true,	-- Unending Resolve
 	-- Warrior
 	[spellName[871]] = true,	-- Shield Wall
-	[spellName[2565]] = true,	-- Shield Block
 	[spellName[12975]] = true,	-- Last Stand
 	[spellName[23920]] = true,	-- Spell Reflection
 }

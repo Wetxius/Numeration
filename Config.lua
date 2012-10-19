@@ -104,7 +104,7 @@ n.types = {
 	{
 		name = "Power Gains",
 		id = "pg",
-		c = {48/255, 113/255, 191/255},
+		c = {.19, .44, .75},
 	},
 	{
 		name = "Death Log",
