@@ -526,14 +526,14 @@ do
 		self.guidToName = wipe(self.guidToName)
 		self.guidToClass = wipe(self.guidToClass)
 
-		local num = GetNumRaidMembers()
-		if num > 0 then
+		local num = GetNumGroupMembers()
+		if num > 5 then
 			for i = 1, num do
 				addPlayerPet("raid"..i, "raid"..i.."pet")
 			end
 		else
 			addPlayerPet("player", "pet")
-			local num = GetNumPartyMembers()
+			local num = GetNumGroupMembers()
 			if num > 0 then
 				for i = 1, num do
 					addPlayerPet("party"..i, "party"..i.."pet")
@@ -555,8 +555,7 @@ do
 	end
 end
 addon.PLAYER_ENTERING_WORLD = addon.UpdateGUIDS
-addon.PARTY_MEMBERS_CHANGED = addon.UpdateGUIDS
-addon.RAID_ROSTER_UPDATE = addon.UpdateGUIDS
+addon.GROUP_ROSTER_UPDATE = addon.UpdateGUIDS
 addon.UNIT_PET = addon.UpdateGUIDS
 addon.UNIT_NAME_UPDATE = addon.UpdateGUIDS
 function addon:ZONE_CHANGED_NEW_AREA(force)
@@ -576,8 +575,7 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 			self:UpdateGUIDS()
 			
 			self.events:RegisterEvent("PLAYER_ENTERING_WORLD")
-			self.events:RegisterEvent("PARTY_MEMBERS_CHANGED")
-			self.events:RegisterEvent("RAID_ROSTER_UPDATE")
+			self.events:RegisterEvent("GROUP_ROSTER_UPDATE")
 			self.events:RegisterEvent("UNIT_PET")
 			self.events:RegisterEvent("UNIT_NAME_UPDATE")
 			
@@ -594,8 +592,7 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 			end
 		else
 			self.events:UnregisterEvent("PLAYER_ENTERING_WORLD")
-			self.events:UnregisterEvent("PARTY_MEMBERS_CHANGED")
-			self.events:UnregisterEvent("RAID_ROSTER_UPDATE")
+			self.events:UnregisterEvent("GROUP_ROSTER_UPDATE")
 			self.events:UnregisterEvent("UNIT_PET")
 			self.events:UnregisterEvent("UNIT_NAME_UPDATE")
 			
