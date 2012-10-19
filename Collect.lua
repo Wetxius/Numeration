@@ -7,49 +7,46 @@ local	UnitHealth, UnitHealthMax =
 
 local spellName = addon.spellName
 local deathlogHealFilter = {
-	[spellName[5394]] = true, -- Healing Stream Totem
-	[spellName[57774]] = true, -- Judgement of Light
-	[spellName[23881]] = true, -- Bloodthirst
-	[spellName[15286]] = true, -- Vampiric Embrace
+	[spellName[5394]] = true,	-- Healing Stream Totem
+	[spellName[23881]] = true,	-- Bloodthirst
+	[spellName[15286]] = true	-- Vampiric Embrace
 }
 local deathlogTrackBuffs = {
-	--DEATHKNIGHT
-	[spellName[48707]] = true, -- Anti-Magic Shell
-	[spellName[48792]] = true, -- Icebound Fortitude
-	[spellName[54223]] = true, -- Shadow of Death
-	[spellName[55233]] = true, -- Vampiric Blood
-	-- DRUID
-	[spellName[22812]] = true, -- Barkskin
-	[spellName[61336]] = true, -- Survival Instincts
-	-- HUNTER
-	[spellName[19263]] = true, -- Deterrence
-	[spellName[5384]] = true, -- Feign Death
-	[spellName[63087]] = true, -- Glyph of Raptor Strike
-	-- MAGE
-	[spellName[45438]] = true, -- Ice Block
-	-- PALADIN
-	[spellName[498]] = true, -- Divine Protection
-	[spellName[642]] = true, -- Divine Shield
-	[spellName[1022]] = true, -- Hand of Protection
-	[spellName[1044]] = true, -- Hand of Freedom
-	[spellName[1038]] = true, -- Hand of Salvation
-	[spellName[6940]] = true, -- Hand of Sacrifice
---	[spellName[19752]] = true, -- Divine Intervention
-	--PRIEST
-	[spellName[47585]] = true, -- Dispersion
-	[spellName[33206]] = true, -- Pain Suppression
-	[spellName[47788]] = true, -- Guardian Spirit
-	[spellName[27827]] = true, -- Spirit of Redemption
-	-- ROGUE
-	[spellName[31224]] = true, -- Cloak of Shadows
-	[spellName[5277]] = true, -- Evasion
-	-- SHAMAN
-	[spellName[30823]] = true, -- Shamanistic Rage
-	-- WARRIOR
-	[spellName[871]] = true, -- Shield Wall
-	[spellName[2565]] = true, -- Shield Block
-	[spellName[12975]] = true, -- Last Stand
-	[spellName[23920]] = true, -- Spell Reflection
+	-- Death Knight
+	[spellName[48707]] = true,	-- Anti-Magic Shell
+	[spellName[48792]] = true,	-- Icebound Fortitude
+	[spellName[55233]] = true,	-- Vampiric Blood
+	--Druid
+	[spellName[22812]] = true,	-- Barkskin
+	[spellName[61336]] = true,	-- Survival Instincts
+	-- Hunter
+	[spellName[19263]] = true,	-- Deterrence
+	[spellName[5384]] = true,	-- Feign Death
+	-- Mage
+	[spellName[45438]] = true,	-- Ice Block
+	-- Paladin
+	[spellName[498]] = true		-- Divine Protection
+	[spellName[642]] = true,	-- Divine Shield
+	[spellName[1022]] = true,	-- Hand of Protection
+	[spellName[1044]] = true,	-- Hand of Freedom
+	[spellName[1038]] = true,	-- Hand of Salvation
+	[spellName[6940]] = true,	-- Hand of Sacrifice
+	-- Priest
+	[spellName[47585]] = true,	-- Dispersion
+	[spellName[33206]] = true,	-- Pain Suppression
+	[spellName[47788]] = true,	-- Guardian Spirit
+	[spellName[27827]] = true,	-- Spirit of Redemption
+	-- Rogue
+	[spellName[31224]] = true,	-- Cloak of Shadows
+	[spellName[5277]] = true,	-- Evasion
+	[spellName[1966]] = true,	-- Feint
+	-- Shaman
+	[spellName[30823]] = true,	-- Shamanistic Rage
+	-- Warrior
+	[spellName[871]] = true,	-- Shield Wall
+	[spellName[2565]] = true,	-- Shield Block
+	[spellName[12975]] = true,	-- Last Stand
+	[spellName[23920]] = true,	-- Spell Reflection
 }
 
 local deathData = {}
