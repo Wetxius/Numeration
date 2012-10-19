@@ -15,90 +15,7 @@ BINDING_NAME_NUMERATION_VISIBILITY = "Toggle Visibility"
 BINDING_NAME_NUMERATION_RESET = "Reset Data"
 
 local bossIds = {
-	-- Naxxramas
-	[15956] = true, -- Anub'Rekhan
-	[15953] = true, -- Grand Widow Faerlina
-	[15952] = true, -- Maexxna
-	[15954] = true, -- Noth the Plaguebringer
-	[15936] = true, -- Heigan the Unclean
-	[16011] = true, -- Loatheb
-	[16061] = true, -- Instructor Razuvious
-	[16060] = true, -- Gothik the Harvester
-	[16064] = "The Four Horsemen", -- Thane Korth'azz
-	[16065] = "The Four Horsemen", -- Lady Blaumeux
-	[30549] = "The Four Horsemen", -- Baron Rivendare
-	[16063] = "The Four Horsemen", -- Sir Zeliek
-	[16028] = true, -- Patchwerk
-	[15931] = true, -- Grobbulus
-	[15932] = true, -- Gluth
-	[15928] = true, -- Thaddius
-	[15989] = true, -- Sapphiron
-	[15990] = true, -- Kel'Thuzad
-	-- The Eye of Eternity
-	[28859] = true, -- Malygos
-	-- The Obsidian Sanctum
-	[28860] = true, -- Sartharion
-	-- Vault of Archavon
-	[31125] = true, -- Archavon the Stone Watcher
-	[33993] = true, -- Emalon the Storm Watcher
-	[35013] = true, -- Koralon the Flame Watcher
-	[38433] = true, -- Toravon the Ice Watcher
-	-- Ulduar
-	[33113] = true, -- Flame Leviathan
-	[33118] = true, -- Ignis the Furnace Master
-	[33186] = true, -- Razorscale
-	[33293] = true, -- XT-002 Deconstructor
-	[32867] = "Assembly of Iron", -- Steelbreaker
-	[32927] = "Assembly of Iron", -- Runemaster Molgeim
-	[32857] = "Assembly of Iron", -- Stormcaller Brundir
-	[32930] = true, -- Kologarn
-	[33515] = true, -- Auriaya
-	[32906] = true, -- Freya
-	[32845] = true, -- Hodir
-	[33432] = "Mimiron", -- Leviathan Mk II
-	[33651] = "Mimiron", -- VX-001
-	[33670] = "Mimiron", -- Aerial Command Unit
-	[32865] = true, -- Thorim
-	[33271] = true, -- General Vezax
-	[33136] = "Yogg-Saron", -- Guardian of Yogg-Saron
-	[33288] = true, -- Yogg-Saron
-	[32871] = true, -- Algalon the Observer
-	-- Trial of the Crusader
-	[34796] = "Northrend Beasts", -- Gormok the Impaler
-	[35144] = "Northrend Beasts", -- Acidmaw
-	[34799] = "Northrend Beasts", -- Dreadscale
-	[34797] = "Northrend Beasts", -- Icehowl
-	[34780] = true, -- Lord Jaraxxus
-	[34469] = "Faction Champions", -- Melador Valestrider <Druid>
-	[34459] = "Faction Champions", -- Erin Misthoof <Druid>
-	[34465] = "Faction Champions", -- Velanaa <Paladin>
-	[34445] = "Faction Champions", -- Liandra Suncaller <Paladin>
-	[34466] = "Faction Champions", -- Anthar Forgemender <Priest>
-	[34447] = "Faction Champions", -- Caiphus the Stern <Priest>
-	[34470] = "Faction Champions", -- Saamul <Shaman>
-	[34444] = "Faction Champions", -- Thrakgar <Shaman>
-	[34497] = "Twin Val'kyr", -- Fjola Lightbane
-	[34496] = "Twin Val'kyr", -- Eydis Darkbane
-	[34564] = true, -- Anub'arak
-	-- Onyxia's Lair
-	[10184] = true, -- Onyxia
-	-- Icecrown Citadel
-	[36612] = true, -- Lord Marrowgar
-	[36855] = true, -- Lady Deathwhisper
-	[37813] = true, -- Deathbringer Saurfang
-	[36626] = true, -- Festergut
-	[36627] = true, -- Rotface
-	[36678] = true, -- Professor Putricide
-	[37972] = "Blood Prince Council", -- Prince Keleseth
-	[37973] = "Blood Prince Council", -- Prince Taldaram
-	[37970] = "Blood Prince Council", -- Prince Valanar
-	[37955] = true, -- Blood-Queen Lana'thel
-	[37868] = "Valithria Dreamwalker", -- Risen Archmage
-	[36853] = true, -- Sindragosa
-	[36597] = true, -- The Lich King
-	-- Ruby Sanctum
-	[39863] = true, -- Halion
-	-- CATACLYSM
+	-- Cataclysm
 	-- Baradin Hold
 	[47120] = true, -- Argaloth
 	[52363]	= true, -- Occu'thar
@@ -119,9 +36,9 @@ local bossIds = {
 	[45872] = "Conclave of Wind", -- Rohash
 	[46753] = true,	-- Al'Akir
 	-- The Bastion of Twilight
+	[44600] = true, -- Halfus Wyrmbreaker
 	[45992] = "Valiona & Theralion", -- Valiona
 	[45993] = "Valiona & Theralion", -- Theralion
-	[44600] = true, -- Halfus Wyrmbreaker
 	[43686] = "Twilight Ascendant Council", -- Ignacious
 	[43687] = "Twilight Ascendant Council", -- Feludius
 	[43688] = "Twilight Ascendant Council", -- Arion
@@ -150,7 +67,7 @@ local bossIds = {
 	[56167] = "Madness of Deathwing", -- Arm Tentacle
 	[56846] = "Madness of Deathwing", -- Arm Tentacle
 	[56168] = "Madness of Deathwing", -- Wing Tentacle
-	-- MOP
+	-- Pandaria
 	-- Mogu'Shan Vault
 	[59915] = "Stone Guard", -- Jasper, Stone Guard
 	[60043] = "Stone Guard", -- Jade, Stone Guard
@@ -158,13 +75,15 @@ local bossIds = {
 	[60051] = "Stone Guard", -- Cobalt, Stone Guard
 	[60009] = true, -- Feng the Accursed
 	[60143] = true, -- Gara'jal the Spiritbinder
-	[61421] = true, -- Zian of the Endless Shadow -- 60701?
-	[61423] = true, -- Qiang the Merciless -- 60709?
-	[61427] = true, -- Subetai the Swift -- 60710?
-	[61429] = true, -- Meng the Demented
+	[61421] = "The Spirit Kings", -- Zian of the Endless Shadow
+	[61423] = "The Spirit Kings", -- Qiang the Merciless
+	[61427] = "The Spirit Kings", -- Subetai the Swift
+	[61429] = "The Spirit Kings", -- Meng the Demented
 	[60410] = true, -- Elegon
-	[60399] = true, -- Qin-xi
-	[60400] = true, -- Jan-xi
+	[60396] = "Will of the Emperor", -- Emperor's Rage
+	[60397] = "Will of the Emperor", -- Emperor's Strength
+	[60399] = "Will of the Emperor", -- Qin-xi
+	[60400] = "Will of the Emperor", -- Jan-xi
 }
 
 -- used colors
