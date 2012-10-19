@@ -148,6 +148,21 @@ local bossIds = {
 	[56167] = "Madness of Deathwing", -- Arm Tentacle
 	[56846] = "Madness of Deathwing", -- Arm Tentacle
 	[56168] = "Madness of Deathwing", -- Wing Tentacle
+	-- MOP
+	-- Mogu'Shan Vault
+	[59915] = "Stone Guard", -- Jasper, Stone Guard
+	[60043] = "Stone Guard", -- Jade, Stone Guard
+	[60047] = "Stone Guard", -- Amethyst, Stone Guard
+	[60051] = "Stone Guard", -- Cobalt, Stone Guard
+	[60009] = true, -- Feng the Accursed
+	[60143] = true, -- Gara'jal the Spiritbinder
+	[61421] = true, -- Zian of the Endless Shadow -- 60701?
+	[61423] = true, -- Qiang the Merciless -- 60709?
+	[61427] = true, -- Subetai the Swift -- 60710?
+	[61429] = true, -- Meng the Demented
+	[60410] = true, -- Elegon
+	[60399] = true, -- Qin-xi
+	[60400] = true, -- Jan-xi
 }
 
 -- used colors
@@ -194,22 +209,22 @@ addon.events:RegisterEvent("ADDON_LOADED")
 function addon:ADDON_LOADED(event, addon)
 	if addon ~= addonname then return end
 	self.events:UnregisterEvent("ADDON_LOADED")
-	
+
 	self:InitOptions()
 	icon:Register("Numeration", ldb, NumerationCharOptions.minimap)
 	self.window:OnInitialize()
 	if NumerationCharOptions.forcehide then
 		self.window:Hide()
 	end
-	
+
 	if not NumerationCharDB then
 		self:Reset()
 	end
 	current = self:GetSet(1) or newSet()
-	
+
 	self.collect:RemoveUnneededEvents()
 	self.events:RegisterEvent("ZONE_CHANGED_NEW_AREA")
-	
+
 	if GetRealZoneText() ~= "" then
 		self:ZONE_CHANGED_NEW_AREA(event)
 	end
@@ -240,7 +255,7 @@ function addon:InitOptions()
 			end
 		end
 	end
-	
+
 	if not NumerationCharOptions then
 		NumerationCharOptions = {}
 	end
@@ -339,15 +354,15 @@ updateTimer:SetScript("OnUpdate", function(self, elapsed)
 	self.timer = self.timer - elapsed
 	if self.timer > 0 then return end
 	self.timer = s.refreshinterval
-	
+
 	if current.changed then
 		ldb.text = addon.views["Units"]:GetXps(current, UnitName("player"), "dd", NumerationCharOptions.petsmerged)
 	end
-	
+
 	local set = addon.nav.set and addon:GetSet(addon.nav.set) or current
 	if not set or not set.changed then return end
 	set.changed = nil
-	
+
 	addon:RefreshDisplay(true)
 end)
 function updateTimer:Activate()
@@ -361,7 +376,7 @@ end
 function addon:RefreshDisplay(update)
 	if self.window:IsShown() then
 		self.window:Clear()
-		
+
 		if not update then
 			self.views[self.nav.view]:Init()
 			local segment = self.nav.set == "total" and "O" or self.nav.set == "current" and "C" or self.nav.set
@@ -372,7 +387,7 @@ function addon:RefreshDisplay(update)
 	if not update then
 		ldb.text = self.views["Units"]:GetXps(current, UnitName("player"), "dd", NumerationCharOptions.petsmerged)
 	end
-	
+
 	updateTimer:Refresh()
 end
 
@@ -423,7 +438,7 @@ end
 
 function addon:GetArea(start, total)
 	if total == 0 then return start end
-	
+
 	local first = start
 	local last = start+self.window.maxlines-1
 	if last > total then
@@ -439,7 +454,7 @@ end
 
 function addon:GetSet(id)
 	if not id then return end
-	
+
 	if id == "current" then
 		return current
 	elseif id == "total" then
@@ -461,7 +476,7 @@ end
 
 function addon:GetUnitClass(playerID)
 	if not playerID then return end
-	
+
 	local class = self.guidToClass[playerID]
 	return self.guidToName[class] and "PET" or class
 end
@@ -469,7 +484,7 @@ end
 function addon:GetUnit(set, id)
 	local name, class = self.guidToName[id], self.guidToClass[id]
 	local owner = self.guidToName[class]
-	
+
 	if not owner then
 		-- unit
 		local u = set.unit[name]
@@ -510,11 +525,11 @@ do
 	local addPlayerPet = function(unit, pet)
 		local unitID = UnitGUID(unit)
 		if not unitID then return end
-		
+
 		local unitName, unitRealm = UnitName(unit)
 		local _, unitClass = UnitClass(unit)
 		local petID = UnitGUID(pet)
-		
+
 		addon.guidToClass[unitID] = unitClass
 		addon.guidToName[unitID] = unitRealm and unitRealm ~= "" and format("%s-%s", unitName, unitRealm) or unitName
 		if petID then
@@ -540,7 +555,7 @@ do
 				end
 			end
 		end
-		
+
 		-- remove summons from guid list, if owner is gone
 		for pid, uid in pairs(summonOwner) do
 			if self.guidToClass[uid] then
@@ -563,7 +578,7 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 
 	if force == true or zoneType ~= self.zoneType then
 		self.zoneType = zoneType
-		
+
 		if not NumerationCharOptions.onlyinstance or zoneType == "party" or zoneType == "raid" then
 			if zoneType == "party" or zoneType == "raid" or zoneType == "pvp" then
 				local curZone = GetRealZoneText()
@@ -573,18 +588,18 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 				end
 			end
 			self:UpdateGUIDS()
-			
+
 			self.events:RegisterEvent("PLAYER_ENTERING_WORLD")
 			self.events:RegisterEvent("GROUP_ROSTER_UPDATE")
 			self.events:RegisterEvent("UNIT_PET")
 			self.events:RegisterEvent("UNIT_NAME_UPDATE")
-			
+
 			self.events:RegisterEvent("UNIT_HEALTH")
 			self.events:RegisterEvent("PLAYER_REGEN_DISABLED")
 			self.events:RegisterEvent("PLAYER_REGEN_ENABLED")
-			
+
 			self.events:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
-			
+
 			updateTimer:Activate()
 			if not NumerationCharOptions.forcehide then
 				self:RefreshDisplay()
@@ -595,11 +610,11 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 			self.events:UnregisterEvent("GROUP_ROSTER_UPDATE")
 			self.events:UnregisterEvent("UNIT_PET")
 			self.events:UnregisterEvent("UNIT_NAME_UPDATE")
-			
+
 			self.events:UnregisterEvent("UNIT_HEALTH")
 			self.events:UnregisterEvent("PLAYER_REGEN_DISABLED")
 			self.events:UnregisterEvent("PLAYER_REGEN_ENABLED")
-			
+
 			self.events:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 			updateTimer:Hide()
 			if zoneType == "none" then
@@ -658,7 +673,7 @@ function addon:EnterCombatEvent(timestamp, guid, name)
 		current.start = timestamp
 		current.active = true
 	end
-	
+
 	current.now = timestamp
 	if not current.boss then
 		local mobid = bossIds[tonumber(guid:sub(7, 10), 16)]
@@ -684,7 +699,7 @@ function addon:LeaveCombatEvent()
 		if type(self.nav.set) == "number" then
 			self.nav.set = self.nav.set + 1
 		end
-		
+
 		-- Refresh View
 		self:RefreshDisplay(true)
 	end
@@ -695,7 +710,7 @@ function addon:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, eventtype, hideCaster, 
 	if self.collect[eventtype] then
 		self.collect[eventtype](timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)
 	end
-	
+
 	if eventtype == "SPELL_SUMMON" then
 		local ClassOrOwnerGUID = self.guidToClass[srcGUID]
 		if ClassOrOwnerGUID then

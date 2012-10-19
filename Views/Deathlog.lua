@@ -34,10 +34,10 @@ local schoolColor = {
 	["8"] = "80FF80", -- nature			0.5,1,0.5
 	["16"] = "669AE6", -- frost			0.5,0.5,1 // 0.4,0.6,0.9
 	["20"] = "D35779", -- frostfire		0.824,0.314,0.471
---	["24"] = "FFFFFF", -- froststorm	
+--	["24"] = "FFFFFF", -- froststorm
 	["32"] = "A100A1", -- shadow		0.628,0,0.628
---	["40"] = "FFFFFF", -- shadowstorm	
---	["48"] = "FFFFFF", -- shadowfrost	
+--	["40"] = "FFFFFF", -- shadowstorm
+--	["48"] = "FFFFFF", -- shadowfrost
 	["64"] = "FFBAFF", -- arcane		1, 0.725, 1
 }
 local eventColors = {
@@ -70,7 +70,7 @@ function view:Update()
 	if not set then return end
 	local dl = set.deathlog
 	if not dl then return end
-	
+
 	-- display
 	self.first, self.last = addon:GetArea(self.first, #dl)
 	if not self.last then return end
@@ -79,11 +79,11 @@ function view:Update()
 	for i = self.first, self.last do
 		local entry = dl[i]
 		local line = addon.window:GetLine(i-self.first)
-		
+
 		local playerName, class, event, info = strsplit("#", entry[0])
 		local icon, text, spellId = eventInfo[event](event, playerName, class, strsplit(":", info))
 		local c = eventColors[event]
-		
+
 		line:SetValues(set.start and (entry.time-set.start) or 1, total)
 		line:SetIcon(icon)
 		line.spellId = spellId

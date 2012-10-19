@@ -89,21 +89,21 @@ function window:OnInitialize()
 	self:SetScript("OnDragStart", function() if IsAltKeyDown() then self:StartMoving() end end)
 	self:SetScript("OnDragStop", function()
 		self:StopMovingOrSizing()
-		
+
 		-- positioning code taken from recount
 		local xOfs, yOfs = self:GetCenter()
 		local s = self:GetEffectiveScale()
 		local uis = UIParent:GetScale()
 		xOfs = xOfs*s - GetScreenWidth()*uis/2
 		yOfs = yOfs*s - GetScreenHeight()*uis/2
-		
+
 		addon:SetOption("x", xOfs/uis)
 		addon:SetOption("y", yOfs/uis)
 	end)
 
 	self:SetBackdrop(backdrop)
 	self:SetBackdropColor(0, 0, 0, s.backgroundalpha)
-	
+
 	local x, y = addon:GetOption("x"), addon:GetOption("y")
 	if not x or not y then
 		self:SetPoint(unpack(s.pos))
@@ -122,7 +122,7 @@ function window:OnInitialize()
 		scroll:SetWidth(4)
 		scroll:SetHeight(4)
 		scroll:Hide()
-	
+
 	local reset = CreateFrame("Button", nil, self)
 	self.reset = reset
 		reset:SetBackdrop(backdrop)
@@ -139,7 +139,7 @@ function window:OnInitialize()
 		end)
 		reset:SetScript("OnEnter", function() reset:SetBackdropColor(s.buttonhighlightcolor[1], s.buttonhighlightcolor[2], s.buttonhighlightcolor[3], .8) end)
 		reset:SetScript("OnLeave", function() reset:SetBackdropColor(0, 0, 0, s.titlealpha) end)
-	
+
 	local segment = CreateFrame("Button", nil, self)
 	self.segment = segment
 		segment:SetBackdrop(backdrop)
@@ -275,7 +275,7 @@ local onLeave = function(self)
 end
 function window:GetLine(id)
 	if lines[id] then return lines[id] end
-	
+
 	local f = CreateFrame("StatusBar", nil, self)
 	lines[id] = f
 		f:EnableMouse(true)
@@ -315,7 +315,7 @@ function window:GetLine(id)
 		name:SetTextColor(s.linefontcolor[1], s.linefontcolor[2], s.linefontcolor[3], 1)
 		name:SetPoint("LEFT", icon, "RIGHT", 1, 0)
 		name:SetPoint("RIGHT", value, "LEFT", -1, 0)
-	
+
 	f.SetValues = SetValues
 	f.SetIcon = SetIcon
 	f.SetLeftText = SetLeftText
@@ -343,13 +343,13 @@ function window:ShowResetWindow()
 		reset.title:SetVertexColor(.1, .1, .1, .9)
 		reset.title:SetPoint("TOPLEFT", 1, -1)
 		reset.title:SetPoint("BOTTOMRIGHT", reset, "TOPRIGHT", -1, -s.titleheight-1)
-		
+
 		reset.titletext = reset:CreateFontString(nil, "ARTWORK")
 		reset.titletext:SetFont(s.titlefont, s.titlefontsize, "OUTLINE")
 		reset.titletext:SetTextColor(s.titlefontcolor[1], s.titlefontcolor[2], s.titlefontcolor[3], 1)
 		reset.titletext:SetText("Numeration: Reset Data?")
 		reset.titletext:SetPoint("TOPLEFT", 5, -2)
-		
+
 		reset.yes = CreateFrame("Button", nil, reset)
 		reset.yes:SetBackdrop(backdrop)
 		reset.yes:SetBackdropColor(0, .2, 0, 1)
@@ -360,7 +360,7 @@ function window:ShowResetWindow()
 		reset.yes:SetHeight(18)
 		reset.yes:SetPoint("BOTTOMLEFT", 10, 5)
 		reset.yes:SetScript("OnMouseUp", function() addon:Reset() reset:Hide() end)
-		
+
 		reset.no = CreateFrame("Button", nil, reset)
 		reset.no:SetBackdrop(backdrop)
 		reset.no:SetBackdropColor(.2, 0, 0, 1)
@@ -392,7 +392,7 @@ function window:ShowWhisperWindow()
 		whisper.title:SetVertexColor(.1, .1, .1, .9)
 		whisper.title:SetPoint("TOPLEFT", 1, -1)
 		whisper.title:SetPoint("BOTTOMRIGHT", whisper, "TOPRIGHT", -1, -s.titleheight-1)
-		
+
 		whisper.titletext = whisper:CreateFontString(nil, "ARTWORK")
 		whisper.titletext:SetFont(s.titlefont, s.titlefontsize, "OUTLINE")
 		whisper.titletext:SetTextColor(s.titlefontcolor[1], s.titlefontcolor[2], s.titlefontcolor[3], 1)
@@ -408,7 +408,7 @@ function window:ShowWhisperWindow()
 		whisper.target:SetPoint("BOTTOMLEFT", 10, 5)
 		whisper.target:SetScript("OnEscapePressed", function() whisper:Hide() end)
 		whisper.target:SetScript("OnEnterPressed", function() reportFunction(self, "WHISPER", whisper.target:GetText()) whisper:Hide() end)
-		
+
 
 		whisper.yes = CreateFrame("Button", nil, whisper)
 		whisper.yes:SetBackdrop(backdrop)

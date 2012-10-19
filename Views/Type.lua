@@ -24,7 +24,7 @@ end
 function view:Update()
 	local set = addon:GetSet(addon.nav.set)
 	if not set then return end
-	
+
 	local num = #addon.types
 	if addon.nav.set == "total" then
 		for i,t in pairs(addon.types) do
@@ -35,7 +35,7 @@ function view:Update()
 	end
 	self.first, self.last = addon:GetArea(self.first, num)
 	if not self.last then return end
-	
+
 	local id = self.first - 1
 	for i = self.first, self.last do
 		id = id + 1
@@ -59,10 +59,10 @@ function view:Update()
 				amount = amount + u[t.id2].total
 			end
 		end
-		
+
 		local line = addon.window:GetLine(i-self.first)
 		local c = t.c
-		
+
 		line:SetValues(1, 1)
 		line:SetLeftText(" %s", t.name)
 		if amount ~= 0 then

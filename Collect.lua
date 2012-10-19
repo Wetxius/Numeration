@@ -136,7 +136,7 @@ local function unitDied(timestamp, playerID, playerName)
 	local _, set = addon:GetSets()
 	if not set then return end
 	set.changed = true
-	
+
 	local deathlog = {
 		time = timestamp,
 	}
@@ -171,7 +171,7 @@ local function unitRezzed(timestamp, playerID, playerName, spellId, rezzerName)
 	local _, set = addon:GetSets()
 	if not set then return end
 	set.changed = true
-	
+
 	local deathlog = {
 		[0] = string.format("%s#%s#REZZ#%i:%s", playerName, class, spellId, rezzerName),
 		time = timestamp,
@@ -252,7 +252,7 @@ local function addSpellDetails(u, etype, spellID, amount)
 	else
 		event.total = event.total+amount
 	end
-	
+
 	event.spell[spellID] = (event.spell[spellID] or 0) + amount
 end
 local function addTargetDetails(u, etype, targetName, amount)
@@ -262,7 +262,7 @@ local function addTargetDetails(u, etype, targetName, amount)
 		t = {}
 		u[etype].target = t
 	end
-	
+
 	t[targetName] = (t[targetName] or 0) + amount
 end
 
@@ -270,7 +270,7 @@ local function updateTime(u, etype, timestamp)
 	local last = u[etype].last
 	u[etype].last = timestamp
 	if not last then return end
-	
+
 	local t = u[etype].time or 0
 	local gap = timestamp-last
 	if gap < 5 then
@@ -457,11 +457,11 @@ function collect:RemoveUnneededEvents()
 		collect.SPELL_DISPEL = nil
 		collect.SPELL_PERIODIC_DISPEL = nil
 	end
-	
+
 	if not addon.ids.ir then
 		collect.SPELL_INTERRUPT = nil
 	end
-	
+
 	if not addon.ids.pg then
 		collect.SPELL_ENERGIZE = nil
 		collect.SPELL_PERIODIC_ENERGIZE = nil

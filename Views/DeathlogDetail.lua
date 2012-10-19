@@ -25,7 +25,7 @@ function view:Init()
 	if not dl then return end
 	local entry = dl[addon.nav.id]
 	if not entry then return end
-	
+
 	local playerName = strsplit("#", entry[0])
 	addon.window:SetTitle(format("%s: %s", v.name, playerName), v.c[1], v.c[2], v.c[3])
 end
@@ -37,10 +37,10 @@ local schoolColor = {
 	["8"] = "80FF80", -- nature			0.5,1,0.5
 	["16"] = "669AE6", -- frost			0.5,0.5,1 // 0.4,0.6,0.9
 	["20"] = "D35779", -- frostfire		0.824,0.314,0.471
---	["24"] = "FFFFFF", -- froststorm	
+--	["24"] = "FFFFFF", -- froststorm
 	["32"] = "A100A1", -- shadow		0.628,0,0.628
---	["40"] = "FFFFFF", -- shadowstorm	
---	["48"] = "FFFFFF", -- shadowfrost	
+--	["40"] = "FFFFFF", -- shadowstorm
+--	["48"] = "FFFFFF", -- shadowfrost
 	["64"] = "FFBAFF", -- arcane		1, 0.725, 1
 }
 
@@ -88,7 +88,7 @@ function view:Update()
 	if not dl then return backAction() end
 	local dld = dl[addon.nav.id]
 	if not dld then return backAction() end
-	
+
 	-- display
 	self.first, self.last = addon:GetArea(self.first, #dld)
 	if not self.last then return end
@@ -96,14 +96,14 @@ function view:Update()
 	for i = self.first, self.last do
 		local entry = dld[i]
 		local line = addon.window:GetLine(i-self.first)
-		
+
 		local rtime, healthpct, spellId, event, info = strsplit("#", entry)
 		spellId = tonumber(spellId) or spellId
 		healthpct = tonumber(healthpct)
 		local text = eventText[event](event, spellId, strsplit(":", info))
 		local c = eventColors[event]
 		local icon = spellIcon[spellId] or ""
-		
+
 		if c == nil then
 			line:SetValues(100, 100)
 			line:SetColor(.2, .2, .2)
@@ -147,12 +147,12 @@ end
 function view:Report(merged, num_lines)
 	local set = addon:GetSet(addon.nav.set)
 	local dld = set.deathlog[addon.nav.id]
-	
+
 	if #dld == 0 then return end
 	if #dld < num_lines then
 		num_lines = #dld
 	end
-	
+
 	-- display
 	addon:PrintHeaderLine(set)
 	for i = 1, num_lines do
@@ -162,7 +162,7 @@ function view:Report(merged, num_lines)
 		spellId = tonumber(spellId) or spellId
 		healthpct = tonumber(healthpct)
 		local text = reportText[event](event, spellId, strsplit(":", info))
-		
+
 		addon:PrintLine("%s -- %s%%  %s", rtime, healthpct, text)
 	end
 end
