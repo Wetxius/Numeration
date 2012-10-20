@@ -2,9 +2,6 @@
 local collect = {}
 addon.collect = collect
 
-local	UnitHealth, UnitHealthMax =
-		UnitHealth, UnitHealthMax
-
 local spellName = addon.spellName
 local deathlogHealFilter = {
 	[spellName[5394]] = true,	-- Healing Stream Totem
@@ -18,11 +15,12 @@ local deathlogHealFilter = {
 }
 local deathlogTrackBuffs = {
 	-- Death Knight
+	[spellName[55233]] = true,	-- Vampiric Blood
 	[spellName[48707]] = true,	-- Anti-Magic Shell
 	[spellName[48792]] = true,	-- Icebound Fortitude
-	[spellName[55233]] = true,	-- Vampiric Blood
 	-- Druid
 	[spellName[22812]] = true,	-- Barkskin
+	[spellName[102342]] = true,	-- Ironbark
 	[spellName[61336]] = true,	-- Survival Instincts
 	[spellName[106922]] = true,	-- Might of Ursoc
 	-- Hunter
@@ -30,9 +28,13 @@ local deathlogTrackBuffs = {
 	[spellName[5384]] = true,	-- Feign Death
 	-- Mage
 	[spellName[45438]] = true,	-- Ice Block
+	-- Monk
+	[spellName[116849]] = true,	-- Life Cocoon
+	[spellName[122783]] = true,	-- Diffuse Magic
+	[spellName[120954]] = true,	-- Fortifying Brew
 	-- Paladin
-	[spellName[498]] = true,	-- Divine Protection
 	[spellName[642]] = true,	-- Divine Shield
+	[spellName[498]] = true,	-- Divine Protection
 	[spellName[1022]] = true,	-- Hand of Protection
 	[spellName[1044]] = true,	-- Hand of Freedom
 	[spellName[1038]] = true,	-- Hand of Salvation
@@ -47,9 +49,10 @@ local deathlogTrackBuffs = {
 	[spellName[5277]] = true,	-- Evasion
 	[spellName[1966]] = true,	-- Feint
 	-- Shaman
-	[spellName[30823]] = true,	-- Shamanistic Rage
 	[spellName[108271]] = true,	-- Astral Shift
+	[spellName[30823]] = true,	-- Shamanistic Rage
 	-- Warlock
+	[spellName[110913]] = true,	-- Dark Bargain
 	[spellName[104773]] = true,	-- Unending Resolve
 	-- Warrior
 	[spellName[871]] = true,	-- Shield Wall
@@ -190,6 +193,7 @@ local function unitRezzed(timestamp, playerID, playerName, spellId, rezzerName)
 	clearEvts(playerID)
 end
 
+local UnitHealth, UnitHealthMax = UnitHealth, UnitHealthMax
 local addDeathlogEvent = function(playerID, playerName, fmtFunc, timestamp, ...)
 	local class = addon:GetUnitClass(playerID)
 	if not class or class == "PET" then return end
@@ -242,7 +246,6 @@ local NotGuessedAbsorb = {
 	[17] = 1, -- Power Word: Shield
 	[47753] = 1, -- Divine Aegis
 	[86273] = 1, -- Illuminated Healing
-	[88063] = 1, -- Guarded by the Light
 	[48707] = 2, -- Anti-Magic Shell
 }
 
