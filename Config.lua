@@ -11,6 +11,7 @@ n.windowsettings = {
 	titleheight = 16,
 	titlealpha = 0.9,
 	titlefont = [[Fonts\ARIALN.TTF]],
+	titlefontstyle = "OUTLINE",
 	titlefontsize = 13,
 	titlefontcolor = {1, .82, 0},
 	buttonhighlightcolor = {1, .82, 0},
@@ -20,6 +21,7 @@ n.windowsettings = {
 	linealpha = 1,
 	linetexture = [[Interface\Tooltips\UI-Tooltip-Background]],
 	linefont = [[Fonts\ARIALN.TTF]],
+	linefontstyle = "",
 	linefontsize = 11,
 	linefontcolor = {1, 1, 1},
 }
