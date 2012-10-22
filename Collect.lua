@@ -5,7 +5,7 @@ addon.collect = collect
 local spellName = addon.spellName
 local deathlogHealFilter = {
 	[spellName[5394]] = true,	-- Healing Stream Totem
-	[spellName[23881]] = true,	-- Bloodthirst
+	[spellName[117313]] = true,	-- Bloodthirst Heal
 	[spellName[15290]] = true,	-- Vampiric Embrace
 	[spellName[115547]] = true,	-- Glyph of Avenging Wrath
 	[spellName[127626]] = true,	-- Devouring Plague
@@ -35,10 +35,12 @@ local deathlogTrackBuffs = {
 	-- Paladin
 	[spellName[642]] = true,	-- Divine Shield
 	[spellName[498]] = true,	-- Divine Protection
+	[spellName[31821]] = true,	-- Devotion Aura
 	[spellName[1022]] = true,	-- Hand of Protection
 	[spellName[1044]] = true,	-- Hand of Freedom
 	[spellName[1038]] = true,	-- Hand of Salvation
 	[spellName[6940]] = true,	-- Hand of Sacrifice
+	[spellName[114039]] = true,	-- Hand of Purity
 	-- Priest
 	[spellName[47585]] = true,	-- Dispersion
 	[spellName[33206]] = true,	-- Pain Suppression
@@ -58,6 +60,7 @@ local deathlogTrackBuffs = {
 	[spellName[871]] = true,	-- Shield Wall
 	[spellName[12975]] = true,	-- Last Stand
 	[spellName[23920]] = true,	-- Spell Reflection
+	[spellName[97463]] = true,	-- Rallying Cry
 }
 
 local deathData = {}
