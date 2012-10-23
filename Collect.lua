@@ -215,10 +215,6 @@ local addDeathlogEvent = function(playerID, playerName, fmtFunc, timestamp, ...)
 		dd.last = dd.last + 1
 	end
 	dd[dd.last] = entry
-	-- hack for DK "Shadow of Death" ghouling
-	if fmtFunc == fmtDeBuff and entry[4] == "+" and entry[1] == 54223 then
-		unitDied(timestamp, playerID, playerName)
-	end
 end
 
 function addon:GUIDsUpdated()
@@ -228,22 +224,6 @@ function addon:GUIDsUpdated()
 		end
 	end
 end
-
----- IMPORTANT ABSORBS CATA CHANGES
----- WORK
--- 17 Power Word: Shield
--- 47753 Divine Aegis
--- 86273 Illuminated Healing
--- 88063 Guarded by the Light
----- WORK DIFFERENT
--- 48707 Anti-Magic Shell
----- NOT WORK
--- 543 Mage Ward
--- 6229 Shadow Ward
--- 47788 Guardian Spirit
--- 62606 Savage Defense
--- 64411 Blessing of Ancient Kings (self)
--- 64413 Protection of Ancient Kings
 
 local NotGuessedAbsorb = {
 	[17] = 1, -- Power Word: Shield
