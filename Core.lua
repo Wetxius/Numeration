@@ -88,7 +88,7 @@ local bossIds = {
 
 -- used colors
 addon.color = {
-	PET = { 0.09, 0.61, 0.55 },
+	PET = {0.09, 0.61, 0.55},
 }
 addon.colorhex = {}
 do
@@ -469,7 +469,6 @@ do
 			end
 		else
 			addPlayerPet("player", "pet")
-			local num = GetNumGroupMembers()
 			if num > 0 then
 				for i = 1, num do
 					addPlayerPet("party"..i, "party"..i.."pet")

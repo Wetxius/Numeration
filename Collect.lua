@@ -37,8 +37,6 @@ local deathlogTrackBuffs = {
 	[spellName[498]] = true,	-- Divine Protection
 	[spellName[31821]] = true,	-- Devotion Aura
 	[spellName[1022]] = true,	-- Hand of Protection
-	[spellName[1044]] = true,	-- Hand of Freedom
-	[spellName[1038]] = true,	-- Hand of Salvation
 	[spellName[6940]] = true,	-- Hand of Sacrifice
 	[spellName[114039]] = true,	-- Hand of Purity
 	-- Priest
@@ -59,7 +57,6 @@ local deathlogTrackBuffs = {
 	-- Warrior
 	[spellName[871]] = true,	-- Shield Wall
 	[spellName[12975]] = true,	-- Last Stand
-	[spellName[23920]] = true,	-- Spell Reflection
 	[spellName[97463]] = true,	-- Rallying Cry
 }
 

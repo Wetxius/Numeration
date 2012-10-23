@@ -10,7 +10,7 @@ local reportAction = noop
 local backdrop = {
 	bgFile = [[Interface\Tooltips\UI-Tooltip-Background]],--[[Interface\DialogFrame\UI-DialogBox-Background]]---,
 	edgeFile = "", tile = true, tileSize = 16, edgeSize = 0,
-	insets = { left = 0, right = 0, top = 0, bottom = 0 }
+	insets = {left = 0, right = 0, top = 0, bottom = 0}
 }
 local clickFunction = function(self, btn)
 	if btn == "LeftButton" then
@@ -32,29 +32,29 @@ local reportFunction = function(f, chatType, channel)
 end
 local dropdown = CreateFrame("Frame", "NumerationMenuFrame", nil, "UIDropDownMenuTemplate")
 local menuTable = {
-	{ text = "Numeration", isTitle = true, notCheckable = true, notClickable = true },
-	{ text = "Report", notCheckable = true, hasArrow = true,
+	{text = "Numeration", isTitle = true, notCheckable = true, notClickable = true},
+	{text = "Report", notCheckable = true, hasArrow = true,
 		menuList = {
-			{ text = "Report", isTitle = true, notCheckable = true, notClickable = true },
-			{ text = "Say", arg1 = "SAY", func = reportFunction, notCheckable = 1 },
-			{ text = "Raid", arg1 = "RAID", func = reportFunction, notCheckable = 1 },
-			{ text = "Party", arg1 = "PARTY", func = reportFunction, notCheckable = 1 },
-			{ text = "Guild", arg1 = "GUILD", func = reportFunction, notCheckable = 1 },
-			{ text = "Officer", arg1 = "OFFICER", func = reportFunction, notCheckable = 1 },
-			{ text = "Whisper", func = function() window:ShowWhisperWindow() end, notCheckable = 1 },
-			{ text = "Channel  ", notCheckable = 1, keepShownOnClick = true, hasArrow = true, menuList = {} }
+			{text = "Report", isTitle = true, notCheckable = true, notClickable = true},
+			{text = "Say", arg1 = "SAY", func = reportFunction, notCheckable = 1},
+			{text = "Raid", arg1 = "RAID", func = reportFunction, notCheckable = 1},
+			{text = "Party", arg1 = "PARTY", func = reportFunction, notCheckable = 1},
+			{text = "Guild", arg1 = "GUILD", func = reportFunction, notCheckable = 1},
+			{text = "Officer", arg1 = "OFFICER", func = reportFunction, notCheckable = 1},
+			{text = "Whisper", func = function() window:ShowWhisperWindow() end, notCheckable = 1},
+			{text = "Channel  ", notCheckable = 1, keepShownOnClick = true, hasArrow = true, menuList = {}}
 		},
 	},
 	{ text = "Options", notCheckable = true, hasArrow = true,
 		menuList = {
-			{ text = "Merge Pets w/ Owners", arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true },
-			{ text = "Keep Only Boss Segments", arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true },
-			{ text = "Record Only In Instances", arg1 = "onlyinstance", func = optionFunction, checked = function() return addon:GetOption("onlyinstance") end, keepShownOnClick = true },
-			{ text = "Show Minimap Icon", func = function(f, a1, a2, checked) addon:MinimapIconShow(checked) end, checked = function() return not NumerationCharOptions.minimap.hide end, keepShownOnClick = true },
+			{text = "Merge Pets w/ Owners", arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true},
+			{text = "Keep Only Boss Segments", arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true},
+			{text = "Record Only In Instances", arg1 = "onlyinstance", func = optionFunction, checked = function() return addon:GetOption("onlyinstance") end, keepShownOnClick = true},
+			{text = "Show Minimap Icon", func = function(f, a1, a2, checked) addon:MinimapIconShow(checked) end, checked = function() return not NumerationCharOptions.minimap.hide end, keepShownOnClick = true},
 		},
 	},
-	{ text = "", notClickable = true },
-	{ text = "Reset", func = function() window:ShowResetWindow() end, notCheckable = true },
+	{text = "", notClickable = true},
+	{text = "Reset", func = function() window:ShowResetWindow() end, notCheckable = true},
 }
 
 local updateReportChannels = function()
