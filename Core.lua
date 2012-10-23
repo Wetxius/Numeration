@@ -84,6 +84,9 @@ local bossIds = {
 	[60397] = "Will of the Emperor", -- Emperor's Strength
 	[60399] = "Will of the Emperor", -- Qin-xi
 	[60400] = "Will of the Emperor", -- Jan-xi
+	-- World bosses
+	[60410] = true, -- Sha of Anger
+	[62346] = true, -- Galleon
 }
 
 -- used colors
