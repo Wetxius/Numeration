@@ -332,7 +332,7 @@ function window:ShowResetWindow()
 	if not reset then
 		reset = CreateFrame("Frame", nil, window)
 		reset:SetBackdrop(backdrop)
-		reset:SetBackdropColor(0, 0, 0, 1)
+		reset:SetBackdropColor(0, 0, 0, 0.6)
 		reset:SetWidth(200)
 		reset:SetHeight(45)
 		reset:SetPoint("CENTER", UIParent, "CENTER", 0, 200)
