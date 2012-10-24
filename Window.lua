@@ -288,7 +288,7 @@ function window:GetLine(id)
 		f:SetWidth(s.width-4)
 		f:SetHeight(s.lineheight)
 	if id == 0 then
-		f:SetPoint("TOPRIGHT", self.reset, "BOTTOMRIGHT", 0, -1)
+		f:SetPoint("TOPRIGHT", self.reset, "BOTTOMRIGHT", -1, -1)
 	else
 		f:SetPoint("TOPRIGHT", lines[id-1], "BOTTOMRIGHT", 0, -s.linegap)
 	end
