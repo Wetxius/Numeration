@@ -193,7 +193,6 @@ local function unitRezzed(timestamp, playerID, playerName, spellId, rezzerName)
 	clearEvts(playerID)
 end
 
-local UnitHealth, UnitHealthMax = UnitHealth, UnitHealthMax
 local addDeathlogEvent = function(playerID, playerName, fmtFunc, timestamp, ...)
 	local class = addon:GetUnitClass(playerID)
 	if not class or class == "PET" then return end

@@ -21,7 +21,7 @@ n.windowsettings = {
 	linealpha = 1,
 	linetexture = [[Interface\Tooltips\UI-Tooltip-Background]],
 	linefont = [[Fonts\ARIALN.TTF]],
-	linefontstyle = "",
+	linefontstyle = "NONE",
 	linefontsize = 11,
 	linefontcolor = {1, 1, 1},
 }
