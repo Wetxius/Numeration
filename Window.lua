@@ -8,7 +8,7 @@ local noop = function() end
 local backAction = noop
 local reportAction = noop
 local backdrop = {
-	bgFile = [[Interface\Tooltips\UI-Tooltip-Background]],--[[Interface\DialogFrame\UI-DialogBox-Background]]---,
+	bgFile = [[Interface\ChatFrame\ChatFrameBackground]],
 	edgeFile = "", tile = true, tileSize = 16, edgeSize = 0,
 	insets = {left = 0, right = 0, top = 0, bottom = 0}
 }
@@ -45,7 +45,7 @@ local menuTable = {
 			{text = "Channel  ", notCheckable = 1, keepShownOnClick = true, hasArrow = true, menuList = {}}
 		},
 	},
-	{ text = "Options", notCheckable = true, hasArrow = true,
+	{text = "Options", notCheckable = true, hasArrow = true,
 		menuList = {
 			{text = "Merge Pets w/ Owners", arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true},
 			{text = "Keep Only Boss Segments", arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true},

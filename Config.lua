@@ -5,7 +5,7 @@ n.windowsettings = {
 	pos = {"TOPLEFT", 4, -4},
 	width = 280,
 	maxlines = 9,
-	backgroundalpha = 1,
+	backgroundalpha = 0.6,
 	scrollbar = true,
 
 	titleheight = 16,
