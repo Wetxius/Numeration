@@ -36,16 +36,16 @@ local menuTable = {
 	{text = "Report", notCheckable = true, hasArrow = true,
 		menuList = {
 			{text = "Report", isTitle = true, notCheckable = true, notClickable = true},
-			{text = "Say", arg1 = "SAY", func = reportFunction, notCheckable = 1},
-			{text = "Raid", arg1 = "RAID", func = reportFunction, notCheckable = 1},
-			{text = "Party", arg1 = "PARTY", func = reportFunction, notCheckable = 1},
-			{text = "Guild", arg1 = "GUILD", func = reportFunction, notCheckable = 1},
-			{text = "Officer", arg1 = "OFFICER", func = reportFunction, notCheckable = 1},
-			{text = "Whisper", func = function() window:ShowWhisperWindow() end, notCheckable = 1},
-			{text = "Channel  ", notCheckable = 1, keepShownOnClick = true, hasArrow = true, menuList = {}}
+			{text = SAY, arg1 = "SAY", func = reportFunction, notCheckable = 1},
+			{text = PARTY, arg1 = "PARTY", func = reportFunction, notCheckable = 1},
+			{text = RAID, arg1 = "RAID", func = reportFunction, notCheckable = 1},
+			{text = GUILD, arg1 = "GUILD", func = reportFunction, notCheckable = 1},
+			{text = OFFICER, arg1 = "OFFICER", func = reportFunction, notCheckable = 1},
+			{text = WHISPER, func = function() window:ShowWhisperWindow() end, notCheckable = 1},
+			{text = CHANNEL, notCheckable = 1, keepShownOnClick = true, hasArrow = true, menuList = {}}
 		},
 	},
-	{text = "Options", notCheckable = true, hasArrow = true,
+	{text = GAMEOPTIONS_MENU, notCheckable = true, hasArrow = true,
 		menuList = {
 			{text = "Merge Pets w/ Owners", arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true},
 			{text = "Keep Only Boss Segments", arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true},
@@ -53,8 +53,8 @@ local menuTable = {
 			{text = "Show Minimap Icon", func = function(f, a1, a2, checked) addon:MinimapIconShow(checked) end, checked = function() return not NumerationCharOptions.minimap.hide end, keepShownOnClick = true},
 		},
 	},
-	{text = "", notClickable = true},
-	{text = "Reset", func = function() window:ShowResetWindow() end, notCheckable = true},
+	{text = "", notCheckable = true, notClickable = true},
+	{text = RESET, func = function() window:ShowResetWindow() end, notCheckable = true},
 }
 
 local updateReportChannels = function()
@@ -62,7 +62,7 @@ local updateReportChannels = function()
 	for i = 1, GetNumDisplayChannels() do
 		local name, _, _, channelNumber, _, active, category = GetChannelDisplayInfo(i)
 		if category == "CHANNEL_CATEGORY_CUSTOM" then
-			tinsert(menuTable[2].menuList[8].menuList, { text = name, arg1 = "CHANNEL", arg2 = channelNumber, func = reportFunction, notCheckable = 1 })
+			tinsert(menuTable[2].menuList[8].menuList, {text = name, arg1 = "CHANNEL", arg2 = channelNumber, func = reportFunction, notCheckable = 1 })
 		end
 	end
 end
