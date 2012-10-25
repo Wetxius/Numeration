@@ -1,6 +1,5 @@
 ## Interface: 50001
 ## Title: Numeration
-
 ## Notes: yet another Damage Meter addon
 ## Author: nekoh
 ## Version: 1.4

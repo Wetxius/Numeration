@@ -39,11 +39,8 @@ local bossIds = {
 	[44600] = true, -- Halfus Wyrmbreaker
 	[45992] = "Valiona & Theralion", -- Valiona
 	[45993] = "Valiona & Theralion", -- Theralion
-	[43686] = "Twilight Ascendant Council", -- Ignacious
-	[43687] = "Twilight Ascendant Council", -- Feludius
-	[43688] = "Twilight Ascendant Council", -- Arion
-	[43689] = "Twilight Ascendant Council", -- Terrastra
-	[43735] = "Twilight Ascendant Council", -- Elementium Monstrosity
+	[43686] = "Ascendant Council", -- Ignacious
+	[43687] = "Ascendant Council", -- Feludius
 	[43324] = true, -- Cho'gall
 	[45213] = true, -- Sinestra
 	-- Firelands
@@ -120,15 +117,15 @@ local newSet = function()
 		unit = {},
 	}
 end
-local current
 
+local icon = LibStub("LibDBIcon-1.0")
 local ldb = LibStub("LibDataBroker-1.1"):NewDataObject("Numeration", {
 	type = "data source",
 	text = "Numeration",
 	icon = [[Interface\Icons\Ability_Warrior_WeaponMastery]],
 })
-local icon = LibStub("LibDBIcon-1.0")
 
+local current
 addon.events:RegisterEvent("ADDON_LOADED")
 function addon:ADDON_LOADED(event, addon)
 	if addon ~= addonname then return end
@@ -444,8 +441,6 @@ end
 
 local summonOwner, summonName = {}, {}
 do
-	local UnitGUID, UnitName, UnitClass
-		= UnitGUID, UnitName, UnitClass
 	local addPlayerPet = function(unit, pet)
 		local unitID = UnitGUID(unit)
 		if not unitID then return end
