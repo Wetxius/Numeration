@@ -146,8 +146,6 @@ function window:OnInitialize()
 	self.segment = segment
 	segment:SetBackdrop(backdrop)
 	segment:SetBackdropColor(0, 0, 0, s.titlealpha/2)
-	segment:SetNormalFontObject(ChatFontSmall)
-	segment:SetText("")
 	segment:SetWidth(s.titleheight-2)
 	segment:SetHeight(s.titleheight-2)
 	segment:SetPoint("RIGHT", reset, "LEFT", -2, 0)
@@ -168,6 +166,11 @@ function window:OnInitialize()
 		GameTooltip:Show()
 	end)
 	segment:SetScript("OnLeave", function() segment:SetBackdropColor(0, 0, 0, s.titlealpha/2) GameTooltip:Hide() end)
+
+	segment.text = segment:CreateFontString(nil, "ARTWORK")
+	segment.text:SetFont(s.linefont, s.linefontsize, s.linefontstyle)
+	segment.text:SetPoint("CENTER", 1, 0)
+	segment.text:SetText("")
 
 	local title = self:CreateTexture(nil, "ARTWORK")
 	self.title = title
@@ -208,7 +211,7 @@ function window:UpdateSegment(segment)
 	if not segment then
 		self.segment:Hide()
 	else
-		self.segment:SetText(segment)
+		self.segment.text:SetText(segment)
 		self.segment:Show()
 	end
 end
