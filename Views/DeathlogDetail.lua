@@ -31,17 +31,14 @@ function view:Init()
 end
 
 local schoolColor = {
-	["1"] = "FFFFFF", -- physical		1,1,1
-	["2"] = "FFFFA0", -- holy			1,1,0.627
-	["4"] = "FF4D00", -- fire			1,0.5,0.5 // 1,0.3,0
-	["8"] = "80FF80", -- nature			0.5,1,0.5
-	["16"] = "669AE6", -- frost			0.5,0.5,1 // 0.4,0.6,0.9
-	["20"] = "D35779", -- frostfire		0.824,0.314,0.471
---	["24"] = "FFFFFF", -- froststorm
-	["32"] = "A100A1", -- shadow		0.628,0,0.628
---	["40"] = "FFFFFF", -- shadowstorm
---	["48"] = "FFFFFF", -- shadowfrost
-	["64"] = "FFBAFF", -- arcane		1, 0.725, 1
+	["1"] = "FFFFFF",	-- Physical
+	["2"] = "FFE680",	-- Holy
+	["4"] = "FF8000",	-- Fire	
+	["8"] = "4DFF4D",	-- Nature
+	["16"] = "80FFFF",	-- Frost
+	["20"] = "CC3399",	-- Frostfire
+	["32"] = "8080FF",	-- Shadow
+	["64"] = "FF80FF",	-- Arcane
 }
 
 local eventColors = {
