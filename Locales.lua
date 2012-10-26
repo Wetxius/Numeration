@@ -23,7 +23,7 @@ if GetLocale() == "ruRU" then
 		binding_reset = "Сброс данных",
 		reset_data = "сбросить данные?",
 		whisp_target = "шепнуть цели",
-		bad_report = "Объявление не поддерживается",
+		bad_report = "Ошибка: выберите режим для отчета",
 		bad_whisp = "Нет цели или неправильная",
 	}
 else
@@ -49,7 +49,7 @@ else
 		binding_reset = "Reset Data",
 		reset_data = "Reset Data?",
 		whisp_target = "Whisper target",
-		bad_report = "Report is not supported",
+		bad_report = "Error: select type for report",
 		bad_whisp = "Invalid or no target selected",
 	}
 end
