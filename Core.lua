@@ -83,7 +83,7 @@ local bossIds = {
 	[60399] = "Will of the Emperor", -- Qin-xi
 	[60400] = "Will of the Emperor", -- Jan-xi
 	-- World bosses
-	[60410] = true, -- Sha of Anger
+	[60491] = true, -- Sha of Anger
 	[62346] = true, -- Galleon
 }
 
