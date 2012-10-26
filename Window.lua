@@ -36,7 +36,6 @@ local menuTable = {
 	{text = "Numeration", isTitle = true, notCheckable = true, notClickable = true},
 	{text = CHAT_ANNOUNCE, notCheckable = true, hasArrow = true,
 		menuList = {
-			--{text = CHAT_ANNOUNCE, isTitle = true, notCheckable = true, notClickable = true},
 			{text = CHAT_MSG_SAY, arg1 = "SAY", func = reportFunction, notCheckable = 1},
 			{text = PARTY, arg1 = "PARTY", func = reportFunction, notCheckable = 1},
 			{text = RAID, arg1 = "RAID", func = reportFunction, notCheckable = 1},
@@ -127,8 +126,6 @@ function window:OnInitialize()
 	self.reset = reset
 	reset:SetBackdrop(backdrop)
 	reset:SetBackdropColor(0, 0, 0, s.titlealpha)
-	--reset:SetNormalFontObject(ChatFontSmall)
-	--reset:SetText(">")
 	reset:SetWidth(s.titleheight)
 	reset:SetHeight(s.titleheight)
 	reset:SetPoint("TOPRIGHT", -1, -1)
