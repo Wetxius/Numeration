@@ -1,8 +1,9 @@
 ## Interface: 50001
 ## Title: Numeration
 ## Notes: yet another Damage Meter addon
-## Author: nekoh
-## Version: 1.4
+## Author: nekoh, Wetxius
+## Thanks: Shestak
+## Version: 1.5
 ## OptionalDeps: LibDBIcon-1.0, !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
