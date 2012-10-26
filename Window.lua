@@ -126,8 +126,8 @@ function window:OnInitialize()
 	self.reset = reset
 	reset:SetBackdrop(backdrop)
 	reset:SetBackdropColor(0, 0, 0, s.titlealpha)
-	reset:SetNormalFontObject(ChatFontSmall)
-	reset:SetText(">")
+	--reset:SetNormalFontObject(ChatFontSmall)
+	--reset:SetText(">")
 	reset:SetWidth(s.titleheight)
 	reset:SetHeight(s.titleheight)
 	reset:SetPoint("TOPRIGHT", -1, -1)
@@ -138,6 +138,11 @@ function window:OnInitialize()
 	end)
 	reset:SetScript("OnEnter", function() reset:SetBackdropColor(s.buttonhighlightcolor[1], s.buttonhighlightcolor[2], s.buttonhighlightcolor[3], .3) end)
 	reset:SetScript("OnLeave", function() reset:SetBackdropColor(0, 0, 0, s.titlealpha) end)
+
+	reset.text = reset:CreateFontString(nil, "ARTWORK")
+	reset.text:SetFont(s.linefont, s.linefontsize, s.linefontstyle)
+	reset.text:SetPoint("CENTER", 1, 0)
+	reset.text:SetText(">")
 
 	local segment = CreateFrame("Button", nil, self)
 	self.segment = segment
