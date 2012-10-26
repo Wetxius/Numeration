@@ -12,8 +12,8 @@ addon.guidToName = {}
 
 -- Keybindings
 BINDING_HEADER_NUMERATION = "Numeration"
-BINDING_NAME_NUMERATION_VISIBILITY = "Toggle Visibility"
-BINDING_NAME_NUMERATION_RESET = "Reset Data"
+BINDING_NAME_NUMERATION_VISIBILITY = l.binding_visibility
+BINDING_NAME_NUMERATION_RESET = l.binding_reset
 
 local bossIds = {
 	-- Cataclysm
