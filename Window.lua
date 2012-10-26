@@ -33,9 +33,9 @@ end
 local dropdown = CreateFrame("Frame", "NumerationMenuFrame", nil, "UIDropDownMenuTemplate")
 local menuTable = {
 	{text = "Numeration", isTitle = true, notCheckable = true, notClickable = true},
-	{text = "Report", notCheckable = true, hasArrow = true,
+	{text = CHAT_ANNOUNCE, notCheckable = true, hasArrow = true,
 		menuList = {
-			{text = "Report", isTitle = true, notCheckable = true, notClickable = true},
+			--{text = CHAT_ANNOUNCE, isTitle = true, notCheckable = true, notClickable = true},
 			{text = SAY, arg1 = "SAY", func = reportFunction, notCheckable = 1},
 			{text = PARTY, arg1 = "PARTY", func = reportFunction, notCheckable = 1},
 			{text = RAID, arg1 = "RAID", func = reportFunction, notCheckable = 1},
@@ -58,7 +58,7 @@ local menuTable = {
 }
 
 local updateReportChannels = function()
-	menuTable[2].menuList[8].menuList = table.wipe(menuTable[2].menuList[8].menuList)
+	menuTable[2].menuList[7].menuList = table.wipe(menuTable[2].menuList[7].menuList)
 	for i = 1, GetNumDisplayChannels() do
 		local name, _, _, channelNumber, _, active, category = GetChannelDisplayInfo(i)
 		if category == "CHANNEL_CATEGORY_CUSTOM" then
@@ -346,7 +346,7 @@ function window:ShowResetWindow()
 	if not reset then
 		reset = CreateFrame("Frame", nil, window)
 		reset:SetBackdrop(backdrop)
-		reset:SetBackdropColor(0, 0, 0, 0.6)
+		reset:SetBackdropColor(0, 0, 0, s.backgroundalpha)
 		reset:SetWidth(200)
 		reset:SetHeight(45)
 		reset:SetPoint("CENTER", UIParent, "CENTER", 0, 200)
@@ -395,7 +395,7 @@ function window:ShowWhisperWindow()
 	if not whisper then
 		whisper = CreateFrame("Frame", nil, window)
 		whisper:SetBackdrop(backdrop)
-		whisper:SetBackdropColor(0, 0, 0, 1)
+		whisper:SetBackdropColor(0, 0, 0, 0.6)
 		whisper:SetWidth(200)
 		whisper:SetHeight(45)
 		whisper:SetPoint("CENTER", UIParent, "CENTER", 0, 200)
@@ -415,7 +415,7 @@ function window:ShowWhisperWindow()
 
 		whisper.target = CreateFrame("EditBox", "NumerationWhisperEditBox", whisper)
 		whisper.target:SetBackdrop(backdrop)
-		whisper.target:SetBackdropColor(0, 0, 0, 1)
+		whisper.target:SetBackdropColor(0, 0, 0, 0.6)
 		whisper.target:SetFontObject(ChatFontSmall)
 		whisper.target:SetWidth(90)
 		whisper.target:SetHeight(18)
