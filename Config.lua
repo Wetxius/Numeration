@@ -7,6 +7,7 @@ n.windowsettings = {
 	width = 280,
 	maxlines = 9,
 	backgroundalpha = 0.6,
+	fontshadow = true,
 	scrollbar = true,
 
 	titleheight = 16,
