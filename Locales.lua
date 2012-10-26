@@ -19,6 +19,12 @@ if GetLocale() == "ruRU" then
 		minimapicon = "Показать иконку у миникарты",
 		ttoggle = "ЛКМ, чтобы показать/скрыть окно.",
 		treset = "Шифт + ЛКМ, чтобы сбросить данные.",
+		binding_visibility = "Переключение видимости",
+		binding_reset = "Сброс данных",
+		reset_data = "сбросить данные?",
+		whisp_target = "шепнуть цели",
+		bad_report = "Объявление не поддерживается",
+		bad_whisp = "Нет цели или неправильная",
 	}
 else
 	n.locale = {
@@ -39,5 +45,11 @@ else
 		minimapicon = "Show Minimap Icon",
 		ttoggle = "Left-Click to toggle window visibility.",
 		treset = "Shift + Left-Click to reset data.",
+		binding_visibility = "Toggle Visibility",
+		binding_reset = "Reset Data",
+		reset_data = "Reset Data?",
+		whisp_target = "Whisper target",
+		bad_report = "Report is not supported",
+		bad_whisp = "Invalid or no target selected",
 	}
 end

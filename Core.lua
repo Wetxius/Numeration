@@ -316,18 +316,18 @@ end
 local useChatType, useChannel
 function addon:Report(lines, chatType, channel)
 	useChatType, useChannel = chatType, channel
---[[	if chatType == "WHISPER" then
+	if chatType == "WHISPER" then
 		if not useChannel or not UnitIsPlayer(useChannel) or not UnitCanCooperate("player", useChannel) then
-			print("Invalid or no target selected")
+			print(l.bad_whisp)
 			return
 		end
 	end
-	]]--
+
 	local view = self.views[self.nav.view]
 	if view.Report then
 		view:Report(NumerationCharOptions.petsmerged, lines)
 	else
-		print("Report is not supported by '", self.nav.view, "'-view")
+		print(l.bad_report)
 	end
 end
 
