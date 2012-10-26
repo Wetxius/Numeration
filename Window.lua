@@ -155,7 +155,7 @@ function window:OnInitialize()
 		GameTooltip:SetOwner(segment, "ANCHOR_BOTTOMRIGHT")
 		local name = ""
 		if addon.nav.set == "current" then
-			name = "Current Fight"
+			name = l.Current_Fight
 		else
 			local set = addon:GetSet(addon.nav.set)
 			if set then

@@ -261,7 +261,7 @@ function addon:Reset()
 		[0] = newSet(),
 		zone = lastZone,
 	}
-	NumerationCharDB[0].name = "Overall"
+	NumerationCharDB[0].name = l.Overall_Data
 	current = newSet()
 	if self.nav.set and self.nav.set ~= "total" and self.nav.set ~= "current" then
 		self.nav.set = "current"
@@ -333,7 +333,7 @@ end
 
 function addon:PrintHeaderLine(set)
 	local datetext, timetext = self:GetDuration(set)
-	self:PrintLine("Numeration: %s for %s%s", self.window:GetTitle(), set.name, datetext and format(" [%s %s]", datetext, timetext) or "")
+	self:PrintLine("Numeration: %s - %s%s", self.window:GetTitle(), set.name, datetext and format(" [%s %s]", datetext, timetext) or "")
 end
 
 function addon:PrintLine(...)

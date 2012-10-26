@@ -37,8 +37,8 @@ local setLine = function(lineid, setid, title)
 end
 
 function view:Update()
-	setLine(0, "total", l.Overall_Data)
-	setLine(1, "current", l.Current_Fight)
+	setLine(0, "total", " "..l.Overall_Data)
+	setLine(1, "current", " "..l.Current_Fight)
 
 	self.first, self.last = addon:GetArea(self.first, #NumerationCharDB+2)
 	if not self.last then return end
