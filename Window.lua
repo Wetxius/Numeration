@@ -63,7 +63,7 @@ local updateReportChannels = function()
 	for i = 1, GetNumDisplayChannels() do
 		local name, _, _, channelNumber, _, active, category = GetChannelDisplayInfo(i)
 		if category == "CHANNEL_CATEGORY_CUSTOM" then
-			tinsert(menuTable[2].menuList[8].menuList, {text = name, arg1 = "CHANNEL", arg2 = channelNumber, func = reportFunction, notCheckable = 1})
+			tinsert(menuTable[2].menuList[7].menuList, {text = name, arg1 = "CHANNEL", arg2 = channelNumber, func = reportFunction, notCheckable = 1})
 		end
 	end
 end
