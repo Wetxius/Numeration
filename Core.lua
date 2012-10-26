@@ -1,5 +1,6 @@
 local addonname, addon = ...
 Numeration = addon
+local l = addon.locale
 addon.events = CreateFrame("Frame")
 addon.events:SetScript("OnEvent", function(self, event, ...)
 	addon[event](addon, event, ...)
@@ -208,8 +209,8 @@ end
 
 function ldb:OnTooltipShow()
     GameTooltip:AddLine("Numeration", 1, .8, 0)
-    GameTooltip:AddLine("Left-Click to toggle window visibility.")
-    GameTooltip:AddLine("Shift + Left-Click to reset data.")
+    GameTooltip:AddLine(l.ttoggle)
+    GameTooltip:AddLine(l.treset)
 end
 
 function ldb:OnClick(button)

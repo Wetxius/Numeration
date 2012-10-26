@@ -1,4 +1,5 @@
 local addon = select(2, ...)
+local l = addon.locale
 local window = CreateFrame("Frame", "NumerationFrame", UIParent)
 addon.window = window
 
@@ -36,7 +37,7 @@ local menuTable = {
 	{text = CHAT_ANNOUNCE, notCheckable = true, hasArrow = true,
 		menuList = {
 			--{text = CHAT_ANNOUNCE, isTitle = true, notCheckable = true, notClickable = true},
-			{text = SAY, arg1 = "SAY", func = reportFunction, notCheckable = 1},
+			{text = CHAT_MSG_SAY, arg1 = "SAY", func = reportFunction, notCheckable = 1},
 			{text = PARTY, arg1 = "PARTY", func = reportFunction, notCheckable = 1},
 			{text = RAID, arg1 = "RAID", func = reportFunction, notCheckable = 1},
 			{text = GUILD, arg1 = "GUILD", func = reportFunction, notCheckable = 1},
@@ -47,10 +48,10 @@ local menuTable = {
 	},
 	{text = GAMEOPTIONS_MENU, notCheckable = true, hasArrow = true,
 		menuList = {
-			{text = "Merge Pets w/ Owners", arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true},
-			{text = "Keep Only Boss Segments", arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true},
-			{text = "Record Only In Instances", arg1 = "onlyinstance", func = optionFunction, checked = function() return addon:GetOption("onlyinstance") end, keepShownOnClick = true},
-			{text = "Show Minimap Icon", func = function(f, a1, a2, checked) addon:MinimapIconShow(checked) end, checked = function() return not NumerationCharOptions.minimap.hide end, keepShownOnClick = true},
+			{text = l.petsmerged, arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true},
+			{text = l.keeponlybosses, arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true},
+			{text = l.onlyinstance, arg1 = "onlyinstance", func = optionFunction, checked = function() return addon:GetOption("onlyinstance") end, keepShownOnClick = true},
+			{text = l.minimapicon, func = function(f, a1, a2, checked) addon:MinimapIconShow(checked) end, checked = function() return not NumerationCharOptions.minimap.hide end, keepShownOnClick = true},
 		},
 	},
 	{text = "", notCheckable = true, notClickable = true},

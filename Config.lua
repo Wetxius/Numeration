@@ -1,4 +1,5 @@
 local n = select(2, ...)
+local l = n.locale
 
 -- window settings
 n.windowsettings = {
@@ -37,79 +38,79 @@ n.coresettings = {
 -- available types and their order
 n.types = {
 	{
-		name = "Damage",
+		name = DAMAGE,
 		id = "dd",
 		c = {.25, .66, .35},
 	},
 	{
-		name = "Damage Targets",
+		name = l.Damage_Targets,
 		id = "dd",
 		view = "Targets",
 		onlyfights = true,
 		c = {.25, .66, .35},
 	},
 	{
-		name = "Damage Taken: Targets",
+		name = l.Damage_Taken_Targets,
 		id = "dt",
 		view = "Targets",
 		onlyfights = true,
 		c = {.66, .25, .25},
 	},
 	{
-		name = "Damage Taken: Abilities",
+		name = l.Damage_Taken_Abilities,
 		id = "dt",
 		view = "Spells",
 		c = {.66, .25, .25},
 	},
 	{
-		name = "Friendly Fire",
+		name = l.Friendly_Fire,
 		id = "ff",
 		c = {.63, .58, .24},
 	},
 	{
-		name = "Healing + Absorbs",
+		name = SHOW_COMBAT_HEALING.." + "..COMBAT_TEXT_ABSORB,
 		id = "hd",
 		id2 = "ga",
 		c = {.25, .5, .85},
 	},
---	{
---		name = "Healing Taken: Abilities",
---		id = "ht",
---		view = "Spells",
---		c = {.25, .5, .85},
---	},
---	{
---		name = "Healing",
---		id = "hd",
---		c = {.25, .5, .85},
---	},
---	{
---		name = "Guessed Absorbs",
---		id = "ga",
---		c = {.25, .5, .85},
---	},
+	-- {
+		-- name = l.Healing_Taken_Abilities,
+		-- id = "ht",
+		-- view = "Spells",
+		-- c = {.25, .5, .85},
+	-- },
+	-- {
+		-- name = SHOW_COMBAT_HEALING,
+		-- id = "hd",
+		-- c = {.25, .5, .85},
+	-- },
+	-- {
+		-- name = COMBAT_TEXT_ABSORB,
+		-- id = "ga",
+		-- c = {.25, .5, .85},
+	-- },
 	{
-		name = "Overhealing",
+		name = l.Overhealing,
 		id = "oh",
 		c = {.25, .5, .85},
 	},
 	{
-		name = "Dispels",
+		name = DISPELS,
 		id = "dp",
 		c = {.58, .24, .63},
 	},
 	{
-		name = "Interrupts",
+		name = INTERRUPTS,
 		id = "ir",
 		c = {.09, .61, .55},
 	},
 	{
-		name = "Power Gains",
+		name = POWER_GAINS,
 		id = "pg",
 		c = {.19, .44, .75},
 	},
 	{
-		name = "Death Log",
+		name = l.Death_Log,
 		id = "deathlog",
 		view = "Deathlog",
 		onlyfights = true,

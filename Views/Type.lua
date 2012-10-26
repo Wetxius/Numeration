@@ -1,4 +1,5 @@
 local addon = select(2, ...)
+local l = addon.locale
 local view = {}
 addon.views["Type"] = view
 view.first = 1
@@ -17,7 +18,7 @@ local detailAction = function(f)
 end
 
 function view:Init()
-	addon.window:SetTitle("Selection: Type", .1, .1, .1)
+	addon.window:SetTitle(l.Selection_Set, .1, .1, .1)
 	addon.window:SetBackAction(backAction)
 end
 

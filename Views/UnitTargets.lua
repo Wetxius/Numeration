@@ -1,4 +1,5 @@
 local addon = select(2, ...)
+local l = addon.locale
 local view = {}
 addon.views["UnitTargets"] = view
 view.first = 1
@@ -18,9 +19,9 @@ function view:Init()
 	local t = addon.types[addon.nav.type]
 	local text
 	if u.owner then
-		text = format("%s Targets: %s <%s>", t.name, u.name, u.owner)
+		text = format("%s"..l.Targets..": %s <%s>", t.name, u.name, u.owner)
 	else
-		text = format("%s Targets: %s", t.name, u.name)
+		text = format("%s"..l.Targets..": %s", t.name, u.name)
 	end
 	addon.window:SetTitle(text, t.c[1], t.c[2], t.c[3])
 	addon.window:SetBackAction(backAction)

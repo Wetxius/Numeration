@@ -1,10 +1,11 @@
 local addon = select(2, ...)
+local l = addon.locale
 local view = {}
 addon.views["Sets"] = view
 view.first = 1
 
 function view:Init()
-	addon.window:SetTitle("Selection: Set", .1, .1, .1)
+	addon.window:SetTitle(l.Selection_Set, .1, .1, .1)
 	addon.window:SetBackAction(nil)
 end
 
@@ -36,8 +37,8 @@ local setLine = function(lineid, setid, title)
 end
 
 function view:Update()
-	setLine(0, "total", " Overall Data")
-	setLine(1, "current", " Current Fight")
+	setLine(0, "total", l.Overall_Data)
+	setLine(1, "current", l.Current_Fight)
 
 	self.first, self.last = addon:GetArea(self.first, #NumerationCharDB+2)
 	if not self.last then return end
