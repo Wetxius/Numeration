@@ -170,7 +170,7 @@ local function unitDied(timestamp, playerID, playerName)
 		tinsert(set.deathlog, deathlog)
 		set.deathlog.total = set.deathlog.total + 1
 	else
-		set.deathlog = { deathlog, total=1 }
+		set.deathlog = {deathlog, total=1}
 	end
 end
 local function unitRezzed(timestamp, playerID, playerName, spellId, rezzerName)
@@ -188,7 +188,7 @@ local function unitRezzed(timestamp, playerID, playerName, spellId, rezzerName)
 		tinsert(set.deathlog, deathlog)
 		set.deathlog.total = set.deathlog.total + 1
 	else
-		set.deathlog = { deathlog, total=1 }
+		set.deathlog = {deathlog, total=1}
 	end
 	clearEvts(playerID)
 end

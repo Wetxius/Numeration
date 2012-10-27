@@ -47,5 +47,4 @@ function view:Update()
 		t = NumerationCharDB[i]
 		setLine(i-self.first+2, i)
 	end
-
 end
