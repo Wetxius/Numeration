@@ -18,73 +18,73 @@ BINDING_NAME_NUMERATION_RESET = l.binding_reset
 local bossIds = {
 	-- Cataclysm
 	-- Baradin Hold
-	[47120] = true, -- Argaloth
-	[52363]	= true, -- Occu'thar
-	[55869]	= true, -- Alizabal
+	[47120] = true,		-- Argaloth
+	[52363]	= true,		-- Occu'thar
+	[55869]	= true,		-- Alizabal
 	-- Blackwing Descent
-	[41570] = true, -- Magmaw
-	[42166] = "Omnitron Defense System", -- Arcanotron
-	[42178] = "Omnitron Defense System", -- Magmatron
-	[42179] = "Omnitron Defense System", -- Electron
-	[42180] = "Omnitron Defense System", -- Toxitron
-	[41378] = true, -- Maloriak
-	[41442] = true, -- Atramedes
-	[43296] = true, -- Chimaeron
-	[41376] = true, -- Nefarian
+	[41570] = true,		-- Magmaw
+	[42166] = l.omno,	-- Arcanotron
+	[42178] = l.omno,	-- Magmatron
+	[42179] = l.omno,	-- Electron
+	[42180] = l.omno	-- Toxitron
+	[41378] = true,		-- Maloriak
+	[41442] = true,		-- Atramedes
+	[43296] = true,		-- Chimaeron
+	[41376] = true,		-- Nefarian
 	-- Throne of the Four Winds
-	[45870] = "Conclave of Wind", -- Anshal
-	[45871] = "Conclave of Wind", -- Nezir
-	[45872] = "Conclave of Wind", -- Rohash
-	[46753] = true,	-- Al'Akir
+	[45870] = l.wind,	-- Anshal
+	[45871] = l.wind,	-- Nezir
+	[45872] = l.wind,	-- Rohash
+	[46753] = true,		-- Al'Akir
 	-- The Bastion of Twilight
-	[44600] = true, -- Halfus Wyrmbreaker
-	[45992] = "Valiona & Theralion", -- Valiona
-	[45993] = "Valiona & Theralion", -- Theralion
-	[43686] = "Ascendant Council", -- Ignacious
-	[43687] = "Ascendant Council", -- Feludius
-	[43324] = true, -- Cho'gall
-	[45213] = true, -- Sinestra
+	[44600] = true,		-- Halfus Wyrmbreaker
+	[45992] = l.drag,	-- Valiona
+	[45993] = l.drag,	-- Theralion
+	[43686] = l.elem,	-- Ignacious
+	[43687] = l.elem,	-- Feludius
+	[43324] = true,		-- Cho'gall
+	[45213] = true,		-- Sinestra
 	-- Firelands
-	[52558] = true, -- Lord Rhyolith
-	[52498] = true, -- Beth'tilac
-	[52530] = true, -- Alysrazor
-	[53691] = true, -- Shannox
-	[53494] = true, -- Baleroc
-	[52571] = true, -- Majordomo Staghelm
-	[52409] = true, -- Ragnaros
+	[52558] = true,		-- Lord Rhyolith
+	[52498] = true,		-- Beth'tilac
+	[52530] = true,		-- Alysrazor
+	[53691] = true,		-- Shannox
+	[53494] = true,		-- Baleroc
+	[52571] = true,		-- Majordomo Staghelm
+	[52409] = true,		-- Ragnaros
 	-- Dragon Soul
-	[55265]	= true,	-- Morchok
-	[55308]	= true,	-- Warlord Zon'ozz
-	[55312]	= true,	-- Yor'sahj the Unsleeping
-	[55689]	= true,	-- Hagara the Stormbinder
-	[55294]	= true,	-- Ultraxion
-	[56855] = "Warmaster Blackhorn", -- Twilight Assault Drake
-	[56854] = "Warmaster Blackhorn", -- Twilight Elite Dreadblade
-	[56848] = "Warmaster Blackhorn", -- Twilight Elite Slayer
-	[53879]	= true,	-- Spine of Deathwing
-	[56167] = "Madness of Deathwing", -- Arm Tentacle
-	[56846] = "Madness of Deathwing", -- Arm Tentacle
-	[56168] = "Madness of Deathwing", -- Wing Tentacle
+	[55265]	= true,		-- Morchok
+	[55308]	= true,		-- Warlord Zon'ozz
+	[55312]	= true,		-- Yor'sahj the Unsleeping
+	[55689]	= true,		-- Hagara the Stormbinder
+	[55294]	= true,		-- Ultraxion
+	[56855] = l.horn,	-- Twilight Assault Drake
+	[56854] = l.horn,	-- Twilight Elite Dreadblade
+	[56848] = l.horn,	-- Twilight Elite Slayer
+	[53879]	= true,		-- Spine of Deathwing
+	[56167] = l.mad,	-- Arm Tentacle
+	[56846] = l.mad,	-- Arm Tentacle
+	[56168] = l.mad,	-- Wing Tentacle
 	-- Pandaria
 	-- Mogu'Shan Vault
-	[59915] = "Stone Guard", -- Jasper, Stone Guard
-	[60043] = "Stone Guard", -- Jade, Stone Guard
-	[60047] = "Stone Guard", -- Amethyst, Stone Guard
-	[60051] = "Stone Guard", -- Cobalt, Stone Guard
-	[60009] = true, -- Feng the Accursed
-	[60143] = true, -- Gara'jal the Spiritbinder
-	[60701] = "The Spirit Kings", -- Zian of the Endless Shadow
-	[60708] = "The Spirit Kings", -- Qiang the Merciless
-	[60709] = "The Spirit Kings", -- Subetai the Swift
-	[60710] = "The Spirit Kings", -- Meng the Demented
-	[60410] = true, -- Elegon
-	[60396] = "Will of the Emperor", -- Emperor's Rage
-	[60397] = "Will of the Emperor", -- Emperor's Strength
-	[60399] = "Will of the Emperor", -- Qin-xi
-	[60400] = "Will of the Emperor", -- Jan-xi
+	[59915] = l.stone,	-- Jasper, Stone Guard
+	[60043] = l.stone,	-- Jade, Stone Guard
+	[60047] = l.stone,	-- Amethyst, Stone Guard
+	[60051] = l.stone,	-- Cobalt, Stone Guard
+	[60009] = true,		-- Feng the Accursed
+	[60143] = true,		-- Gara'jal the Spiritbinder
+	[60701] = l.kings,	-- Zian of the Endless Shadow
+	[60708] = l.kings,	-- Qiang the Merciless
+	[60709] = l.kings,	-- Subetai the Swift
+	[60710] = l.kings,	-- Meng the Demented
+	[60410] = true,		-- Elegon
+	[60396] = l.will,	-- Emperor's Rage
+	[60397] = l.will,	-- Emperor's Strength
+	[60399] = l.will,	-- Qin-xi
+	[60400] = l.will,	-- Jan-xi
 	-- World bosses
-	[60491] = true, -- Sha of Anger
-	[62346] = true, -- Galleon
+	[60491] = true,		-- Sha of Anger
+	[62346] = true,		-- Galleon
 }
 
 -- used colors

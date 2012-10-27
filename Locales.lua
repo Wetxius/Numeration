@@ -26,6 +26,16 @@ if GetLocale() == "ruRU" then
 		bad_report = "Ошибка: выберите режим для отчета",
 		bad_whisp = "Нет цели или неправильная",
 		death = "Смерть",
+		-- bossIds
+		stone = "Каменные стражи",
+		kings = "Призрачные короли",
+		will = "Воля Императора",
+		horn = "Воевода Черный Рог",
+		mad = "Безумие Смертокрыла",
+		omno = "Омнитрон",
+		wind = "Конклав ветра",
+		drag = "Валиона и Тералион",
+		elem = "Совет Перерожденных",
 	}
 else
 	n.locale = {
@@ -53,5 +63,15 @@ else
 		bad_report = "Error: select type for report",
 		bad_whisp = "Invalid or no target selected",
 		death = "Death",
+		-- bossIds
+		stone = "Stone Guard",
+		kings = "The Spirit Kings",
+		will = "Will of the Emperor",
+		horn = "Warmaster Blackhorn",
+		mad = "Madness of Deathwing",
+		omno = "Omnitron Defense System",
+		wind = "Conclave of Wind",
+		drag = "Valiona & Theralion",
+		elem = "Ascendant Council",
 	}
 end
