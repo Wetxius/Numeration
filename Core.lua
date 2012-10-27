@@ -546,7 +546,7 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 				local curZone = GetRealZoneText()
 				if curZone ~= NumerationCharDB.zone then
 					NumerationCharDB.zone = curZone
-					addon.window:ShowResetWindow()
+					StaticPopup_Show("RESET_DATA")
 				end
 			end
 			self:UpdateGUIDS()

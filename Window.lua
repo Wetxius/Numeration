@@ -345,55 +345,6 @@ function window:GetLine(id)
 	return f
 end
 
--- local reset
--- function window:ShowResetWindow()
-	-- if not reset then
-		-- reset = CreateFrame("Frame", nil, window)
-		-- reset:SetBackdrop(backdrop)
-		-- reset:SetBackdropColor(0, 0, 0, s.backgroundalpha)
-		-- reset:SetWidth(200)
-		-- reset:SetHeight(45)
-		-- reset:SetPoint("CENTER", UIParent, "CENTER", 0, 200)
-
-		-- reset.title = reset:CreateTexture(nil, "ARTWORK")
-		-- reset.title:SetTexture([[Interface\TargetingFrame\UI-StatusBar]])
-		-- reset.title:SetTexCoord(.8, 1, .8, 1)
-		-- reset.title:SetVertexColor(.1, .1, .1, .9)
-		-- reset.title:SetPoint("TOPLEFT", 1, -1)
-		-- reset.title:SetPoint("BOTTOMRIGHT", reset, "TOPRIGHT", -1, -s.titleheight-1)
-
-		-- reset.titletext = reset:CreateFontString(nil, "ARTWORK")
-		-- reset.titletext:SetFont(s.titlefont, s.titlefontsize, s.titlefontstyle)
-		-- reset.titletext:SetTextColor(s.titlefontcolor[1], s.titlefontcolor[2], s.titlefontcolor[3], 1)
-		-- reset.titletext:SetText("Numeration: "..l.reset_data)
-		-- reset.titletext:SetPoint("TOP", 0, -2)
-
-		-- reset.yes = CreateFrame("Button", nil, reset)
-		-- reset.yes:SetBackdrop(backdrop)
-		-- reset.yes:SetBackdropColor(0, .2, 0, 1)
-		-- reset.yes:SetHighlightTexture([[Interface\QuestFrame\UI-QuestTitleHighlight]])
-		-- reset.yes:SetNormalFontObject(ChatFontSmall)
-		-- reset.yes:SetText(YES)
-		-- reset.yes:SetWidth(80)
-		-- reset.yes:SetHeight(18)
-		-- reset.yes:SetPoint("BOTTOMLEFT", 10, 5)
-		-- reset.yes:SetScript("OnMouseUp", function() addon:Reset() reset:Hide() end)
-
-		-- reset.no = CreateFrame("Button", nil, reset)
-		-- reset.no:SetBackdrop(backdrop)
-		-- reset.no:SetBackdropColor(.2, 0, 0, 1)
-		-- reset.no:SetHighlightTexture([[Interface\QuestFrame\UI-QuestTitleHighlight]])
-		-- reset.no:SetNormalFontObject(ChatFontSmall)
-		-- reset.no:SetText(NO)
-		-- reset.no:SetWidth(80)
-		-- reset.no:SetHeight(18)
-		-- reset.no:SetPoint("BOTTOMRIGHT", -10, 5)
-		-- reset.no:SetScript("OnMouseUp", function() reset:Hide() end)
-	-- end
-
-	-- reset:Show()
--- end
-
 StaticPopupDialogs.RESET_DATA = {
 	text = "Numeration: "..l.reset_data,
 	button1 = ACCEPT,
@@ -401,7 +352,6 @@ StaticPopupDialogs.RESET_DATA = {
 	OnAccept = function() addon:Reset() end,
 	timeout = 0,
 	whileDead = 1,
-	--showAlert = true,
 	hideOnEscape = true,
 	preferredIndex = 5,
 }
