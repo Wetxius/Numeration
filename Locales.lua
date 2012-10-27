@@ -27,6 +27,7 @@ if GetLocale() == "ruRU" then
 		bad_whisp = "Нет цели или неправильная",
 		death = "Смерть",
 		-- bossIds
+		prot = "Стражи Бесконечности",
 		stone = "Каменные стражи",
 		kings = "Призрачные короли",
 		will = "Воля Императора",
@@ -64,6 +65,7 @@ else
 		bad_whisp = "Invalid or no target selected",
 		death = "Death",
 		-- bossIds
+		prot = "Protectors of the Endless",
 		stone = "Stone Guard",
 		kings = "The Spirit Kings",
 		will = "Will of the Emperor",

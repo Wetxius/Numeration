@@ -16,11 +16,62 @@ BINDING_NAME_NUMERATION_VISIBILITY = l.binding_visibility
 BINDING_NAME_NUMERATION_RESET = l.binding_reset
 
 local bossIds = {
+	-- Pandaria
+	-- Terrace of Endless Spring
+	[60583] = l.prot,	-- Protector Kaolan
+	[60585] = l.prot,	-- Elder Regail
+	[60586] = l.prot,	-- Elder Asani
+	[62442] = true,		-- Tsulong
+	[63099] = true,		-- Lei Shi
+	[60999] = true,		-- Sha of Fear
+	-- Heart of Fear
+	[66791] = true,		-- Imperial Vizier Zor'lok
+	[63664] = true,		-- Blade Lord Ta'yak
+	[63667] = true,		-- Garalon
+	[65501] = true,		-- Wind Lord Mel'jarak
+	[63666] = true,		-- Amber-Shaper Un'sok
+	[62837] = true,		-- Grand Empress Shek'zeer
+	-- Mogu'Shan Vault
+	[59915] = l.stone,	-- Jasper, Stone Guard
+	[60043] = l.stone,	-- Jade, Stone Guard
+	[60047] = l.stone,	-- Amethyst, Stone Guard
+	[60051] = l.stone,	-- Cobalt, Stone Guard
+	[60009] = true,		-- Feng the Accursed
+	[60143] = true,		-- Gara'jal the Spiritbinder
+	[60701] = l.kings,	-- Zian of the Endless Shadow
+	[60708] = l.kings,	-- Qiang the Merciless
+	[60709] = l.kings,	-- Subetai the Swift
+	[60710] = l.kings,	-- Meng the Demented
+	[60410] = true,		-- Elegon
+	[60396] = l.will,	-- Emperor's Rage
+	[60397] = l.will,	-- Emperor's Strength
+	[60399] = l.will,	-- Qin-xi
+	[60400] = l.will,	-- Jan-xi
+	-- World bosses
+	[60491] = true,		-- Sha of Anger
+	[62346] = true,		-- Galleon
 	-- Cataclysm
-	-- Baradin Hold
-	[47120] = true,		-- Argaloth
-	[52363]	= true,		-- Occu'thar
-	[55869]	= true,		-- Alizabal
+	-- Dragon Soul
+	[55265]	= true,		-- Morchok
+	[55308]	= true,		-- Warlord Zon'ozz
+	[55312]	= true,		-- Yor'sahj the Unsleeping
+	[55689]	= true,		-- Hagara the Stormbinder
+	[55294]	= true,		-- Ultraxion
+	[56855] = l.horn,	-- Twilight Assault Drake
+	[56854] = l.horn,	-- Twilight Elite Dreadblade
+	[56848] = l.horn,	-- Twilight Elite Slayer
+	[53879]	= true,		-- Spine of Deathwing
+	[56167] = l.mad,	-- Arm Tentacle
+	[56846] = l.mad,	-- Arm Tentacle
+	[56168] = l.mad,	-- Wing Tentacle
+	-- Firelands
+	[52558] = true,		-- Lord Rhyolith
+	[52498] = true,		-- Beth'tilac
+	[52530] = true,		-- Alysrazor
+	[53691] = true,		-- Shannox
+	[53494] = true,		-- Baleroc
+	[52571] = true,		-- Majordomo Staghelm
+	[52409] = true,		-- Ragnaros
 	-- Blackwing Descent
 	[41570] = true,		-- Magmaw
 	[42166] = l.omno,	-- Arcanotron
@@ -44,47 +95,10 @@ local bossIds = {
 	[43687] = l.elem,	-- Feludius
 	[43324] = true,		-- Cho'gall
 	[45213] = true,		-- Sinestra
-	-- Firelands
-	[52558] = true,		-- Lord Rhyolith
-	[52498] = true,		-- Beth'tilac
-	[52530] = true,		-- Alysrazor
-	[53691] = true,		-- Shannox
-	[53494] = true,		-- Baleroc
-	[52571] = true,		-- Majordomo Staghelm
-	[52409] = true,		-- Ragnaros
-	-- Dragon Soul
-	[55265]	= true,		-- Morchok
-	[55308]	= true,		-- Warlord Zon'ozz
-	[55312]	= true,		-- Yor'sahj the Unsleeping
-	[55689]	= true,		-- Hagara the Stormbinder
-	[55294]	= true,		-- Ultraxion
-	[56855] = l.horn,	-- Twilight Assault Drake
-	[56854] = l.horn,	-- Twilight Elite Dreadblade
-	[56848] = l.horn,	-- Twilight Elite Slayer
-	[53879]	= true,		-- Spine of Deathwing
-	[56167] = l.mad,	-- Arm Tentacle
-	[56846] = l.mad,	-- Arm Tentacle
-	[56168] = l.mad,	-- Wing Tentacle
-	-- Pandaria
-	-- Mogu'Shan Vault
-	[59915] = l.stone,	-- Jasper, Stone Guard
-	[60043] = l.stone,	-- Jade, Stone Guard
-	[60047] = l.stone,	-- Amethyst, Stone Guard
-	[60051] = l.stone,	-- Cobalt, Stone Guard
-	[60009] = true,		-- Feng the Accursed
-	[60143] = true,		-- Gara'jal the Spiritbinder
-	[60701] = l.kings,	-- Zian of the Endless Shadow
-	[60708] = l.kings,	-- Qiang the Merciless
-	[60709] = l.kings,	-- Subetai the Swift
-	[60710] = l.kings,	-- Meng the Demented
-	[60410] = true,		-- Elegon
-	[60396] = l.will,	-- Emperor's Rage
-	[60397] = l.will,	-- Emperor's Strength
-	[60399] = l.will,	-- Qin-xi
-	[60400] = l.will,	-- Jan-xi
-	-- World bosses
-	[60491] = true,		-- Sha of Anger
-	[62346] = true,		-- Galleon
+	-- Baradin Hold
+	[47120] = true,		-- Argaloth
+	[52363]	= true,		-- Occu'thar
+	[55869]	= true,		-- Alizabal
 }
 
 -- used colors
