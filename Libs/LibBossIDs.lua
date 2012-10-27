@@ -1,9 +1,6 @@
 local addon = select(2, ...)
 local l = addon.locale
-local MAJOR, MINOR = "LibBossIDs", "$Revision: 1$"
-local lib = LibStub:NewLibrary(MAJOR, MINOR)
-
-if not lib then return end
+local lib = LibStub:NewLibrary("LibBossIDs", 1)
 
 local BossIDs = {
 	-------------------------------------------------------------------------------
