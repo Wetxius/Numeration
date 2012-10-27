@@ -50,6 +50,35 @@ local bossIds = {
 	-- World bosses
 	[60491] = true,		-- Sha of Anger
 	[62346] = true,		-- Galleon
+	-------------------------------------------------------------------------------
+	-- Shado-Pan Monastery
+	[56719] = true,		-- Sha of Violence
+	[56747] = true,		-- Gu Cloudstrike
+	[56884] = true,		-- Taran Zhu
+	[64387] = true,		-- Master Snowdrift
+	-- Stormstout Brewery
+	[56717] = true,		-- Hoptallus
+	[57963] = true,		-- Ook-Ook
+	[59479] = true,		-- Yan-Zhu the Unsacked
+	-- Temple of the Jade Serpent
+	[56448] = true,		-- Wise Mari
+	[58826] = true,		-- Zao Sunseeker
+	[59051] = true,		-- Strife
+	[59726] = true,		-- Anger
+	[56732] = true,		-- Liu Flameheart
+	[56439] = true,		-- Sha of Doubt
+	-- Mogu'Shan Palace
+	[61442] = true,		-- Kuai the Brute, Trial of the King
+	[61444] = true,		-- Ming the Cunning, Trial of the King
+	[61445] = true,		-- Haiyan the Unstoppable, Trial of the King
+	[61243] = true,		-- Gekkan
+	[61398] = true,		-- Xin the Weaponmaster
+	-- Nizuao Temple
+	[61634] = true,		-- Vojak
+	[61567] = true,		-- Jinbak
+	[62205] = true,		-- Neronok
+	[61485] = true,		-- Pavalak
+	-------------------------------------------------------------------------------
 	-- Cataclysm
 	-- Dragon Soul
 	[55265]	= true,		-- Morchok
