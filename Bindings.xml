@@ -3,6 +3,6 @@
 		Numeration:ToggleVisibility()
 	</Binding>
 	<Binding name="NUMERATION_RESET">
-		Numeration.window:ShowResetWindow()
+		StaticPopup_Show("RESET_DATA")
 	</Binding>
 </Bindings>

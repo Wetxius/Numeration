@@ -216,7 +216,7 @@ end
 function ldb:OnClick(button)
 	if button == "LeftButton" then
 		if IsShiftKeyDown() then
-			addon.window:ShowResetWindow()
+			StaticPopup_Show("RESET_DATA")
 		else
 			addon:ToggleVisibility()
 		end
