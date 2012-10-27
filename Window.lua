@@ -193,7 +193,7 @@ function window:OnInitialize()
 	font:SetFont(s.titlefont, s.titlefontsize, s.titlefontstyle)
 	font:SetShadowOffset(s.fontshadow and 1 or 0, s.fontshadow and -1 or 0)
 	font:SetTextColor(s.titlefontcolor[1], s.titlefontcolor[2], s.titlefontcolor[3], 1)
-	font:SetHeight(s.titleheight)
+	font:SetHeight(s.titlefontsize)
 	font:SetPoint("LEFT", title, "LEFT", 4, 0)
 	font:SetPoint("RIGHT", segment, "LEFT", -1, 0)
 
