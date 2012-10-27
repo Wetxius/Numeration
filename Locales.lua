@@ -25,6 +25,7 @@ if GetLocale() == "ruRU" then
 		whisp_target = "шепнуть цели",
 		bad_report = "Ошибка: выберите режим для отчета",
 		bad_whisp = "Нет цели или неправильная",
+		death = "Смерть",
 	}
 else
 	n.locale = {
@@ -51,5 +52,6 @@ else
 		whisp_target = "Whisper target",
 		bad_report = "Error: select type for report",
 		bad_whisp = "Invalid or no target selected",
+		death = "Death",
 	}
 end

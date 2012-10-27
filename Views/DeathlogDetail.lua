@@ -1,5 +1,6 @@
 local addon = select(2, ...)
 local view = {}
+local l = addon.locale
 addon.views["Deathlog-Detail"] = view
 view.first = 999
 
@@ -33,7 +34,7 @@ end
 local schoolColor = {
 	["1"] = "FFFFFF",	-- Physical
 	["2"] = "FFE680",	-- Holy
-	["4"] = "FF8000",	-- Fire	
+	["4"] = "FF8000",	-- Fire
 	["8"] = "4DFF4D",	-- Nature
 	["16"] = "80FFFF",	-- Frost
 	["20"] = "CC3399",	-- Frostfire
@@ -42,41 +43,31 @@ local schoolColor = {
 }
 
 local eventColors = {
---[[	DT = {.4, .2, .2},
-	HT = {.2, .4, .2},
-	AB = {.2, .2, .4},
-	AD = {.4, .3, .2},
-	X  = {.3, .3, .3}, ]]
---[[	DT = {.66, .25, .25},
-	HT = {.25, .66, .35},
-	AB = {.25, .5, .85},
-	AD = {.63, .58, .24},
-	X  = {.58, .24, .63},]]
 	DT = {.66, .25, .25},
 	HT = {.25, .66, .35},
 }
 local eventText = {}
 eventText.DT = function(event, spellId, srcName, spellSchool, amount, overkill, resisted, blocked, absorbed, modifier)
 	overkill = (overkill~="") and string.format("|cff943DA1>%s|r", overkill) or ""
-	absorbed = (absorbed~="") and string.format("|cffFFFF00-%s|r", absorbed) or "" -- 1,1,0
-	blocked = (blocked~="") and string.format("|cffAAAAAA-%s|r", blocked) or "" -- .66,.66,.66 // 0.5,0,1
-	resisted = (resisted~="") and string.format("|cff800080-%s|r", resisted) or "" -- 0.5,0,0.5
+	absorbed = (absorbed~="") and string.format("|cffFFFF00-%s|r", absorbed) or ""
+	blocked = (blocked~="") and string.format("|cffAAAAAA-%s|r", blocked) or ""
+	resisted = (resisted~="") and string.format("|cff800080-%s|r", resisted) or ""
 	return string.format("|cffFF0000%+7d%s|r%s%s%s%s [%s - |cff%s%s|r]", -tonumber(amount), modifier, overkill, absorbed, blocked, resisted, srcName, schoolColor[spellSchool] or "FFFF00", spellName[spellId] or spellId)
 end
 eventText.DM = function(event, spellId, srcName, spellSchool, missType, amountMissed)
 	return string.format("  |cffAAAAAA%s|r [%s - |cff%s%s|r]", missType, srcName, schoolColor[spellSchool] or "FFFF00", spellName[spellId] or spellId)
 end
 eventText.HT = function(event, spellId, srcName, amount, overhealing, modifier)
-	overhealing = (overhealing~="") and string.format("|cff00B480>%i|r", overhealing) or "" -- 0,0.705,0.5 = 00B480 // 4080D9
+	overhealing = (overhealing~="") and string.format("|cff00B480>%i|r", overhealing) or ""
 	return string.format("|cff00FF00%+7d%s|r%s [%s - %s]", amount, modifier, overhealing, srcName, spellName[spellId] or spellId)
 end
 eventText.AB = function(event, spellId, modifier, stacks)
 	stacks = (stacks~="") and string.format(" (%s)", stacks) or ""
-	return string.format("     %s|cff%s[%s]|r%s", modifier, (event == "AB") and "B2B200" or "008080", spellName[spellId] or spellId, stacks)
+	return string.format("    %s|cff%s[%s]|r%s", modifier, (event == "AB") and "B2B200" or "008080", spellName[spellId] or spellId, stacks)
 end
 eventText.AD = eventText.AB
 eventText.X = function(event, spellId)
-	return "     Death"
+	return "    "..l.death
 end
 function view:Update()
 	local set = addon:GetSet(addon.nav.set)
@@ -121,16 +112,16 @@ end
 local reportText = {}
 reportText.DT = function(event, spellId, srcName, spellSchool, amount, overkill, resisted, blocked, absorbed, modifier)
 	overkill = (overkill~="") and string.format(">%s", overkill) or ""
-	absorbed = (absorbed~="") and string.format(" (%s absorbed)", absorbed) or "" -- 1,1,0
-	blocked = (blocked~="") and string.format(" (%s blocked)", blocked) or "" -- .66,.66,.66 // 0.5,0,1
-	resisted = (resisted~="") and string.format(" (%s resisted)", resisted) or "" -- 0.5,0,0.5
+	absorbed = (absorbed~="") and string.format(" (%s absorbed)", absorbed) or ""
+	blocked = (blocked~="") and string.format(" (%s blocked)", blocked) or ""
+	resisted = (resisted~="") and string.format(" (%s resisted)", resisted) or ""
 	return string.format("%+d%s%s%s%s%s [%s - %s]", -tonumber(amount), modifier, overkill, absorbed, blocked, resisted, srcName, GetSpellLink(spellId) or spellName[spellId] or spellId)
 end
 reportText.DM = function(event, spellId, srcName, spellSchool, missType, amountMissed)
 	return string.format("%s [%s - %s]", missType, srcName, GetSpellLink(spellId) or spellName[spellId] or spellId)
 end
 reportText.HT = function(event, spellId, srcName, amount, overhealing, modifier)
-	overhealing = (overhealing~="") and string.format(">%i", overhealing) or "" -- 0,0.705,0.5 = 00B480 // 4080D9
+	overhealing = (overhealing~="") and string.format(">%i", overhealing) or ""
 	return string.format("%+d%s%s [%s - %s]", amount, modifier, overhealing, srcName, GetSpellLink(spellId) or spellName[spellId] or spellId)
 end
 reportText.AB = function(event, spellId, modifier, stacks)
@@ -139,7 +130,7 @@ reportText.AB = function(event, spellId, modifier, stacks)
 end
 reportText.AD = reportText.AB
 reportText.X = function(event, spellId)
-	return "Death"
+	return l.death
 end
 function view:Report(merged, num_lines)
 	local set = addon:GetSet(addon.nav.set)
