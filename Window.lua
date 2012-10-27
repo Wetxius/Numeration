@@ -145,6 +145,7 @@ function window:OnInitialize()
 
 	reset.text = reset:CreateFontString(nil, "ARTWORK")
 	reset.text:SetFont(s.linefont, s.linefontsize, s.linefontstyle)
+	reset.text:SetShadowOffset(s.fontshadow and 1 or 0, s.fontshadow and -1 or 0)
 	reset.text:SetPoint("CENTER", 1, 0)
 	reset.text:SetText(">")
 
@@ -175,6 +176,7 @@ function window:OnInitialize()
 
 	segment.text = segment:CreateFontString(nil, "ARTWORK")
 	segment.text:SetFont(s.linefont, s.linefontsize, s.linefontstyle)
+	segment.text:SetShadowOffset(s.fontshadow and 1 or 0, s.fontshadow and -1 or 0)
 	segment.text:SetPoint("CENTER", 1, 0)
 	segment.text:SetText("")
 
