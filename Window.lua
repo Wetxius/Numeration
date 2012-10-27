@@ -365,8 +365,9 @@ StaticPopupDialogs.RESET_DATA = {
 StaticPopupDialogs.REPORT_DIALOG = {
 	text = "Numeration: "..l.whisp_target,
 	button1 = WHISPER,
+	timeout = 0,
 	hasEditBox = 1,
 	whileDead = 1,
-	hideOnEscape = true,
+	EditBoxOnEscapePressed = function(self) self:GetParent():Hide() end,
 	preferredIndex = 5,
 }
