@@ -225,13 +225,13 @@ function addon:InitOptions()
 		NumerationCharOptions = {}
 	end
 	if NumerationCharOptions.keeponlybosses == nil then
-		NumerationCharOptions.keeponlybosses = true
+		NumerationCharOptions.keeponlybosses = false
 	end
 	if NumerationCharOptions.petsmerged == nil then
 		NumerationCharOptions.petsmerged = true
 	end
 	if NumerationCharOptions.onlyinstance == nil then
-		NumerationCharOptions.onlyinstance = true
+		NumerationCharOptions.onlyinstance = false
 	end
 	if not NumerationCharOptions.minimap then
 		NumerationCharOptions.minimap = {
