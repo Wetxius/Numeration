@@ -586,6 +586,18 @@ function addon:PLAYER_REGEN_ENABLED()
 	end
 end
 
+function addon:IsRaidInCombat()
+	if GetNumGroupMembers() > 0 then
+		local unit = IsInRaid() and "raid" or "party"
+		for i = 1, GetNumGroupMembers(), 1 do
+			if UnitExists(unit..i) and UnitAffectingCombat(unit..i) then
+				inCombat = true
+			end
+		end
+	end
+	inCombat = nil
+end
+
 function addon:EnterCombatEvent(timestamp, guid, name)
 	if not current.active then
 		current = newSet()
