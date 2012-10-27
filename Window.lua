@@ -41,7 +41,13 @@ local menuTable = {
 			{text = RAID, arg1 = "RAID", func = reportFunction, notCheckable = 1},
 			{text = GUILD, arg1 = "GUILD", func = reportFunction, notCheckable = 1},
 			{text = OFFICER, arg1 = "OFFICER", func = reportFunction, notCheckable = 1},
-			{text = WHISPER, func = function() window:ShowWhisperWindow() end, notCheckable = 1},
+			{text = TARGET, func = function() reportFunction(self, "WHISPER", UnitName("target")) end, notCheckable = 1},
+			{text = WHISPER, func = function()
+				StaticPopupDialogs.REPORT_DIALOG.OnAccept = function(self)
+					reportFunction(self, "WHISPER", _G[self:GetName().."EditBox"]:GetText())
+				end
+				StaticPopup_Show("REPORT_DIALOG")
+			end, notCheckable = 1},
 			{text = CHANNEL, notCheckable = 1, keepShownOnClick = true, hasArrow = true, menuList = {}}
 		},
 	},
@@ -58,11 +64,11 @@ local menuTable = {
 }
 
 local updateReportChannels = function()
-	menuTable[2].menuList[7].menuList = table.wipe(menuTable[2].menuList[7].menuList)
+	menuTable[2].menuList[8].menuList = table.wipe(menuTable[2].menuList[8].menuList)
 	for i = 1, GetNumDisplayChannels() do
 		local name, _, _, channelNumber, _, active, category = GetChannelDisplayInfo(i)
 		if category == "CHANNEL_CATEGORY_CUSTOM" then
-			tinsert(menuTable[2].menuList[7].menuList, {text = name, arg1 = "CHANNEL", arg2 = channelNumber, func = reportFunction, notCheckable = 1})
+			tinsert(menuTable[2].menuList[8].menuList, {text = name, arg1 = "CHANNEL", arg2 = channelNumber, func = reportFunction, notCheckable = 1})
 		end
 	end
 end
@@ -356,53 +362,11 @@ StaticPopupDialogs.RESET_DATA = {
 	preferredIndex = 5,
 }
 
-local whisper
-function window:ShowWhisperWindow()
-	if not whisper then
-		whisper = CreateFrame("Frame", nil, window)
-		whisper:SetBackdrop(backdrop)
-		whisper:SetBackdropColor(0, 0, 0, 0.6)
-		whisper:SetWidth(200)
-		whisper:SetHeight(45)
-		whisper:SetPoint("CENTER", UIParent, "CENTER", 0, 200)
-
-		whisper.title = whisper:CreateTexture(nil, "ARTWORK")
-		whisper.title:SetTexture([[Interface\TargetingFrame\UI-StatusBar]])
-		whisper.title:SetTexCoord(.8, 1, .8, 1)
-		whisper.title:SetVertexColor(.1, .1, .1, .9)
-		whisper.title:SetPoint("TOPLEFT", 1, -1)
-		whisper.title:SetPoint("BOTTOMRIGHT", whisper, "TOPRIGHT", -1, -s.titleheight-1)
-
-		whisper.titletext = whisper:CreateFontString(nil, "ARTWORK")
-		whisper.titletext:SetFont(s.titlefont, s.titlefontsize, s.titlefontstyle)
-		whisper.titletext:SetTextColor(s.titlefontcolor[1], s.titlefontcolor[2], s.titlefontcolor[3], 1)
-		whisper.titletext:SetText("Numeration: "..l.whisp_target)
-		whisper.titletext:SetPoint("TOPLEFT", 5, -2)
-
-		whisper.target = CreateFrame("EditBox", "NumerationWhisperEditBox", whisper)
-		whisper.target:SetBackdrop(backdrop)
-		whisper.target:SetBackdropColor(0, 0, 0, 0.6)
-		whisper.target:SetFontObject(ChatFontSmall)
-		whisper.target:SetWidth(90)
-		whisper.target:SetHeight(18)
-		whisper.target:SetPoint("BOTTOMLEFT", 10, 5)
-		whisper.target:SetScript("OnEscapePressed", function() whisper:Hide() end)
-		whisper.target:SetScript("OnEnterPressed", function() reportFunction(self, "WHISPER", whisper.target:GetText()) whisper:Hide() end)
-
-		whisper.yes = CreateFrame("Button", nil, whisper)
-		whisper.yes:SetBackdrop(backdrop)
-		whisper.yes:SetBackdropColor(0, .2, 0, 1)
-		whisper.yes:SetHighlightTexture([[Interface\QuestFrame\UI-QuestTitleHighlight]])
-		whisper.yes:SetNormalFontObject(ChatFontSmall)
-		whisper.yes:SetText(WHISPER)
-		whisper.yes:SetWidth(70)
-		whisper.yes:SetHeight(18)
-		whisper.yes:SetPoint("BOTTOMRIGHT", -10, 5)
-		whisper.yes:SetScript("OnMouseUp", function() reportFunction(self, "WHISPER", whisper.target:GetText()) whisper:Hide() end)
-	end
-	if UnitIsPlayer("target") and UnitCanCooperate("player", "target") then
-		whisper.target:SetText(UnitName("target"))
-	end
-
-	whisper:Show()
-end
+StaticPopupDialogs.REPORT_DIALOG = {
+	text = "Numeration: "..l.whisp_target,
+	button1 = WHISPER,
+	hasEditBox = 1,
+	whileDead = 1,
+	hideOnEscape = true,
+	preferredIndex = 5,
+}
