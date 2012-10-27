@@ -16,7 +16,9 @@ BINDING_NAME_NUMERATION_VISIBILITY = l.binding_visibility
 BINDING_NAME_NUMERATION_RESET = l.binding_reset
 
 local bossIds = {
-	-- Pandaria
+	-------------------------------------------------------------------------------
+	-- Pandaria Raid
+	-------------------------------------------------------------------------------
 	-- Terrace of Endless Spring
 	[60583] = l.prot,	-- Protector Kaolan
 	[60585] = l.prot,	-- Elder Regail
@@ -51,45 +53,66 @@ local bossIds = {
 	[60491] = true,		-- Sha of Anger
 	[62346] = true,		-- Galleon
 	-------------------------------------------------------------------------------
-	-- Shado-Pan Monastery
-	[56719] = true,		-- Sha of Violence
-	[56747] = true,		-- Gu Cloudstrike
-	[56884] = true,		-- Taran Zhu
-	[64387] = true,		-- Master Snowdrift
-	-- Stormstout Brewery
-	[56717] = true,		-- Hoptallus
-	[57963] = true,		-- Ook-Ook
-	[59479] = true,		-- Yan-Zhu the Unsacked
-	-- Temple of the Jade Serpent
-	[56448] = true,		-- Wise Mari
-	[58826] = true,		-- Zao Sunseeker
-	[59051] = true,		-- Strife
-	[59726] = true,		-- Anger
-	[56732] = true,		-- Liu Flameheart
-	[56439] = true,		-- Sha of Doubt
+	-- Pandaria Dungeon
+	-------------------------------------------------------------------------------
+	-- Gate of the Setting Sun
+	[56906] = true,		-- Saboteur Kip'tilak
+	[56589] = true,		-- Striker Ga'dok
+	[56636] = true,		-- Commander Ri'mok
+	[56877] = true,		-- Raigonn
 	-- Mogu'Shan Palace
-	[61442] = true,		-- Kuai the Brute, Trial of the King
-	[61444] = true,		-- Ming the Cunning, Trial of the King
-	[61445] = true,		-- Haiyan the Unstoppable, Trial of the King
+	[61442] = l.trial,	-- Kuai the Brute
+	[61444] = l.trial,	-- Ming the Cunning
+	[61445] = l.trial,	-- Haiyan the Unstoppable
 	[61243] = true,		-- Gekkan
 	[61398] = true,		-- Xin the Weaponmaster
-	-- Nizuao Temple
-	[61634] = true,		-- Vojak
-	[61567] = true,		-- Jinbak
-	[62205] = true,		-- Neronok
-	[61485] = true,		-- Pavalak
+	-- Scarlet Halls
+	[59303] = true,		-- Houndmaster Braun
+	[58632] = true,		-- Armsmaster Harlan
+	[59150] = true,		-- Flameweaver Koegler
+	-- Scarlet Monastery
+	[59789] = true,		-- Thalnos the Soulrender
+	[59223] = true,		-- Brother Korloff
+	[60040] = l.inq,	-- Commander Durand
+	[3977] = l.inq,		-- High Inquisitor Whitemane
+	-- Scholomance
+	[58633] = true,		-- Instructor Chillheart
+	[59184] = true,		-- Jandice Barov
+	[59153] = true,		-- Rattlegore
+	[58722] = true,		-- Lilian Voss
+	[59080] = true,		-- Darkmaster Gandling
+	-- Shado-Pan Monastery
+	[56747] = true,		-- Gu Cloudstrike
+	[56541] = true,		-- Master Snowdrift
+	[56719] = true,		-- Sha of Violence
+	[56884] = true,		-- Taran Zhu
+	-- Siege of Niuzao Temple
+	[61567] = true,		-- Vizier Jin'bak
+	[61634] = true,		-- Commander Vo'jak
+	[61485] = true,		-- General Pa'valak
+	[62205] = true,		-- Wing Leader Ner'onok
+	-- Stormstout Brewery
+	[56637] = true,		-- Ook-Ook
+	[56717] = true,		-- Hoptallus
+	[59479] = true,		-- Yan-Zhu the Uncasked
+	-- Temple of the Jade Serpent
+	[56448] = true,		-- Wise Mari
+	[56843] = true,		-- Lorewalker Stonestep
+	[56732] = true,		-- Liu Flameheart
+	[56439] = true,		-- Sha of Doubt
 	-------------------------------------------------------------------------------
-	-- Cataclysm
+	-- Cataclysm Raid
+	-------------------------------------------------------------------------------
 	-- Dragon Soul
-	[55265]	= true,		-- Morchok
-	[55308]	= true,		-- Warlord Zon'ozz
-	[55312]	= true,		-- Yor'sahj the Unsleeping
-	[55689]	= true,		-- Hagara the Stormbinder
-	[55294]	= true,		-- Ultraxion
+	[55265] = true,		-- Morchok
+	[55308] = true,		-- Warlord Zon'ozz
+	[55312] = true,		-- Yor'sahj the Unsleeping
+	[55689] = true,		-- Hagara the Stormbinder
+	[55294] = true,		-- Ultraxion
 	[56855] = l.horn,	-- Twilight Assault Drake
 	[56854] = l.horn,	-- Twilight Elite Dreadblade
 	[56848] = l.horn,	-- Twilight Elite Slayer
-	[53879]	= true,		-- Spine of Deathwing
+	[53879] = true,		-- Spine of Deathwing
 	[56167] = l.mad,	-- Arm Tentacle
 	[56846] = l.mad,	-- Arm Tentacle
 	[56168] = l.mad,	-- Wing Tentacle
@@ -126,8 +149,8 @@ local bossIds = {
 	[45213] = true,		-- Sinestra
 	-- Baradin Hold
 	[47120] = true,		-- Argaloth
-	[52363]	= true,		-- Occu'thar
-	[55869]	= true,		-- Alizabal
+	[52363] = true,		-- Occu'thar
+	[55869] = true,		-- Alizabal
 }
 
 -- used colors

@@ -37,6 +37,8 @@ if GetLocale() == "ruRU" then
 		wind = "Конклав ветра",
 		drag = "Валиона и Тералион",
 		elem = "Совет Перерожденных",
+		trial = "Испытание короля",
+		inq = "Верховный инквизитор Вайтмейн",
 	}
 else
 	n.locale = {
@@ -75,5 +77,7 @@ else
 		wind = "Conclave of Wind",
 		drag = "Valiona & Theralion",
 		elem = "Ascendant Council",
+		trial = "Trial of the King",
+		inq = "High Inquisitor Whitemane",
 	}
 end
