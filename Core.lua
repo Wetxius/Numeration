@@ -1,7 +1,7 @@
 local addonname, addon = ...
 Numeration = addon
 local l = addon.locale
-local bossIds = LibStub("LibBossIDs")
+local boss = LibStub("LibBossIDs")
 addon.events = CreateFrame("Frame")
 addon.events:SetScript("OnEvent", function(self, event, ...)
 	addon[event](addon, event, ...)
@@ -536,7 +536,7 @@ function addon:EnterCombatEvent(timestamp, guid, name)
 
 	current.now = timestamp
 	if not current.boss then
-		local mobid = bossIds[tonumber(guid:sub(7, 10), 16)]
+		local mobid = boss[tonumber(guid:sub(7, 10), 16)]
 		if mobid then
 			current.name = mobid == true and name or mobid
 			current.boss = true
