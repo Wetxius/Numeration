@@ -357,6 +357,7 @@ function collect.SPELL_DISPEL(timestamp, srcGUID, srcName, srcFlags, dstGUID, ds
 	end
 end
 collect.SPELL_PERIODIC_DISPEL = collect.SPELL_DISPEL
+collect.SPELL_STOLEN = collect.SPELL_DISPEL
 
 function collect.SPELL_INTERRUPT(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, spellId, spellName, spellSchool, extraSpellID, extraSpellName, extraSchool)
 	if addon.guidToClass[srcGUID] then
@@ -443,6 +444,7 @@ function collect:RemoveUnneededEvents()
 	if not addon.ids.dp then
 		collect.SPELL_DISPEL = nil
 		collect.SPELL_PERIODIC_DISPEL = nil
+		collect.SPELL_STOLEN = nil
 	end
 
 	if not addon.ids.ir then
