@@ -163,7 +163,7 @@ local function unitDied(timestamp, playerID, playerName)
 		end
 		tinsert(tblCache, table.wipe(dd))
 		deathData[playerID] = nil
-		tinsert(deathlog, " 0.0#0##X#")
+		tinsert(deathlog, "-0.0#0##X#")
 	end
 	deathlog[0] = string.format("%s#%s#DEATH#%s:%s:%s:%s", playerName, class, _spellId or "", _srcName or "", _spellSchool or "", _amount or "")
 	if set.deathlog then
