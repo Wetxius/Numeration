@@ -163,7 +163,7 @@ local function unitDied(timestamp, playerID, playerName)
 		end
 		tinsert(tblCache, table.wipe(dd))
 		deathData[playerID] = nil
-		tinsert(deathlog, "-0.0#0##X#")
+		tinsert(deathlog, " 0.0#0##X#")
 	end
 	deathlog[0] = string.format("%s#%s#DEATH#%s:%s:%s:%s", playerName, class, _spellId or "", _srcName or "", _spellSchool or "", _amount or "")
 	if set.deathlog then
@@ -222,10 +222,10 @@ function addon:GUIDsUpdated()
 end
 
 local NotGuessedAbsorb = {
-	[17] = 1, -- Power Word: Shield
-	[47753] = 1, -- Divine Aegis
-	[86273] = 1, -- Illuminated Healing
-	[48707] = 2, -- Anti-Magic Shell
+	[17] = 1,		-- Power Word: Shield
+	[47753] = 1,	-- Divine Aegis
+	[86273] = 1,	-- Illuminated Healing
+	[48707] = 2,	-- Anti-Magic Shell
 }
 
 local function addSpellDetails(u, etype, spellID, amount)

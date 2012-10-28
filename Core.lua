@@ -137,9 +137,9 @@ function addon:InitOptions()
 end
 
 function ldb:OnTooltipShow()
-    GameTooltip:AddLine("Numeration", 1, .8, 0)
-    GameTooltip:AddLine(l.toggle)
-    GameTooltip:AddLine(l.reset)
+	GameTooltip:AddLine("Numeration", 1, .8, 0)
+	GameTooltip:AddLine(l.toggle)
+	GameTooltip:AddLine(l.reset)
 end
 
 function ldb:OnClick(button)

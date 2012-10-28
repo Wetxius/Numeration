@@ -26,7 +26,7 @@ if GetLocale() == "ruRU" then
 		bad_report = "Ошибка: выберите режим для отчета",
 		bad_whisp = "Нет цели или неправильная",
 		death = "Смерть",
-		-- bossIds
+		-- BossIDs
 		prot = "Стражи Бесконечности",
 		stone = "Каменные стражи",
 		kings = "Призрачные короли",
@@ -66,7 +66,7 @@ else
 		bad_report = "Error: select type for report",
 		bad_whisp = "Invalid or no target selected",
 		death = "Death",
-		-- bossIds
+		-- BossIDs
 		prot = "Protectors of the Endless",
 		stone = "Stone Guard",
 		kings = "The Spirit Kings",
