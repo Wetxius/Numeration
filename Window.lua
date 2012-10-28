@@ -53,10 +53,10 @@ local menuTable = {
 	},
 	{text = GAMEOPTIONS_MENU, notCheckable = true, hasArrow = true,
 		menuList = {
-			{text = l.petsmerged, arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true},
-			{text = l.keeponlybosses, arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true},
-			{text = l.onlyinstance, arg1 = "onlyinstance", func = optionFunction, checked = function() return addon:GetOption("onlyinstance") end, keepShownOnClick = true},
-			{text = l.minimapicon, func = function(f, a1, a2, checked) addon:MinimapIconShow(checked) end, checked = function() return not NumerationCharOptions.minimap.hide end, keepShownOnClick = true},
+			{text = l.pet_merge, arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true},
+			{text = l.only_boss, arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true},
+			{text = l.only_instance, arg1 = "onlyinstance", func = optionFunction, checked = function() return addon:GetOption("onlyinstance") end, keepShownOnClick = true},
+			{text = l.show_icon, func = function(f, a1, a2, checked) addon:MinimapIconShow(checked) end, checked = function() return not NumerationCharOptions.minimap.hide end, keepShownOnClick = true},
 		},
 	},
 	{text = "", notCheckable = true, notClickable = true},
@@ -162,7 +162,7 @@ function window:OnInitialize()
 		GameTooltip:SetOwner(segment, "ANCHOR_BOTTOMRIGHT")
 		local name = ""
 		if addon.nav.set == "current" then
-			name = l.Current_Fight
+			name = l.current
 		else
 			local set = addon:GetSet(addon.nav.set)
 			if set then

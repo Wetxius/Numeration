@@ -138,8 +138,8 @@ end
 
 function ldb:OnTooltipShow()
     GameTooltip:AddLine("Numeration", 1, .8, 0)
-    GameTooltip:AddLine(l.ttoggle)
-    GameTooltip:AddLine(l.treset)
+    GameTooltip:AddLine(l.toggle)
+    GameTooltip:AddLine(l.reset)
 end
 
 function ldb:OnClick(button)
@@ -190,7 +190,7 @@ function addon:Reset()
 		[0] = newSet(),
 		zone = lastZone,
 	}
-	NumerationCharDB[0].name = l.Overall_Data
+	NumerationCharDB[0].name = l.overall
 	current = newSet()
 	if self.nav.set and self.nav.set ~= "total" and self.nav.set ~= "current" then
 		self.nav.set = "current"
