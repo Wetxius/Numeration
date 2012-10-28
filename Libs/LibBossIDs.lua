@@ -84,7 +84,9 @@ local BossIDs = {
 	[59479] = true,		-- Yan-Zhu the Uncasked
 	-- Temple of the Jade Serpent
 	[56448] = true,		-- Wise Mari
-	[56843] = true,		-- Lorewalker Stonestep
+	[59726] = l.lore,	-- Peril
+	[59051] = l.lore,	-- Strife
+	[56915] = l.lore,	-- Sun
 	[56732] = true,		-- Liu Flameheart
 	[56439] = true,		-- Sha of Doubt
 	-------------------------------------------------------------------------------

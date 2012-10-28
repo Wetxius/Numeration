@@ -39,6 +39,7 @@ if GetLocale() == "ruRU" then
 		elem = "Совет Перерожденных",
 		trial = "Испытание короля",
 		inq = "Верховный инквизитор Вайтмейн",
+		lore = "Хранитель истории",
 	}
 else
 	n.locale = {
@@ -79,5 +80,6 @@ else
 		elem = "Ascendant Council",
 		trial = "Trial of the King",
 		inq = "High Inquisitor Whitemane",
+		lore = "Lorewalker Stonestep",
 	}
 end
