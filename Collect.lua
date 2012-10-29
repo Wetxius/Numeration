@@ -317,7 +317,9 @@ function collect.SWING_DAMAGE(timestamp, srcGUID, srcName, srcFlags, dstGUID, ds
 	collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, 88163, spellName[88163], 0x01, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 end
 function collect.ENVIRONMENTAL_DAMAGE(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, environmentalType, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
-	collect.SPELL_DAMAGE(timestamp, ENVIRONMENT_SUBHEADER, ENVIRONMENT_SUBHEADER, srcFlags, dstGUID, dstName, dstFlags, environmentalType, environmentalType, 0x01, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
+	local EnviromentType = string.upper(environmentalType)
+	local EnviromentTypes = _G["ACTION_ENVIRONMENTAL_DAMAGE_"..EnviromentType]
+	collect.SPELL_DAMAGE(timestamp, ENVIRONMENT_SUBHEADER, ENVIRONMENT_SUBHEADER, srcFlags, dstGUID, dstName, dstFlags, EnviromentTypes, EnviromentTypes, 0x01, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 end
 
 function collect.SPELL_MISSED(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, spellId, spellName, spellSchool, missType, amountMissed)

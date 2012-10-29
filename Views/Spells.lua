@@ -110,7 +110,7 @@ function view:Report(merged, num_lines)
 	addon:PrintHeaderLine(set)
 	for i = 1, num_lines do
 		local value = spellToValue[sorttbl[i]]
-		local name = GetSpellLink(sorttbl[i]) or GetSpellLink(88163)
+		local name = GetSpellLink(sorttbl[i]) or "["..sorttbl[i].."]"
 
 		addon:PrintLine("%i. %s  %s (%02.1f%%)", i, name, addon:ModNumber(value), value/total*100)
 	end
