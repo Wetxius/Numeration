@@ -110,9 +110,9 @@ local fmtDamage = function(entry)
 	local amount, overkill = entry[4], entry[5]
 	local resisted, blocked, absorbed = entry[6], entry[7], entry[8]
 	local critical, glancing, crushing = entry[9], entry[10], entry[11]
-	local text = string.format("%s#DT#%s:%i:%i:%s:%s:%s:%s:%s", spellId, srcName or "Unknown", spellSchool, amount, overkill > 0 and overkill or "", resisted or "", blocked or "", absorbed or "", critical and "!" or glancing and "v" or crushing and "^" or "")
+	local text = string.format("%s#DT#%s:%i:%i:%s:%s:%s:%s:%s", spellId, srcName or UNKNOWN, spellSchool, amount, overkill > 0 and overkill or "", resisted or "", blocked or "", absorbed or "", critical and "!" or glancing and "v" or crushing and "^" or "")
 	if overkill > 0 then
-		return text, spellId, srcName or "Unknown", spellSchool, amount
+		return text, spellId, srcName or UNKNOWN, spellSchool, amount
 	end
 	return text
 end
@@ -120,7 +120,7 @@ local fmtMiss = function(entry)
 	local srcName = entry[1]
 	local spellId, spellSchool = entry[2], entry[3]
 	local missType, amountMissed = entry[4], entry[5]
-	return string.format("%i#DM#%s:%i:%s:%s", spellId, srcName or "Unknown", spellSchool, missType, amountMissed or "")
+	return string.format("%i#DM#%s:%i:%s:%s", spellId, srcName or UNKNOWN, spellSchool, missType, amountMissed or "")
 end
 local fmtHealing = function(entry)
 	local srcName = entry[1]
@@ -243,7 +243,7 @@ local function addSpellDetails(u, etype, spellID, amount)
 	event.spell[spellID] = (event.spell[spellID] or 0) + amount
 end
 local function addTargetDetails(u, etype, targetName, amount)
-	if not targetName then targetName = "Unknown" end
+	if not targetName then targetName = UNKNOWN end
 	local t = u[etype].target
 	if not t then
 		t = {}
