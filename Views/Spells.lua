@@ -72,7 +72,7 @@ function view:Update(merged)
 
 		if name == nil then
 			name = id
-			icon = ""
+			icon = [[Interface\Icons\inv_misc_questionmark]]
 		elseif id == 0 then
 			icon = ""
 		end
