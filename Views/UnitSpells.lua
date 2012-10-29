@@ -106,7 +106,7 @@ function view:Update(merged)
 		if name == nil then
 			name = id
 			icon = ""
-		elseif id == 0 or id == 75 then
+		elseif id == 0 then
 			icon = ""
 		end
 
@@ -152,7 +152,7 @@ function view:Report(merged, num_lines)
 		local petName = nameToPetName[sorttbl[i]]
 		local value = nameToValue[sorttbl[i]]
 		local id = nameToId[sorttbl[i]]
-		local name = GetSpellLink(id) or GetSpellLink(6603)
+		local name = GetSpellLink(id) or GetSpellLink(88163)
 
 		if petName then
 			name = format("%s <%s>", name, petName)
