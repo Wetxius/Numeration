@@ -30,7 +30,7 @@ do
 	addon.colorhex["PET"] = string.format("%02X%02X%02X", addon.color.PET[1] * 255, addon.color.PET[2] * 255, addon.color.PET[3] * 255)
 end
 
-addon.spellIcon = setmetatable({ [75] = "", [88163] = "", }, { __index = function(tbl, i)
+addon.spellIcon = setmetatable({[75] = "", [88163] = ""}, {__index = function(tbl, i)
 	local spell, _, icon = GetSpellInfo(i)
 	addon.spellName[i] = spell
 	tbl[i] = icon
@@ -246,7 +246,9 @@ local useChatType, useChannel
 function addon:Report(lines, chatType, channel)
 	useChatType, useChannel = chatType, channel
 	if chatType == "WHISPER" then
-		if not useChannel or not UnitIsPlayer(useChannel) then
+		whispname = StaticPopup1EditBox:GetText()
+		if whispname == nil or whispname == "" then
+		-- if not useChannel or not UnitIsPlayer(useChannel) then
 			print(l.bad_whisp)
 			return
 		end
