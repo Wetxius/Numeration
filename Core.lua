@@ -321,7 +321,7 @@ end
 function addon:GetDuration(set)
 	if not set.start or not set.now then return end
 	local duration = math.ceil(set.now-set.start)
-	local durationtext = duration < 60 and format("%is", duration%60) or format("%im%is", math.floor(duration/60), duration%60)
+	local durationtext = duration < 60 and format("%i"..l.s.."", duration%60) or format("%i"..l.m.."%i"..l.s.."", math.floor(duration/60), duration%60)
 	return date("%H:%M", set.start), durationtext
 end
 
