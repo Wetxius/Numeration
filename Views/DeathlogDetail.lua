@@ -112,9 +112,9 @@ end
 local reportText = {}
 reportText.DT = function(event, spellId, srcName, spellSchool, amount, overkill, resisted, blocked, absorbed, modifier)
 	overkill = (overkill~="") and string.format(">%s", overkill) or ""
-	absorbed = (absorbed~="") and string.format(" (%s absorbed)", absorbed) or ""
-	blocked = (blocked~="") and string.format(" (%s blocked)", blocked) or ""
-	resisted = (resisted~="") and string.format(" (%s resisted)", resisted) or ""
+	absorbed = (absorbed~="") and string.format(ABSORB_TRAILER, absorbed) or ""
+	blocked = (blocked~="") and string.format(BLOCK_TRAILER, blocked) or ""
+	resisted = (resisted~="") and string.format(RESIST_TRAILER, resisted) or ""
 	return string.format("%+d%s%s%s%s%s [%s - %s]", -tonumber(amount), modifier, overkill, absorbed, blocked, resisted, srcName, GetSpellLink(spellId) or spellName[spellId] or spellId)
 end
 reportText.DM = function(event, spellId, srcName, spellSchool, missType, amountMissed)
