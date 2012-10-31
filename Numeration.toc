@@ -3,7 +3,7 @@
 ## Notes: yet another Damage Meter addon
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 1.5
+## Version: 2.0
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
@@ -21,16 +21,12 @@ Collect.lua
 
 Views\Sets.lua
 Views\Type.lua
-
 Views\Units.lua
 Views\UnitSpells.lua
 Views\UnitTargets.lua
-
 Views\Targets.lua
 Views\TargetUnits.lua
-
 Views\Spells.lua
 Views\SpellUnits.lua
-
 Views\Deathlog.lua
 Views\DeathlogDetail.lua

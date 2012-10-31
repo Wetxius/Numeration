@@ -30,7 +30,7 @@ end
 local schoolColor = {
 	["1"] = "FFFFFF",	-- Physical
 	["2"] = "FFE680",	-- Holy
-	["4"] = "FF8000",	-- Fire	
+	["4"] = "FF8000",	-- Fire
 	["8"] = "4DFF4D",	-- Nature
 	["16"] = "80FFFF",	-- Frost
 	["20"] = "CC3399",	-- Frostfire
