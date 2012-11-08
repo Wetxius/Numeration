@@ -11,14 +11,14 @@ local BossIDs = {
 	[60585] = l.prot,	-- Elder Regail
 	[60586] = l.prot,	-- Elder Asani
 	[62442] = true,		-- Tsulong
-	[63099] = true,		-- Lei Shi
+	[62983] = true,		-- Lei Shi
 	[60999] = true,		-- Sha of Fear
 	-- Heart of Fear
-	[66791] = true,		-- Imperial Vizier Zor'lok
-	[63664] = true,		-- Blade Lord Ta'yak
-	[63667] = true,		-- Garalon
-	[65501] = true,		-- Wind Lord Mel'jarak
-	[63666] = true,		-- Amber-Shaper Un'sok
+	[62980] = true,		-- Imperial Vizier Zor'lok
+	[62543] = true,		-- Blade Lord Ta'yak
+	[63191] = true,		-- Garalon
+	[62397] = true,		-- Wind Lord Mel'jarak
+	[62511] = true,		-- Amber-Shaper Un'sok
 	[62837] = true,		-- Grand Empress Shek'zeer
 	-- Mogu'Shan Vault
 	[59915] = l.stone,	-- Jasper, Stone Guard
