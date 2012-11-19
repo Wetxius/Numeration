@@ -1,6 +1,7 @@
 local addonname, addon = ...
 Numeration = addon
 local l = addon.locale
+local s = addon.coresettings
 local boss = LibStub("LibBossIDs")
 addon.events = CreateFrame("Frame")
 addon.events:SetScript("OnEvent", function(self, event, ...)
@@ -94,9 +95,7 @@ local function fullNumber(self, num)
 	return ("%i"):format(num)
 end
 
-local s
 function addon:InitOptions()
-	s = self.coresettings
 	self.ids = {}
 	do
 		for i, tbl in ipairs(self.types) do
@@ -434,7 +433,11 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 				local curZone = GetRealZoneText()
 				if curZone ~= NumerationCharDB.zone then
 					NumerationCharDB.zone = curZone
-					StaticPopup_Show("RESET_DATA")
+					if s.silent_reset then
+						addon:Reset()
+					else
+						StaticPopup_Show("RESET_DATA")
+					end
 				end
 			end
 			self:UpdateGUIDS()

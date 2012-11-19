@@ -1,5 +1,6 @@
 local addon = select(2, ...)
 local l = addon.locale
+local s = addon.windowsettings
 local window = CreateFrame("Frame", "NumerationFrame", UIParent)
 addon.window = window
 
@@ -79,9 +80,7 @@ local reportActionFunction = function(num)
 	EasyMenu(menuTable[2].menuList, dropdown, "cursor", 0 , 0, "MENU")
 end
 
-local s
 function window:OnInitialize()
-	s = addon.windowsettings
 	self.maxlines = s.maxlines
 	self:SetWidth(s.width)
 	self:SetHeight(3+s.titleheight+s.maxlines*(s.lineheight+s.linegap))
