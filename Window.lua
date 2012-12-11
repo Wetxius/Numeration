@@ -5,14 +5,11 @@ local window = CreateFrame("Frame", "NumerationFrame", UIParent)
 addon.window = window
 
 local lines = {}
-
 local noop = function() end
 local backAction = noop
 local reportAction = noop
 local backdrop = {
-	bgFile = [[Interface\ChatFrame\ChatFrameBackground]],
-	edgeFile = "", tile = true, tileSize = 16, edgeSize = 0,
-	insets = {left = 0, right = 0, top = 0, bottom = 0}
+	bgFile = [[Interface\ChatFrame\ChatFrameBackground]]
 }
 local clickFunction = function(self, btn)
 	if btn == "LeftButton" then
