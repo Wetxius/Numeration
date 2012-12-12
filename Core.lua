@@ -481,7 +481,7 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 	end
 end
 
-local inCombat = nil
+local inCombat, RaidInCombat = nil, nil
 local combatTimer = CreateFrame("Frame")
 combatTimer:Hide()
 combatTimer:SetScript("OnUpdate", function(self, elapsed)
@@ -502,7 +502,9 @@ end
 
 function addon:PLAYER_REGEN_ENABLED()
 	inCombat = nil
-	combatTimer:Activate()
+	if not RaidInCombat then
+		combatTimer:Activate()
+	end
 end
 
 function addon:IsRaidInCombat()
@@ -510,12 +512,11 @@ function addon:IsRaidInCombat()
 		local unit = IsInRaid() and "raid" or "party"
 		for i = 1, GetNumGroupMembers(), 1 do
 			if UnitExists(unit..i) and UnitAffectingCombat(unit..i) then
-				inCombat = true
-			else
-				inCombat = nil
+				RaidInCombat = true
 			end
 		end
 	end
+	RaidInCombat = nil
 end
 
 function addon:EnterCombatEvent(timestamp, guid, name)
@@ -535,7 +536,7 @@ function addon:EnterCombatEvent(timestamp, guid, name)
 			current.name = name
 		end
 	end
-	if not inCombat then
+	if not inCombat and not RaidInCombat then
 		combatTimer:Activate()
 	end
 end
