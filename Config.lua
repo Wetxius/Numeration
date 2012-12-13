@@ -1,7 +1,7 @@
 local n = select(2, ...)
 local l = n.locale
 
--- window settings
+-- Window settings
 n.windowsettings = {
 	pos = {"TOPLEFT", 4, -4},
 	width = 280,
@@ -28,7 +28,7 @@ n.windowsettings = {
 	linefontcolor = {1, 1, 1},
 }
 
--- core settings
+-- Core settings
 n.coresettings = {
 	refreshinterval = 1,
 	minfightlength = 15,
@@ -37,7 +37,7 @@ n.coresettings = {
 	silent_reset = false,
 }
 
--- available types and their order
+-- Available types and their order
 n.types = {
 	{
 		name = DAMAGE,
@@ -75,22 +75,22 @@ n.types = {
 		id2 = "ga",
 		c = {.25, .5, .85},
 	},
-	-- {
-		-- name = l.heal_take_abil,
-		-- id = "ht",
-		-- view = "Spells",
-		-- c = {.25, .5, .85},
-	-- },
-	-- {
-		-- name = SHOW_COMBAT_HEALING,
-		-- id = "hd",
-		-- c = {.25, .5, .85},
-	-- },
-	-- {
-		-- name = COMBAT_TEXT_ABSORB,
-		-- id = "ga",
-		-- c = {.25, .5, .85},
-	-- },
+--	{
+--		name = l.heal_take_abil,
+--		id = "ht",
+--		view = "Spells",
+--		c = {.25, .5, .85},
+--	},
+--	{
+--		name = SHOW_COMBAT_HEALING,
+--		id = "hd",
+--		c = {.25, .5, .85},
+--	},
+--	{
+--		name = COMBAT_TEXT_ABSORB,
+--		id = "ga",
+--		c = {.25, .5, .85},
+--	},
 	{
 		name = l.overheal,
 		id = "oh",
