@@ -353,17 +353,17 @@ function collect.SPELL_HEAL(timestamp, srcGUID, srcName, _, dstGUID, dstName, _,
 end
 collect.SPELL_PERIODIC_HEAL = collect.SPELL_HEAL
 
-function collect.SPELL_DISPEL(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellID, _, _, _)
+function collect.SPELL_DISPEL(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellId, _, _, _)
 	if addon.guidToClass[srcGUID] then
-		EVENT("dp", srcGUID, dstName, extraSpellID, 1)
+		EVENT("dp", srcGUID, dstName, extraSpellId, 1)
 	end
 end
 collect.SPELL_PERIODIC_DISPEL = collect.SPELL_DISPEL
 collect.SPELL_STOLEN = collect.SPELL_DISPEL
 
-function collect.SPELL_INTERRUPT(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellID, _, _)
+function collect.SPELL_INTERRUPT(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellId, _, _)
 	if addon.guidToClass[srcGUID] then
-		EVENT("ir", srcGUID, dstName, extraSpellID, 1)
+		EVENT("ir", srcGUID, dstName, extraSpellId, 1)
 	end
 end
 
