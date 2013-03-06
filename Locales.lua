@@ -29,6 +29,9 @@ if GetLocale() == "ruRU" then
 		m = "м",
 		s = "с",
 		-- BossIDs
+		twin = "Наложницы-близнецы",
+		mega = "Мегера",
+		elder = "Совет Старейшин",
 		prot = "Стражи Бесконечности",
 		stone = "Каменные стражи",
 		kings = "Призрачные короли",
@@ -41,7 +44,7 @@ if GetLocale() == "ruRU" then
 		elem = "Совет Перерожденных",
 		trial = "Испытание короля",
 		inq = "Верховный инквизитор Вайтмейн",
-		lore = "Хранитель истории",
+		lore = "Хранитель истории"
 	}
 else
 	n.locale = {
@@ -72,6 +75,9 @@ else
 		m = "m",
 		s = "s",
 		-- BossIDs
+		twin = "Twin Consorts",
+		mega = "Megaera",
+		elder = "Council of Elders",
 		prot = "Protectors of the Endless",
 		stone = "Stone Guard",
 		kings = "The Spirit Kings",
@@ -84,6 +90,6 @@ else
 		elem = "Ascendant Council",
 		trial = "Trial of the King",
 		inq = "High Inquisitor Whitemane",
-		lore = "Lorewalker Stonestep",
+		lore = "Lorewalker Stonestep"
 	}
 end
