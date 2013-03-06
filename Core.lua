@@ -424,13 +424,13 @@ addon.UNIT_PET = addon.UpdateGUIDS
 addon.UNIT_NAME_UPDATE = addon.UpdateGUIDS
 function addon:ZONE_CHANGED_NEW_AREA(force)
 	local _, zoneType = IsInInstance()
-	local difficulty = GetInstanceDifficulty()
+	local difficulty = select(3, GetInstanceInfo())
 
 	if force == true or zoneType ~= self.zoneType then
 		self.zoneType = zoneType
 
-		if not NumerationCharOptions.onlyinstance or difficulty ~= 1 then
-			if difficulty ~= 1 then
+		if not NumerationCharOptions.onlyinstance or difficulty ~= 0 then
+			if difficulty ~= 0 then
 				local curZone = GetRealZoneText()
 				if curZone ~= NumerationCharDB.zone then
 					NumerationCharDB.zone = curZone
