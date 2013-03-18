@@ -350,7 +350,7 @@ function addon:GetUnit(set, id)
 		return u
 	else
 		-- pet
-		local key = format("%s:%s", owner, name)
+		local key = format("%s:%s", owner, name or UNKNOWN)
 		local p = set.unit[key]
 		if not p then
 			local ownertable = self:GetUnit(set, class)

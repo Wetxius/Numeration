@@ -83,7 +83,7 @@ local getDeathData = function(guid, timestamp, create)
 	elseif timestamp then
 		for i = dd.first, dd.last do
 			local v = dd[i]
-			if v.t > timestamp-10 then
+			if v and v.t > timestamp-10 then
 				break
 			end
 			dd[i] = nil
@@ -105,7 +105,7 @@ local getDeathData = function(guid, timestamp, create)
 end
 
 local fmtDamage = function(entry)
-	local srcName = entry[1]
+	local srcName = entry[1] or UNKNOWN
 	local spellId, spellSchool = entry[2], entry[3]
 	local amount, overkill = entry[4], entry[5]
 	local resisted, blocked, absorbed = entry[6], entry[7], entry[8]
@@ -117,17 +117,17 @@ local fmtDamage = function(entry)
 	return text
 end
 local fmtMiss = function(entry)
-	local srcName = entry[1]
+	local srcName = entry[1] or UNKNOWN
 	local spellId, spellSchool = entry[2], entry[3]
 	local missType, amountMissed = entry[4], entry[5]
 	return string.format("%i#DM#%s:%i:%s:%s", spellId, srcName or UNKNOWN, spellSchool, missType, amountMissed or "")
 end
 local fmtHealing = function(entry)
-	local srcName = entry[1]
+	local srcName = entry[1] or UNKNOWN
 	local spellId = entry[2]
 	local amount, overhealing = entry[3], entry[4]
 	local critical = entry[5]
-	return string.format("%i#HT#%s:%i:%s:%s", spellId, srcName, amount, overhealing > 0 and overhealing or "", critical and "!" or "")
+	return string.format("%i#HT#%s:%i:%s:%s", spellId, srcName or UNKNOWN, amount, overhealing > 0 and overhealing or "", critical and "!" or "")
 end
 local fmtDeBuff = function(entry)
 	local spellId = entry[1]
