@@ -25,7 +25,7 @@ addon.colorhex = {}
 do
 	local colors = CUSTOM_CLASS_COLORS or RAID_CLASS_COLORS
 	for class, c in pairs(colors) do
-		addon.color[class] = { c.r, c.g, c.b }
+		addon.color[class] = {c.r, c.g, c.b}
 		addon.colorhex[class] = string.format("%02X%02X%02X", c.r * 255, c.g * 255, c.b * 255)
 	end
 	addon.colorhex["PET"] = string.format("%02X%02X%02X", addon.color.PET[1] * 255, addon.color.PET[2] * 255, addon.color.PET[3] * 255)
