@@ -30,6 +30,7 @@ if GetLocale() == "ruRU" then
 		s = "с",
 		-- BossIDs
 		twin = "Наложницы-близнецы",
+		anima = "Темный Анимус",
 		mega = "Мегера",
 		elder = "Совет Старейшин",
 		prot = "Стражи Бесконечности",
@@ -76,6 +77,7 @@ else
 		s = "s",
 		-- BossIDs
 		twin = "Twin Consorts",
+		anima = "Dark Animus",
 		mega = "Megaera",
 		elder = "Council of Elders",
 		prot = "Protectors of the Endless",

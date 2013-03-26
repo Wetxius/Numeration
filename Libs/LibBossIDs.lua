@@ -17,15 +17,18 @@ local BossIDs = {
 	[70212] = l.mega,	-- Flaming Head
 	[70235] = l.mega,	-- Frozen Head
 	[70247] = l.mega,	-- Venomous Head
+	[70248] = l.mega,	-- Arcane Head
 	[69712] = true,		-- Ji-Kun
 	[68036] = true,		-- Durumu the Forgotten
 	[69017] = true,		-- Primordius
-	[69427] = true,		-- Dark Animus
+	[69427] = l.anima,	-- Dark Animus
+	[69701] = l.anima,	-- Anima Golem
+	[69700] = l.anima,	-- Large Anima Golem
 	[68078] = true,		-- Iron Qon
 	[68904] = l.twin,	-- Suen
-	[68905] = l.twin,	-- Lu'lin	
+	[68905] = l.twin,	-- Lu'lin
 	[68397] = true,		-- Lei Shen
-	-- [00000] = true,		-- Ra-den
+	[69888] = true,		-- Ra-den
 	-- Terrace of Endless Spring
 	[60583] = l.prot,	-- Protector Kaolan
 	[60585] = l.prot,	-- Elder Regail
@@ -59,6 +62,8 @@ local BossIDs = {
 	-- World bosses
 	[60491] = true,		-- Sha of Anger
 	[62346] = true,		-- Galleon
+	[69099] = true,		-- Nalak
+	[69161] = true,		-- Oondasta
 	-------------------------------------------------------------------------------
 	-- Pandaria Dungeon
 	-------------------------------------------------------------------------------
