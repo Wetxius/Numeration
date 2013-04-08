@@ -1,6 +1,6 @@
 ## Interface: 50200
 ## Title: Numeration
-## Notes: yet another Damage Meter addon
+## Notes: Lightweight and useful damage/healing meter.
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
 ## Version: 2.2.4
