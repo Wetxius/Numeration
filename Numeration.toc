@@ -3,7 +3,7 @@
 ## Notes: yet another Damage Meter addon
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 2.2.3
+## Version: 2.2.4
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
