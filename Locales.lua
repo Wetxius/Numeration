@@ -47,6 +47,53 @@ if GetLocale() == "ruRU" then
 		inq = "Верховный инквизитор Вайтмейн",
 		lore = "Хранитель истории"
 	}
+elseif GetLocale() == "zhTW" then
+	n.locale = {
+		dmg_tar = "傷害目標",
+		dmg_take_tar = "傷害承受: 目標",
+		dmg_take_abil = "傷害承受: 技能",
+		friend_fire = "隊友誤傷",
+		heal_take_abil = "治療承受: 技能",
+		overheal = "過量治療",
+		death_log = "死亡記錄",
+		tar = "目標",
+		sel_set = "選擇: 設定",
+		overall = "總體數據",
+		current = "當前戰鬥",
+		pet_merge = "合併寵物傷害",
+		only_boss = "只保留BOSS數據",
+		only_instance = "只在副本中统計",
+		show_icon = "顯示小地圖圖示",
+		toggle = "左鍵點擊隱藏/顯示窗口.",
+		reset = "SHIFT+左鍵點擊重置數據.",
+		binding_visibility = "切換可見",
+		binding_reset = "重置數據",
+		reset_data = "重置數據?",
+		whisp_target = "密語目標",
+		bad_report = "錯誤: 選擇報告類型",
+		bad_whisp = "選擇無效或沒有目標",
+		death = "死亡",
+		m = "分",
+		s = "秒",
+		-- BossIDs
+		twin = "弧慍雙妃",
+		anima = "黑暗憎惡魔像",
+		mega = "梅賈拉",
+		elder = "長老議會",
+		prot = "豐泉守衛者",
+		stone = "石衛士",
+		kings = "帝王之魂",
+		will = "大帝之志",
+		horn = "將領黑角",
+		mad = "死亡之翼的狂亂",
+		omno = "全能魔像防衛系統",
+		wind = "風之議會",
+		drag = "瑟拉里恩和瓦莉歐娜",
+		elem = "卓越者議會",
+		trial = "帝王的試煉",
+		inq = "高階審判官懷特邁恩",
+		lore = "博學行者石步"
+	}
 else
 	n.locale = {
 		dmg_tar = "Damage Targets",
