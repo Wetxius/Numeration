@@ -94,6 +94,53 @@ elseif GetLocale() == "zhTW" then
 		inq = "高階審判官懷特邁恩",
 		lore = "博學行者石步"
 	}
+elseif GetLocale() == "deDE" then
+	n.locale = {
+		dmg_tar = "Schadens Ziele",
+		dmg_take_tar = "Schaden an Zielen",
+		dmg_take_abil = "Schaden mit Fähigkeiten",
+		friend_fire = "Eigenbeschuss",
+		heal_take_abil = "Heilung mit Fähigkeiten",
+		overheal = "Überheilung",
+		death_log = "Tode",
+		tar = "Ziele",
+		sel_set = "Auswahl: Set",
+		overall = "Alle Daten",
+		current = "Momentaner Kampf",
+		pet_merge = "Tiere und Besitzer zusammen",
+		only_boss = "Nur Bosskämpfe speichern",
+		only_instance = "Nur in Instanzen aufzeichnen",
+		show_icon = "Zeige Minimap Icon",
+		toggle = "Links-Klick Fenster Zeigen/Verstechen.",
+		reset = "Shift+Links-Klick um Daten zurückzusetzen.",
+		binding_visibility = "Ansicht umschalten",
+		binding_reset = "Daten Zurücksetzen",
+		reset_data = "Daten Zurücksetzen?",
+		whisp_target = "Ziel anflüstern",
+		bad_report = "Error: wähle Art des Berichtes",
+		bad_whisp = "Ungültiges oder kein Ziel angewählt",
+		death = "Tod",
+		m = "m",
+		s = "s",
+		-- BossIDs
+		twin = "Zwillingskonkubinen",
+		anima = "Dunkler Animus",
+		mega = "Megaera",
+		elder = "Rat der Ältesten",
+		prot = "Beschützer der Endlosen",
+		stone = "Die Steinwache",
+		kings = "Die Geisterkönige",
+		will = "Der Wille des Kaisers",
+		horn = "Kriegsmeister Schwarzhorn",
+		mad = "Todesschwinges Wahnsinn",
+		omno = "Omnotron-Verteidigungssystem",
+		wind = "Konklave der Winde",
+		drag = "Valiona & Theralion",
+		elem = "Rat der Aszendenten",
+		trial = "Die Prüfung des Königs",
+		inq = "Hochinquisitorin Weißsträhne",
+		lore = "Lehrensucher Steinschritt"
+	}
 else
 	n.locale = {
 		dmg_tar = "Damage Targets",
