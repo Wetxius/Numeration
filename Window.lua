@@ -1,6 +1,6 @@
 local addon = select(2, ...)
 local l = addon.locale
-local s = addon.windowsettings
+local s = addon.windows
 local window = CreateFrame("Frame", "NumerationFrame", UIParent)
 addon.window = window
 

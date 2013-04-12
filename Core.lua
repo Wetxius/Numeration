@@ -1,7 +1,7 @@
 local addonname, addon = ...
 Numeration = addon
 local l = addon.locale
-local s = addon.coresettings
+local s = addon.core
 local boss = LibStub("LibBossIDs")
 addon.events = CreateFrame("Frame")
 addon.events:SetScript("OnEvent", function(self, event, ...)
