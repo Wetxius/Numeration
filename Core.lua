@@ -536,7 +536,7 @@ function addon:EnterCombatEvent(timestamp, guid, name)
 			current.name = name
 		end
 	end
-	if not inCombat and not RaidInCombat then
+	if not (inCombat and RaidInCombat) then
 		combatTimer:Activate()
 	end
 end
