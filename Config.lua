@@ -19,7 +19,7 @@ n["windows"] = {
 	titlefontstyle = "NONE",				-- Font style for title
 	titlefontsize = 13,						-- Font size for title
 	titlefontcolor = {1, 1, 1},				-- Font color for title
-	buttonhighlightcolor = {1, .82, 0},		-- Color for button highlight
+	highlight = {1, 0.8, 0},				-- Color for button highlight
 
 	-- Lines
 	lineheight = 14,						-- Heigth for lines

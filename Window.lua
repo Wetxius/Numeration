@@ -137,7 +137,7 @@ function window:OnInitialize()
 		numReports = 9
 		EasyMenu(menuTable, dropdown, "cursor", 0 , 0, "MENU")
 	end)
-	reset:SetScript("OnEnter", function() reset:SetBackdropColor(s.buttonhighlightcolor[1], s.buttonhighlightcolor[2], s.buttonhighlightcolor[3], .3) end)
+	reset:SetScript("OnEnter", function() reset:SetBackdropColor(s.highlight[1], s.highlight[2], s.highlight[3], .3) end)
 	reset:SetScript("OnLeave", function() reset:SetBackdropColor(0, 0, 0, s.titlealpha) end)
 
 	reset.text = reset:CreateFontString(nil, "ARTWORK")
@@ -155,7 +155,7 @@ function window:OnInitialize()
 	segment:SetPoint("RIGHT", reset, "LEFT", -2, 0)
 	segment:SetScript("OnMouseUp", function() addon.nav.view = "Sets" addon.nav.set = nil addon:RefreshDisplay() dropdown:Show() end)
 	segment:SetScript("OnEnter", function()
-		segment:SetBackdropColor(s.buttonhighlightcolor[1], s.buttonhighlightcolor[2], s.buttonhighlightcolor[3], .3)
+		segment:SetBackdropColor(s.highlight[1], s.highlight[2], s.highlight[3], .3)
 		GameTooltip:SetOwner(segment, "ANCHOR_BOTTOMRIGHT")
 		local name = ""
 		if addon.nav.set == "current" then
