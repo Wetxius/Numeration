@@ -134,7 +134,7 @@ function view:GetXps(set, name, etype, merged)
 	elseif time == 0 then
 		return tostring(value)
 	end
-	return format("%.1f", value/time)
+	return format("%s", addon:ModNumber(value/time))
 end
 
 function view:Report(merged, num_lines)

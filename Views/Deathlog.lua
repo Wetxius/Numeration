@@ -43,8 +43,7 @@ local eventColors = {
 }
 local eventInfo = {}
 eventInfo.DEATH = function(event, playerName, class, spellId, srcName, spellSchool, amount)
-	local icon
-	local text
+	local icon, text
 	if spellId == "" then
 		spellId = nil
 		icon = [[Interface\TargetingFrame\UI-TargetingFrame-Skull]]

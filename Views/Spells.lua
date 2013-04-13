@@ -26,8 +26,7 @@ function view:Init()
 	addon.window:SetBackAction(backAction)
 end
 
-local sorttbl = {}
-local spellToValue = {}
+local sorttbl, spellToValue = {}, {}
 local sorter = function(s1, s2)
 	return spellToValue[s1] > spellToValue[s2]
 end
