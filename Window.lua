@@ -366,6 +366,7 @@ StaticPopupDialogs.REPORT_DIALOG = {
 	timeout = 0,
 	hasEditBox = 1,
 	whileDead = 1,
+	EditBoxOnEnterPressed = function(self) reportFunction(self, "WHISPER", StaticPopup1EditBox:GetText()) self:GetParent():Hide() end,
 	EditBoxOnEscapePressed = function(self) self:GetParent():Hide() end,
 	preferredIndex = 5,
 }
