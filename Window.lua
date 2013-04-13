@@ -40,7 +40,6 @@ local menuTable = {
 			{text = INSTANCE, arg1 = "INSTANCE_CHAT", func = reportFunction, notCheckable = 1},
 			{text = GUILD, arg1 = "GUILD", func = reportFunction, notCheckable = 1},
 			{text = OFFICER, arg1 = "OFFICER", func = reportFunction, notCheckable = 1},
-			{text = TARGET, func = function() reportFunction(self, "WHISPER", GetUnitName("target", true):gsub(" ", "")) end, notCheckable = 1},
 			{text = WHISPER, func = function()
 				StaticPopupDialogs.REPORT_DIALOG.OnAccept = function(self)
 					reportFunction(self, "WHISPER", _G[self:GetName().."EditBox"]:GetText())
@@ -63,11 +62,11 @@ local menuTable = {
 }
 
 local updateReportChannels = function()
-	menuTable[2].menuList[9].menuList = table.wipe(menuTable[2].menuList[9].menuList)
+	menuTable[2].menuList[8].menuList = table.wipe(menuTable[2].menuList[8].menuList)
 	for i = 1, GetNumDisplayChannels() do
 		local name, _, _, channelNumber, _, active, category = GetChannelDisplayInfo(i)
 		if category == "CHANNEL_CATEGORY_CUSTOM" then
-			tinsert(menuTable[2].menuList[9].menuList, {text = name, arg1 = "CHANNEL", arg2 = channelNumber, func = reportFunction, notCheckable = 1})
+			tinsert(menuTable[2].menuList[8].menuList, {text = name, arg1 = "CHANNEL", arg2 = channelNumber, func = reportFunction, notCheckable = 1})
 		end
 	end
 end
