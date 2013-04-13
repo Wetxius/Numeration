@@ -362,6 +362,13 @@ StaticPopupDialogs.RESET_DATA = {
 
 StaticPopupDialogs.REPORT_DIALOG = {
 	text = "Numeration: "..l.whisp_target,
+	OnShow = function (self)
+		if UnitIsPlayer("target") and UnitCanCooperate("player", "target") then
+			self.editBox:SetText(GetUnitName("target", true):gsub(" ", ""))
+			reportFunction(self, "WHISPER", StaticPopup1EditBox:GetText())
+			StaticPopup_Hide("REPORT_DIALOG")
+		end
+	end,
 	button1 = WHISPER,
 	timeout = 0,
 	hasEditBox = 1,
