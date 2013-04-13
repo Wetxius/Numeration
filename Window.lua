@@ -40,7 +40,7 @@ local menuTable = {
 			{text = INSTANCE, arg1 = "INSTANCE_CHAT", func = reportFunction, notCheckable = 1},
 			{text = GUILD, arg1 = "GUILD", func = reportFunction, notCheckable = 1},
 			{text = OFFICER, arg1 = "OFFICER", func = reportFunction, notCheckable = 1},
-			{text = TARGET, func = function() reportFunction(self, "WHISPER", UnitName("target")) end, notCheckable = 1},
+			{text = TARGET, func = function() reportFunction(self, "WHISPER", GetUnitName("target", true):gsub(" ", "")) end, notCheckable = 1},
 			{text = WHISPER, func = function()
 				StaticPopupDialogs.REPORT_DIALOG.OnAccept = function(self)
 					reportFunction(self, "WHISPER", _G[self:GetName().."EditBox"]:GetText())
@@ -366,7 +366,6 @@ StaticPopupDialogs.REPORT_DIALOG = {
 	timeout = 0,
 	hasEditBox = 1,
 	whileDead = 1,
-	EditBoxOnEnterPressed = function(self) reportFunction(self, "WHISPER", StaticPopup1EditBox:GetText()) self:GetParent():Hide() end,
 	EditBoxOnEscapePressed = function(self) self:GetParent():Hide() end,
 	preferredIndex = 5,
 }
