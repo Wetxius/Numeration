@@ -510,7 +510,7 @@ end
 function addon:IsRaidInCombat()
 	if GetNumGroupMembers() > 0 then
 		local unit = IsInRaid() and "raid" or "party"
-		for i = 1, GetNumGroupMembers(), 1 do
+		for i = 1, GetNumGroupMembers() do
 			if UnitExists(unit..i) and UnitAffectingCombat(unit..i) then
 				RaidInCombat = true
 			end
