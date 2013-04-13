@@ -28,7 +28,7 @@ local BossIDs = {
 	[68904] = l.twin,	-- Suen
 	[68905] = l.twin,	-- Lu'lin
 	[68397] = true,		-- Lei Shen
-	[69888] = true,		-- Ra-den
+	[69473] = true,		-- Ra-den
 	-- Terrace of Endless Spring
 	[60583] = l.prot,	-- Protector Kaolan
 	[60585] = l.prot,	-- Elder Regail
