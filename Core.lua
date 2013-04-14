@@ -512,6 +512,7 @@ function addon:IsRaidInCombat()
 		for i = 1, GetNumGroupMembers() do
 			if UnitExists(unit..i) and UnitAffectingCombat(unit..i) then
 				RaidInCombat = true
+				return
 			end
 		end
 	end
@@ -535,7 +536,7 @@ function addon:EnterCombatEvent(timestamp, guid, name)
 			current.name = name
 		end
 	end
-	if not (inCombat and RaidInCombat) then
+	if not inCombat and not RaidInCombat then
 		combatTimer:Activate()
 	end
 end
