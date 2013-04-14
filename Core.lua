@@ -494,18 +494,6 @@ function combatTimer:Activate()
 	self:Show()
 end
 
-function addon:PLAYER_REGEN_DISABLED()
-	inCombat = true
-	combatTimer:Hide()
-end
-
-function addon:PLAYER_REGEN_ENABLED()
-	inCombat = nil
-	if not RaidInCombat then
-		combatTimer:Activate()
-	end
-end
-
 function addon:IsRaidInCombat()
 	if GetNumGroupMembers() > 0 then
 		local unit = IsInRaid() and "raid" or "party"
@@ -517,6 +505,18 @@ function addon:IsRaidInCombat()
 		end
 	end
 	RaidInCombat = nil
+end
+
+function addon:PLAYER_REGEN_DISABLED()
+	inCombat = true
+	combatTimer:Hide()
+end
+
+function addon:PLAYER_REGEN_ENABLED()
+	inCombat = nil
+	if not RaidInCombat then
+		combatTimer:Activate()
+	end
 end
 
 function addon:EnterCombatEvent(timestamp, guid, name)
