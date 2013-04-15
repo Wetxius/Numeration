@@ -47,79 +47,79 @@ n["core"] = {
 --	Available types and their order
 ----------------------------------------------------------------------------------------
 n["types"] = {
-	{
+	{	-- Damage
 		name = DAMAGE,
 		id = "dd",
 		c = {.25, .66, .35},
 	},
-	{
+	{	-- Damage Targets
 		name = l.dmg_tar,
 		id = "dd",
 		view = "Targets",
 		onlyfights = true,
 		c = {.25, .66, .35},
 	},
-	{
+	{	-- Damage Taken: Targets
 		name = l.dmg_take_tar,
 		id = "dt",
 		view = "Targets",
 		onlyfights = true,
 		c = {.66, .25, .25},
 	},
-	{
+	{	-- Damage Taken: Abilities
 		name = l.dmg_take_abil,
 		id = "dt",
 		view = "Spells",
 		c = {.66, .25, .25},
 	},
-	{
+	{	-- Friendly Fire
 		name = l.friend_fire,
 		id = "ff",
 		c = {.63, .58, .24},
 	},
-	{
+	{	-- Healing + Absorb
 		name = SHOW_COMBAT_HEALING.." + "..COMBAT_TEXT_ABSORB,
 		id = "hd",
 		id2 = "ga",
 		c = {.25, .5, .85},
 	},
---	{
+--	{	-- Healing Taken: Abilities
 --		name = l.heal_take_abil,
 --		id = "ht",
 --		view = "Spells",
 --		c = {.25, .5, .85},
 --	},
---	{
+--	{	-- Healing
 --		name = SHOW_COMBAT_HEALING,
 --		id = "hd",
 --		c = {.25, .5, .85},
 --	},
---	{
+--	{	-- Absorb
 --		name = COMBAT_TEXT_ABSORB,
 --		id = "ga",
 --		c = {.25, .5, .85},
 --	},
-	{
+	{	-- Overhealing
 		name = l.overheal,
 		id = "oh",
 		c = {.25, .5, .85},
 	},
-	{
+	{	-- Dispels
 		name = DISPELS,
 		id = "dp",
 		c = {.58, .24, .63},
 	},
-	{
+	{	-- Interrupts
 		name = INTERRUPTS,
 		id = "ir",
 		c = {.09, .61, .55},
 	},
-	{
+	{	-- Power Gains
 		name = POWER_GAINS,
 		id = "pg",
 		c = {.19, .44, .75},
 	},
-	{
+	{	-- Death Log
 		name = l.death_log,
 		id = "deathlog",
 		view = "Deathlog",
