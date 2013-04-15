@@ -3,7 +3,7 @@
 ## Notes: Lightweight and useful damage/healing meter.
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 2.2.5
+## Version: 2.2.6
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
