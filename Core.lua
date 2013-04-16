@@ -422,14 +422,13 @@ addon.GROUP_ROSTER_UPDATE = addon.UpdateGUIDS
 addon.UNIT_PET = addon.UpdateGUIDS
 addon.UNIT_NAME_UPDATE = addon.UpdateGUIDS
 function addon:ZONE_CHANGED_NEW_AREA(force)
-	local _, zoneType = IsInInstance()
-	local difficulty = select(3, GetInstanceInfo())
+	local _, instanceType, difficultyID = GetInstanceInfo()
 
-	if force == true or zoneType ~= self.zoneType then
-		self.zoneType = zoneType
+	if force == true or instanceType ~= self.instanceType then
+		self.instanceType = instanceType
 
-		if not NumerationCharOptions.onlyinstance or difficulty ~= 0 then
-			if difficulty ~= 0 then
+		if not NumerationCharOptions.onlyinstance or difficultyID ~= 0 then
+			if difficultyID ~= 0 then
 				local curZone = GetRealZoneText()
 				if curZone ~= NumerationCharDB.zone then
 					NumerationCharDB.zone = curZone
@@ -468,7 +467,7 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 
 			self.events:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
 			updateTimer:Hide()
-			if zoneType == "none" then
+			if instanceType == "none" then
 				if not NumerationCharOptions.forcehide then
 					self:RefreshDisplay()
 					self.window:Show()
