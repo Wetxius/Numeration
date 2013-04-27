@@ -110,9 +110,9 @@ local fmtDamage = function(entry)
 	local amount, overkill = entry[4], entry[5]
 	local resisted, blocked, absorbed = entry[6], entry[7], entry[8]
 	local critical, glancing, crushing = entry[9], entry[10], entry[11]
-	local text = string.format("%s#DT#%s:%i:%i:%s:%s:%s:%s:%s", spellId, srcName or UNKNOWN, spellSchool, amount, overkill > 0 and overkill or "", resisted or "", blocked or "", absorbed or "", critical and "!" or glancing and "v" or crushing and "^" or "")
+	local text = string.format("%s#DT#%s:%i:%i:%s:%s:%s:%s:%s", spellId, srcName, spellSchool, amount, overkill > 0 and overkill or "", resisted or "", blocked or "", absorbed or "", critical and "!" or glancing and "v" or crushing and "^" or "")
 	if overkill > 0 then
-		return text, spellId, srcName or UNKNOWN, spellSchool, amount
+		return text, spellId, srcName, spellSchool, amount
 	end
 	return text
 end
@@ -120,14 +120,14 @@ local fmtMiss = function(entry)
 	local srcName = entry[1] or UNKNOWN
 	local spellId, spellSchool = entry[2], entry[3]
 	local missType, amountMissed = entry[4], entry[5]
-	return string.format("%i#DM#%s:%i:%s:%s", spellId, srcName or UNKNOWN, spellSchool, missType, amountMissed or "")
+	return string.format("%i#DM#%s:%i:%s:%s", spellId, srcName, spellSchool, missType, amountMissed or "")
 end
 local fmtHealing = function(entry)
 	local srcName = entry[1] or UNKNOWN
 	local spellId = entry[2]
 	local amount, overhealing = entry[3], entry[4]
 	local critical = entry[5]
-	return string.format("%i#HT#%s:%i:%s:%s", spellId, srcName or UNKNOWN, amount, overhealing > 0 and overhealing or "", critical and "!" or "")
+	return string.format("%i#HT#%s:%i:%s:%s", spellId, srcName, amount, overhealing > 0 and overhealing or "", critical and "!" or "")
 end
 local fmtDeBuff = function(entry)
 	local spellId = entry[1]
@@ -316,7 +316,7 @@ collect.DAMAGE_SHIELD = collect.SPELL_DAMAGE
 function collect.SWING_DAMAGE(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 	collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, 88163, spellName[88163], 0x01, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 end
-function collect.ENVIRONMENTAL_DAMAGE(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, environmentalType, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
+function collect.ENVIRONMENTAL_DAMAGE(timestamp, _, _, srcFlags, dstGUID, dstName, dstFlags, environmentalType, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 	local EnviromentType = string.upper(environmentalType)
 	local EnviromentTypes = _G["ACTION_ENVIRONMENTAL_DAMAGE_"..EnviromentType]
 	collect.SPELL_DAMAGE(timestamp, ENVIRONMENT_SUBHEADER, ENVIRONMENT_SUBHEADER, srcFlags, dstGUID, dstName, dstFlags, EnviromentTypes, EnviromentTypes, 0x01, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
@@ -337,15 +337,15 @@ function collect.SWING_MISSED(timestamp, srcGUID, srcName, srcFlags, dstGUID, ds
 	collect.SPELL_MISSED(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, 88163, spellName[88163], 0x01, missType, amountMissed)
 end
 
-function collect.SPELL_HEAL(timestamp, srcGUID, srcName, _, dstGUID, dstName, _, spellId, spellName, _, amount, overhealing, absorbed, critical)
+function collect.SPELL_HEAL(timestamp, srcGUID, srcName, _, dstGUID, dstName, _, spellId, spellName, _, amount, overhealing, _, critical)
 	if addon.guidToClass[srcGUID] then
 		if overhealing > 0 then
 			EVENT("oh", srcGUID, dstName, spellId, overhealing)
 		end
-		EVENT("hd", srcGUID, dstName, spellId, amount - overhealing, timestamp)
+		EVENT("hd", srcGUID, dstName, spellId, amount - overhealing > 0 and amount - overhealing or "", timestamp)
 	end
 	if addon.guidToClass[dstGUID] then
-		EVENT("ht", dstGUID, srcName, spellId, amount - overhealing, timestamp)
+		EVENT("ht", dstGUID, srcName, spellId, amount - overhealing > 0 and amount - overhealing or "", timestamp)
 	end
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] and not deathlogHealFilter[spellName] then
 		addDeathlogEvent(dstGUID, dstName, fmtHealing, timestamp, srcName, spellId, amount, overhealing, critical)
@@ -353,7 +353,7 @@ function collect.SPELL_HEAL(timestamp, srcGUID, srcName, _, dstGUID, dstName, _,
 end
 collect.SPELL_PERIODIC_HEAL = collect.SPELL_HEAL
 
-function collect.SPELL_DISPEL(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellId, _, _, _)
+function collect.SPELL_DISPEL(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellId)
 	if addon.guidToClass[srcGUID] then
 		EVENT("dp", srcGUID, dstName, extraSpellId, 1)
 	end
@@ -361,13 +361,13 @@ end
 collect.SPELL_PERIODIC_DISPEL = collect.SPELL_DISPEL
 collect.SPELL_STOLEN = collect.SPELL_DISPEL
 
-function collect.SPELL_INTERRUPT(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellId, _, _)
+function collect.SPELL_INTERRUPT(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellId)
 	if addon.guidToClass[srcGUID] then
 		EVENT("ir", srcGUID, dstName, extraSpellId, 1)
 	end
 end
 
-function collect.SPELL_ENERGIZE(_, _, srcName, _, dstGUID, _, _, spellId, _, _, amount, _)
+function collect.SPELL_ENERGIZE(_, _, srcName, _, dstGUID, _, _, spellId, _, _, amount)
 	if addon.guidToClass[dstGUID] then
 		EVENT("pg", dstGUID, srcName, spellId, amount)
 	end
@@ -419,13 +419,13 @@ function collect.SPELL_AURA_APPLIED_DOSE(timestamp, _, _, _, dstGUID, dstName, _
 end
 collect.SPELL_AURA_REMOVED_DOSE = collect.SPELL_AURA_APPLIED_DOSE
 
-function collect.UNIT_DIED(timestamp, _, _, _, dstGUID, dstName, _)
+function collect.UNIT_DIED(timestamp, _, _, _, dstGUID, dstName)
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] then
 		unitDied(timestamp, dstGUID, dstName)
 	end
 end
 
-function collect.SPELL_RESURRECT(timestamp, _, srcName, _, dstGUID, dstName, _, spellId, _, _)
+function collect.SPELL_RESURRECT(timestamp, _, srcName, _, dstGUID, dstName, _, spellId)
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] then
 		unitRezzed(timestamp, dstGUID, dstName, spellId, srcName)
 	end
