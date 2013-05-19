@@ -221,13 +221,6 @@ function addon:GUIDsUpdated()
 	end
 end
 
-local NotGuessedAbsorb = {
-	[17] = 1,		-- Power Word: Shield
-	[47753] = 1,	-- Divine Aegis
-	[86273] = 1,	-- Illuminated Healing
-	[48707] = 2,	-- Anti-Magic Shell
-}
-
 local function addSpellDetails(u, etype, spellID, amount)
 	local event = u[etype]
 	if not event then
@@ -337,18 +330,20 @@ function collect.SWING_MISSED(timestamp, srcGUID, srcName, srcFlags, dstGUID, ds
 	collect.SPELL_MISSED(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, 88163, spellName[88163], 0x01, missType, amountMissed)
 end
 
-function collect.SPELL_HEAL(timestamp, srcGUID, srcName, _, dstGUID, dstName, _, spellId, spellName, _, amount, overhealing, _, critical)
-	if addon.guidToClass[srcGUID] then
-		if overhealing > 0 then
-			EVENT("oh", srcGUID, dstName, spellId, overhealing)
+function collect.SPELL_HEAL(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, spellId, spellName, _, amount, overhealing, _, critical)
+	if bit.band(srcFlags, COMBATLOG_OBJECT_CONTROL_PLAYER) ~= 0 and bit.band(srcFlags, dstFlags, COMBATLOG_OBJECT_REACTION_MASK) ~= 0 then
+		if addon.guidToClass[srcGUID] then
+			if overhealing > 0 then
+				EVENT("oh", srcGUID, dstName, spellId, overhealing)
+			end
+			EVENT("hd", srcGUID, dstName, spellId, amount - overhealing > 0 and amount - overhealing or "", timestamp)
 		end
-		EVENT("hd", srcGUID, dstName, spellId, amount - overhealing > 0 and amount - overhealing or "", timestamp)
-	end
-	if addon.guidToClass[dstGUID] then
-		EVENT("ht", dstGUID, srcName, spellId, amount - overhealing > 0 and amount - overhealing or "", timestamp)
-	end
-	if addon.ids.deathlog and addon.guidToClass[dstGUID] and not deathlogHealFilter[spellName] then
-		addDeathlogEvent(dstGUID, dstName, fmtHealing, timestamp, srcName, spellId, amount, overhealing, critical)
+		if addon.guidToClass[dstGUID] then
+			EVENT("ht", dstGUID, srcName, spellId, amount - overhealing > 0 and amount - overhealing or "", timestamp)
+		end
+		if addon.ids.deathlog and addon.guidToClass[dstGUID] and not deathlogHealFilter[spellName] then
+			addDeathlogEvent(dstGUID, dstName, fmtHealing, timestamp, srcName, spellId, amount, overhealing, critical)
+		end
 	end
 end
 collect.SPELL_PERIODIC_HEAL = collect.SPELL_HEAL
@@ -378,7 +373,7 @@ function collect.SPELL_AURA_APPLIED(timestamp, srcGUID, _, _, dstGUID, dstName, 
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] and (auraType == "DEBUFF" or deathlogTrackBuffs[spellName]) then
 		addDeathlogEvent(dstGUID, dstName, fmtDeBuff, timestamp, spellId, auraType, 1, "+")
 	end
-	local amount = select(NotGuessedAbsorb[spellId] or 1, ...)
+	local amount = ...
 	if amount and addon.ids.ga and addon.guidToClass[srcGUID] then
 		shields[dstGUID] = shields[dstGUID] or {}
 		shields[dstGUID][spellId] = shields[dstGUID][spellId] or {}
@@ -386,7 +381,7 @@ function collect.SPELL_AURA_APPLIED(timestamp, srcGUID, _, _, dstGUID, dstName, 
 	end
 end
 function collect.SPELL_AURA_REFRESH(_, srcGUID, _, _, dstGUID, dstName, _, spellId, _, _, _, ...)
-	local amount = select(NotGuessedAbsorb[spellId] or 1, ...)
+	local amount = ...
 	if amount and addon.ids.ga and addon.guidToClass[srcGUID] then
 		if shields[dstGUID] and shields[dstGUID][spellId] and shields[dstGUID][spellId][srcGUID] then
 			local absorb = shields[dstGUID][spellId][srcGUID] - amount
@@ -401,7 +396,7 @@ function collect.SPELL_AURA_REMOVED(timestamp, srcGUID, _, _, dstGUID, dstName, 
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] and (auraType == "DEBUFF" or deathlogTrackBuffs[spellName]) then
 		addDeathlogEvent(dstGUID, dstName, fmtDeBuff, timestamp, spellId, auraType, 1, "-")
 	end
-	local amount = select(NotGuessedAbsorb[spellId] or 1, ...)
+	local amount = ...
 	if amount and addon.ids.ga and addon.guidToClass[srcGUID] then
 		if shields[dstGUID] and shields[dstGUID][spellId] and shields[dstGUID][spellId][srcGUID] then
 			local absorb = shields[dstGUID][spellId][srcGUID] - amount
