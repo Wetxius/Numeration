@@ -232,9 +232,3 @@ function CallbackHandler:New(target, RegisterName, UnregisterName, UnregisterAll
 
 	return registry
 end
-
-
--- CallbackHandler purposefully does NOT do explicit embedding. Nor does it
--- try to upgrade old implicit embeds since the system is selfcontained and
--- relies on closures to work.
-
