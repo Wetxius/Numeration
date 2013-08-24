@@ -6,6 +6,33 @@ local BossIDs = {
 	-------------------------------------------------------------------------------
 	-- Pandaria Raid
 	-------------------------------------------------------------------------------
+	-- Siege of Orgrimmar
+	[71543] = true,		-- Immerseus
+	[71475] = l.fallen,	-- Rook Stonetoe
+	[71479] = l.fallen,	-- He Softfoot
+	[71480] = l.fallen,	-- Sun Tenderheart
+	[71967] = true,		-- Norushen
+	[71734] = true,		-- Sha of Pride
+	[72249] = true,		-- Galakras
+	[71466] = true,		-- Iron Juggernaut
+	[71859] = l.shaman,	-- Earthbreaker Haromm
+	[71858] = l.shaman,	-- Wavebinder Kardris
+	[71515] = true,		-- General Nazgrim
+	[71454] = true,		-- Malkorok
+	[71512] = l.spoil,	-- Mantid Spoils
+	[73720] = l.spoil,	-- Mogu Spoils
+	[71529] = true,		-- Thok the Bloodthirsty
+	[71504] = true,		-- Siegecrafter Blackfuse
+	[71153] = l.para,	-- Hisek the Swarmkeeper
+	[71158] = l.para,	-- Rik'kal the Dissector
+	[71152] = l.para,	-- Skeer the Bloodseeker
+	[71154] = l.para,	-- Ka'roz the Locust
+	[71160] = l.para,	-- Iyyokuk the Lucid
+	[71155] = l.para,	-- Korven the Prime
+	[71156] = l.para,	-- Kaz'tik the Manipulator
+	[71157] = l.para,	-- Xaril the Poisoned Mind
+	[71161] = l.para,	-- Kil'ruk the Wind-Reaver
+	[71865] = true,		-- Garrosh Hellscream
 	-- Throne of Thunder
 	[69465] = true,		-- Jin'rokh the Breaker
 	[68476] = true,		-- Horridon
@@ -14,16 +41,12 @@ local BossIDs = {
 	[69132] = l.elder,	-- High Priestess Mar'li
 	[69134] = l.elder,	-- Kazra'jin
 	[67977] = true,		-- Tortos
-	[70212] = l.mega,	-- Flaming Head
 	[70235] = l.mega,	-- Frozen Head
 	[70247] = l.mega,	-- Venomous Head
-	[70248] = l.mega,	-- Arcane Head
 	[69712] = true,		-- Ji-Kun
 	[68036] = true,		-- Durumu the Forgotten
 	[69017] = true,		-- Primordius
-	[69427] = l.anima,	-- Dark Animus
 	[69701] = l.anima,	-- Anima Golem
-	[69700] = l.anima,	-- Large Anima Golem
 	[68078] = true,		-- Iron Qon
 	[68904] = l.twin,	-- Suen
 	[68905] = l.twin,	-- Lu'lin
@@ -44,10 +67,10 @@ local BossIDs = {
 	[62511] = true,		-- Amber-Shaper Un'sok
 	[62837] = true,		-- Grand Empress Shek'zeer
 	-- Mogu'Shan Vault
-	[59915] = l.stone,	-- Jasper, Stone Guard
-	[60043] = l.stone,	-- Jade, Stone Guard
-	[60047] = l.stone,	-- Amethyst, Stone Guard
-	[60051] = l.stone,	-- Cobalt, Stone Guard
+	[59915] = l.stone,	-- Jasper Guardian
+	[60043] = l.stone,	-- Jade Guardian
+	[60047] = l.stone,	-- Amethyst Guardian
+	[60051] = l.stone,	-- Cobalt Guardian
 	[60009] = true,		-- Feng the Accursed
 	[60143] = true,		-- Gara'jal the Spiritbinder
 	[60701] = l.kings,	-- Zian of the Endless Shadow
@@ -56,9 +79,6 @@ local BossIDs = {
 	[60710] = l.kings,	-- Meng the Demented
 	[60410] = true,		-- Elegon
 	[60396] = l.will,	-- Emperor's Rage
-	[60397] = l.will,	-- Emperor's Strength
-	[60399] = l.will,	-- Qin-xi
-	[60400] = l.will,	-- Jan-xi
 	-- World bosses
 	[60491] = true,		-- Sha of Anger
 	[62346] = true,		-- Galleon
@@ -86,7 +106,6 @@ local BossIDs = {
 	[59789] = true,		-- Thalnos the Soulrender
 	[59223] = true,		-- Brother Korloff
 	[60040] = l.inq,	-- Commander Durand
-	[3977] = l.inq,		-- High Inquisitor Whitemane
 	-- Scholomance
 	[58633] = true,		-- Instructor Chillheart
 	[59184] = true,		-- Jandice Barov
@@ -114,57 +133,6 @@ local BossIDs = {
 	[56915] = l.lore,	-- Sun
 	[56732] = true,		-- Liu Flameheart
 	[56439] = true,		-- Sha of Doubt
-	-------------------------------------------------------------------------------
-	-- Cataclysm Raid
-	-------------------------------------------------------------------------------
-	-- Dragon Soul
-	[55265] = true,		-- Morchok
-	[55308] = true,		-- Warlord Zon'ozz
-	[55312] = true,		-- Yor'sahj the Unsleeping
-	[55689] = true,		-- Hagara the Stormbinder
-	[55294] = true,		-- Ultraxion
-	[56855] = l.horn,	-- Twilight Assault Drake
-	[56854] = l.horn,	-- Twilight Elite Dreadblade
-	[56848] = l.horn,	-- Twilight Elite Slayer
-	[53879] = true,		-- Spine of Deathwing
-	[56167] = l.mad,	-- Arm Tentacle
-	[56846] = l.mad,	-- Arm Tentacle
-	[56168] = l.mad,	-- Wing Tentacle
-	-- Firelands
-	[52558] = true,		-- Lord Rhyolith
-	[52498] = true,		-- Beth'tilac
-	[52530] = true,		-- Alysrazor
-	[53691] = true,		-- Shannox
-	[53494] = true,		-- Baleroc
-	[52571] = true,		-- Majordomo Staghelm
-	[52409] = true,		-- Ragnaros
-	-- Blackwing Descent
-	[41570] = true,		-- Magmaw
-	[42166] = l.omno,	-- Arcanotron
-	[42178] = l.omno,	-- Magmatron
-	[42179] = l.omno,	-- Electron
-	[42180] = l.omno,	-- Toxitron
-	[41378] = true,		-- Maloriak
-	[41442] = true,		-- Atramedes
-	[43296] = true,		-- Chimaeron
-	[41376] = true,		-- Nefarian
-	-- Throne of the Four Winds
-	[45870] = l.wind,	-- Anshal
-	[45871] = l.wind,	-- Nezir
-	[45872] = l.wind,	-- Rohash
-	[46753] = true,		-- Al'Akir
-	-- The Bastion of Twilight
-	[44600] = true,		-- Halfus Wyrmbreaker
-	[45992] = l.drag,	-- Valiona
-	[45993] = l.drag,	-- Theralion
-	[43686] = l.elem,	-- Ignacious
-	[43687] = l.elem,	-- Feludius
-	[43324] = true,		-- Cho'gall
-	[45213] = true,		-- Sinestra
-	-- Baradin Hold
-	[47120] = true,		-- Argaloth
-	[52363] = true,		-- Occu'thar
-	[55869] = true,		-- Alizabal
 }
 
 lib.BossIDs = BossIDs
