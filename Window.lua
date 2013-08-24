@@ -250,11 +250,11 @@ end
 
 local SetIcon = function(f, icon)
 	if icon then
-		f:SetWidth(s.width-s.lineheight-4)
+		f:SetWidth(s.width-s.lineheight-2)
 		f.icon:SetTexture(icon)
 		f.icon:Show()
 	else
-		f:SetWidth(s.width-4)
+		f:SetWidth(s.width-2)
 		f.icon:Hide()
 	end
 end
@@ -301,10 +301,10 @@ function window:GetLine(id)
 	f:SetScript("OnLeave", onLeave)
 	f:SetStatusBarTexture(s.linetexture)
 	f:SetStatusBarColor(.6, .6, .6, 1)
-	f:SetWidth(s.width-4)
+	f:SetWidth(s.width-2)
 	f:SetHeight(s.lineheight)
 	if id == 0 then
-		f:SetPoint("TOPRIGHT", self.reset, "BOTTOMRIGHT", -1, -1)
+		f:SetPoint("TOPRIGHT", self.reset, "BOTTOMRIGHT", 0, -1)
 	else
 		f:SetPoint("TOPRIGHT", lines[id-1], "BOTTOMRIGHT", 0, -s.linegap)
 	end
