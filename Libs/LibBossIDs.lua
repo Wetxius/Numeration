@@ -80,10 +80,15 @@ local BossIDs = {
 	[60410] = true,		-- Elegon
 	[60396] = l.will,	-- Emperor's Rage
 	-- World bosses
+	[72057] = true,		-- Ordos
+	[71955] = true,		-- Yu'lon
+	[71954] = true,		-- Niuzao
+	[71953] = true,		-- Xuen
+	[71952] = true,		-- Chi-Ji
+	[69161] = true,		-- Oondasta
+	[69099] = true,		-- Nalak
 	[60491] = true,		-- Sha of Anger
 	[62346] = true,		-- Galleon
-	[69099] = true,		-- Nalak
-	[69161] = true,		-- Oondasta
 	-------------------------------------------------------------------------------
 	-- Pandaria Dungeon
 	-------------------------------------------------------------------------------

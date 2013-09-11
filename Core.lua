@@ -417,6 +417,27 @@ do
 		self:GUIDsUpdated()
 	end
 end
+
+function addon:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, eventtype, _, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, ...)
+	if self.collect[eventtype] then
+		self.collect[eventtype](timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)
+	end
+
+	local ClassOrOwnerGUID = self.guidToClass[srcGUID]
+	if eventtype == "SPELL_SUMMON" and ClassOrOwnerGUID then
+		local realSrcGUID = self.guidToClass[ClassOrOwnerGUID] and ClassOrOwnerGUID or srcGUID
+		summonOwner[dstGUID] = realSrcGUID
+		summonName[dstGUID] = dstName
+		self.guidToClass[dstGUID] = realSrcGUID
+		self.guidToName[dstGUID] = dstName
+	elseif eventtype == "UNIT_DIED" and summonOwner[srcGUID] then
+		summonOwner[srcGUID] = nil
+		summonName[srcGUID] = nil
+		self.guidToClass[srcGUID] = nil
+		self.guidToName[srcGUID] = nil
+	end
+end
+
 addon.PLAYER_ENTERING_WORLD = addon.UpdateGUIDS
 addon.GROUP_ROSTER_UPDATE = addon.UpdateGUIDS
 addon.UNIT_PET = addon.UpdateGUIDS
@@ -553,25 +574,5 @@ function addon:LeaveCombatEvent()
 
 		-- Refresh View
 		self:RefreshDisplay(true)
-	end
-end
-
-function addon:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, eventtype, _, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, ...)
-	if self.collect[eventtype] then
-		self.collect[eventtype](timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)
-	end
-
-	local ClassOrOwnerGUID = self.guidToClass[srcGUID]
-	if eventtype == "SPELL_SUMMON" and ClassOrOwnerGUID then
-		local realSrcGUID = self.guidToClass[ClassOrOwnerGUID] and ClassOrOwnerGUID or srcGUID
-		summonOwner[dstGUID] = realSrcGUID
-		summonName[dstGUID] = dstName
-		self.guidToClass[dstGUID] = realSrcGUID
-		self.guidToName[dstGUID] = dstName
-	elseif eventtype == "UNIT_DIED" and summonOwner[srcGUID] then
-		summonOwner[srcGUID] = nil
-		summonName[srcGUID] = nil
-		self.guidToClass[srcGUID] = nil
-		self.guidToName[srcGUID] = nil
 	end
 end
