@@ -1,9 +1,9 @@
-## Interface: 50300
+## Interface: 50400
 ## Title: Numeration
 ## Notes: Lightweight and useful damage/healing meter.
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 2.3
+## Version: 2.4
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
