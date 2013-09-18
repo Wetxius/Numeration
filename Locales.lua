@@ -30,6 +30,7 @@ if GetLocale() == "ruRU" then
 		s = "с",
 		-- BossIDs
 		fallen = "Павшие Защитники",
+		noru = "Норусхен",
 		shaman = "Темные Шаманы",
 		spoil = "Пандарийские Трофеи",
 		para = "Идеалы Клакси",
@@ -157,6 +158,7 @@ else
 		s = "s",
 		-- BossIDs
 		fallen = "The Fallen Protectors",
+		noru = "Norushen",
 		shaman = "Kor'kron Dark Shaman",
 		spoil = "Spoils of Pandaria",
 		para = "Paragons of the Klaxxi",
