@@ -31,6 +31,7 @@ if GetLocale() == "ruRU" then
 		-- BossIDs
 		fallen = "Павшие Защитники",
 		noru = "Норусхен",
+		gala = "Галакрас",
 		shaman = "Темные Шаманы",
 		spoil = "Пандарийские Трофеи",
 		para = "Идеалы Клакси",
@@ -75,6 +76,12 @@ elseif GetLocale() == "zhTW" then
 		m = "分",
 		s = "秒",
 		-- BossIDs
+		fallen = "墮落的保衛者",
+		noru = "諾努衫",
+		gala = "葛拉卡斯",
+		shaman = "柯爾克隆黑暗薩滿",
+		spoil = "潘達利亞之寶",
+		para = "卡拉西聖螳",
 		elder = "長老議會",
 		mega = "梅賈拉",
 		anima = "黑暗憎惡魔像",
@@ -116,6 +123,12 @@ elseif GetLocale() == "deDE" then
 		m = "m",
 		s = "s",
 		-- BossIDs
+		fallen = "Die gefallenen Beschützer",
+		noru = "Norushen",
+		gala = "Galakras",
+		shaman = "Dunkelschamanen",
+		spoil = "Die Schätze Pandarias",
+		para = "Die Getreuen der Klaxxi",
 		elder = "Rat der Ältesten",
 		mega = "Megaera",
 		anima = "Dunkler Animus",
@@ -159,6 +172,7 @@ else
 		-- BossIDs
 		fallen = "The Fallen Protectors",
 		noru = "Norushen",
+		gala = "Galakras",
 		shaman = "Kor'kron Dark Shaman",
 		spoil = "Spoils of Pandaria",
 		para = "Paragons of the Klaxxi",
