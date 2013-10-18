@@ -13,7 +13,7 @@ n["windows"] = {
 	scrollbar = true,						-- Show scrollbar
 
 	-- Title
-	titleheight = 16,						-- Heigth for title
+	titleheight = 16,						-- Height for title
 	titlealpha = 0.9,						-- Alpha for title
 	titlefont = [[Fonts\ARIALN.TTF]],		-- Set font for title
 	titlefontstyle = "NONE",				-- Font style for title
@@ -22,8 +22,8 @@ n["windows"] = {
 	highlight = {1, 0.8, 0},				-- Color for button highlight
 
 	-- Lines
-	lineheight = 14,						-- Heigth for lines
-	linegap = 1,							-- Heigth for line gap
+	lineheight = 14,						-- Height for lines
+	linegap = 1,							-- Height for line gap
 	linealpha = 1,							-- Alpha for lines
 	linefont = [[Fonts\ARIALN.TTF]],		-- Set font for line
 	linefontstyle = "NONE",					-- Font style for line
@@ -40,7 +40,7 @@ n["core"] = {
 	minfightlength = 15,					-- Time after which the segment will be saved
 	combatseconds = 3,						-- Time until new segment will be start
 	shortnumbers = true,					-- Use short numbers ("19.2k" instead of "19234")
-	silent_reset = false,					-- Confirm reset data and hide pop-up.
+	silent_reset = false,					-- Auto confirm reset data and hide pop-up
 }
 
 ----------------------------------------------------------------------------------------
