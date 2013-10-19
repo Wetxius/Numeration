@@ -249,7 +249,7 @@ end
 local function updateTime(u, etype, timestamp)
 	local last = u[etype].last
 	u[etype].last = timestamp
-	if not last then return end
+	if not last or not addon.now or not addon.start then return end
 
 	u[etype].time = addon.now - addon.start
 end
