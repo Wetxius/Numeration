@@ -141,6 +141,53 @@ elseif GetLocale() == "deDE" then
 		inq = "Hochinquisitorin Weißsträhne",
 		lore = "Lehrensucher Steinschritt"
 	}
+elseif GetLocale() == "koKR" then
+	n.locale = {
+		dmg_tar = "피해 대상",
+		dmg_take_tar = "받은 피해: 대상별",
+		dmg_take_abil = "받은 피해: 주문별",
+		friend_fire = "아군 공격",
+		heal_take_abil = "받은 치유: 주문별",
+		overheal = "초과치유",
+		death_log = "죽음 로그",
+		tar = "대상",
+		sel_set = "선택: 세트",
+		overall = "전체 자료",
+		current = "현재 전투",
+		pet_merge = "소환수를 소환자에 합산",
+		only_boss = "보스 전투만 유지",
+		only_instance = "인스턴스만 기록",
+		show_icon = "미니맵 아이콘 표시",
+		toggle = "클릭 : 창 보이기/숨기기",
+		reset = "시프트+클릭 : 자료 초기화",
+		binding_visibility = "보이기/숨기기",
+		binding_reset = "자료 초기화",
+		reset_data = "자료를 초기화하겠습니까?",
+		whisp_target = "귓속말을 받을 대상",
+		bad_report = "오류: 보고할 유형을 선택하세요",
+		bad_whisp = "잘못되었거나 선택한 대상이 없습니다",
+		death = "죽음",
+		m = "분",
+		s = "초",
+		-- BossIDs
+		fallen = "쓰러진 수호자들",
+		noru = "노루센",
+		gala = "갈라크라스",
+		shaman = "코르크론 암흑주술사",
+		spoil = "판다리아의 전리품",
+		para = "클락시 용장들",
+		elder = "장로회",
+		mega = "메가이라",
+		anima = "암흑 원령",
+		twin = "쌍둥이 왕비",
+		prot = "영원의 수호병",
+		stone = "바위 수호자",
+		kings = "유령 왕",
+		will = "황제의 의지",
+		trial = "왕의 시험",
+		inq = "종교재판관 하이트메인",
+		lore = "전승지기 스톤스텝"
+	}
 else
 	n.locale = {
 		dmg_tar = "Damage Targets",
