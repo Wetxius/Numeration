@@ -11,6 +11,7 @@ n["windows"] = {
 	backgroundalpha = 0.6,					-- Alpha for background
 	fontshadow = true,						-- Use shadow for all fonts
 	scrollbar = true,						-- Show scrollbar
+	tpos = "ANCHOR_BOTTOMRIGHT",			-- Tooltip anchor
 
 	-- Title
 	titleheight = 16,						-- Height for title

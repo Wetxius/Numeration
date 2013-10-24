@@ -283,7 +283,7 @@ window.SetDetailAction = SetDetailAction
 
 local onEnter = function(self)
 	if not self.spellId then return end
-	GameTooltip:SetOwner(self, "ANCHOR_BOTTOMRIGHT", 4, s.lineheight)
+	GameTooltip:SetOwner(self, s.tpos and s.tpos or "ANCHOR_BOTTOMRIGHT", 4, s.lineheight)
 	GameTooltip:SetHyperlink("spell:"..self.spellId)
 end
 local onLeave = function(self)
