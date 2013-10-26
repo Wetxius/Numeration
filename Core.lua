@@ -544,11 +544,11 @@ function addon:EnterCombatEvent(timestamp, guid, name)
 		current = newSet()
 		current.start = timestamp
 		current.active = true
-		addon.start = timestamp
+		-- addon.start = timestamp
 	end
 
 	current.now = timestamp
-	addon.now = timestamp
+	-- addon.now = timestamp
 	if not current.boss then
 		local mobid = boss.BossIDs[tonumber(guid:sub(6, 10), 16)]
 		if mobid then
