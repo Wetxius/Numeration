@@ -249,17 +249,19 @@ end
 local function updateTime(u, etype, timestamp)
 	local last = u[etype].last
 	u[etype].last = timestamp
-	if not last then return end
+	if not last or not addon.now then return end
 
 	local t = u[etype].time or 0
-	local gap = timestamp-last
-	if gap < 5 then
+	local timer = addon.now - addon.start
+	local gap = timestamp - last
+	if gap > 5 and (timer < 2 or t > timer) then
+		t = t + 1
+	elseif t > timer then
 		t = t + gap
 	else
-		t = t + 1
+		t = timer
 	end
 	u[etype].time = t
-	-- u[etype].time = addon.now - addon.start
 end
 
 local function EVENT(etype, playerID, targetName, spellID, amount, timestamp)
