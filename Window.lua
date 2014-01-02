@@ -4,6 +4,20 @@ local s = addon.windows
 local window = CreateFrame("Frame", "NumerationFrame", UIParent)
 addon.window = window
 
+local HiddenFrame = CreateFrame("Frame")
+HiddenFrame:Hide()
+window:RegisterEvent("PET_BATTLE_OPENING_START")
+window:RegisterEvent("PET_BATTLE_CLOSE")
+window:SetScript("OnEvent", function(self, event)
+	if event == "PET_BATTLE_OPENING_START" then
+		-- window:SetAlpha(0)
+		window:SetParent(HiddenFrame)
+	else
+		-- window:SetAlpha(1)
+		window:SetParent(UIParent)
+	end
+end)
+
 local lines = {}
 local noop = function() end
 local backAction = noop
@@ -64,7 +78,7 @@ local menuTable = {
 local updateReportChannels = function()
 	menuTable[2].menuList[8].menuList = table.wipe(menuTable[2].menuList[8].menuList)
 	for i = 1, GetNumDisplayChannels() do
-		local name, _, _, channelNumber, _, active, category = GetChannelDisplayInfo(i)
+		local name, _, _, channelNumber, _, _, category = GetChannelDisplayInfo(i)
 		if category == "CHANNEL_CATEGORY_CUSTOM" then
 			tinsert(menuTable[2].menuList[8].menuList, {text = name, arg1 = "CHANNEL", arg2 = channelNumber, func = reportFunction, notCheckable = 1})
 		end
