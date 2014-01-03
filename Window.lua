@@ -10,10 +10,8 @@ window:RegisterEvent("PET_BATTLE_OPENING_START")
 window:RegisterEvent("PET_BATTLE_CLOSE")
 window:SetScript("OnEvent", function(self, event)
 	if event == "PET_BATTLE_OPENING_START" then
-		-- window:SetAlpha(0)
 		window:SetParent(HiddenFrame)
 	else
-		-- window:SetAlpha(1)
 		window:SetParent(UIParent)
 	end
 end)
