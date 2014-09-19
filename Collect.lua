@@ -23,7 +23,6 @@ local deathlogTrackBuffs = {
 	[spellName[22812]] = true,	-- Barkskin
 	[spellName[102342]] = true,	-- Ironbark
 	[spellName[61336]] = true,	-- Survival Instincts
-	[spellName[106922]] = true,	-- Might of Ursoc
 	-- Hunter
 	[spellName[19263]] = true,	-- Deterrence
 	[spellName[5384]] = true,	-- Feign Death

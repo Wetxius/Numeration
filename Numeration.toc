@@ -7,6 +7,10 @@
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
+## X-Curse-Packaged-Version: 2.5
+## X-Curse-Project-Name: Numeration Damage Meter
+## X-Curse-Project-ID: numeration
+
 Locales.lua
 Libs\LibStub.lua
 Libs\CallbackHandler-1.0.lua
