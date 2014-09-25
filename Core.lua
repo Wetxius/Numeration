@@ -448,8 +448,8 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 	if force == true or instanceType ~= self.instanceType then
 		self.instanceType = instanceType
 
-		if not NumerationCharOptions.onlyinstance or difficultyID ~= 0 then
-			if difficultyID ~= 0 then
+		if not NumerationCharOptions.onlyinstance or (IsInInstance() and difficultyID ~= 0) then
+			if IsInInstance() and difficultyID ~= 0 then
 				local curZone = GetRealZoneText()
 				if curZone ~= NumerationCharDB.zone then
 					NumerationCharDB.zone = curZone
