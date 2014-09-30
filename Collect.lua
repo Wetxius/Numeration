@@ -310,9 +310,7 @@ function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, dstGUID, dstName, 
 	elseif srcFriend then
 		addon:EnterCombatEvent(timestamp, dstGUID, dstName)
 		if s.merge_spells then
-			for exact, merge in pairs(MergeSpells) do
-				if spellId == exact then spellId = merge end
-			end
+			spellId = MergeSpells[spellId] or spellId
 		end
 		EVENT("dd", srcGUID, dstName, spellId, amount, timestamp)
 	end
