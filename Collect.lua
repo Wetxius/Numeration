@@ -61,6 +61,14 @@ local deathlogTrackBuffs = {
 	[spellName[97463]] = true,	-- Rallying Cry
 }
 
+local MergeSpells = {
+	-- Warlock
+	[108686] = 348,		-- Immolate
+	[157736] = 348,		-- Immolate
+	[108685] = 17962,	-- Conflagrate
+	[114654] = 29722,	-- Incinerate
+}
+
 local deathData, tblCache = {}, {}
 local clearEvts = function(playerID)
 	local dd = deathData[playerID]
@@ -302,14 +310,14 @@ function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, dstGUID, dstName, 
 	elseif srcFriend then
 		addon:EnterCombatEvent(timestamp, dstGUID, dstName)
 		if s.merge_spells then
-			if spellId == 108686 or spellId == 157736 then spellId = 348
-			elseif spellId == 108685 then spellId = 17962
-			elseif spellId == 114654 then spellId = 29722
+			for exact, merge in pairs(MergeSpells) do
+				if spellId == exact then spellId = merge end
 			end
 		end
 		EVENT("dd", srcGUID, dstName, spellId, amount, timestamp)
 	end
 end
+
 collect.SPELL_PERIODIC_DAMAGE = collect.SPELL_DAMAGE
 collect.SPELL_BUILDING_DAMAGE = collect.SPELL_DAMAGE
 collect.RANGE_DAMAGE = collect.SPELL_DAMAGE

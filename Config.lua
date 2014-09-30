@@ -42,7 +42,7 @@ n["core"] = {
 	combatseconds = 3,						-- Time until new segment will be start
 	shortnumbers = true,					-- Use short numbers ("19.2k" instead of "19234")
 	silent_reset = false,					-- Auto confirm reset data and hide pop-up
-	merge_spells = true,					-- Spells with same names will be merged (Only for Warlock yet)
+	merge_spells = true,					-- Merge spells with same names (from list)
 }
 
 ----------------------------------------------------------------------------------------
