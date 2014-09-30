@@ -1,4 +1,5 @@
 ﻿local addon = select(2, ...)
+local s = addon.core
 local collect = {}
 addon.collect = collect
 
@@ -300,6 +301,12 @@ function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, dstGUID, dstName, 
 		end
 	elseif srcFriend then
 		addon:EnterCombatEvent(timestamp, dstGUID, dstName)
+		if s.merge_spells then
+			if spellId == 108686 or spellId == 157736 then spellId = 348
+			elseif spellId == 108685 then spellId = 17962
+			elseif spellId == 114654 then spellId = 29722
+			end
+		end
 		EVENT("dd", srcGUID, dstName, spellId, amount, timestamp)
 	end
 end
