@@ -247,16 +247,16 @@ function addon:Report(lines, chatType, channel)
 	if chatType == "WHISPER" then
 		whispname = StaticPopup1EditBox:GetText()
 		if whispname == nil or whispname == "" then
-			print(l.bad_whisp)
+			print("|cffffff00Numeration|r: "..l.bad_whisp)
 			return
 		end
 	end
 
 	local view = self.views[self.nav.view]
-	if view.Report then
+	if view.Report and lines then
 		view:Report(NumerationCharOptions.petsmerged, lines)
 	else
-		print(l.bad_report)
+		print("|cffffff00Numeration|r: "..l.bad_report)
 	end
 end
 
