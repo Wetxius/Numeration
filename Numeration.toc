@@ -1,13 +1,13 @@
-## Interface: 50400
+## Interface: 60000
 ## Title: Numeration
 ## Notes: Lightweight and useful damage/healing meter.
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 2.5
+## Version: 2.6
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
-## X-Curse-Packaged-Version: 2.5
+## X-Curse-Packaged-Version: 2.6
 ## X-Curse-Project-Name: Numeration Damage Meter
 ## X-Curse-Project-ID: numeration
 ## X-RelSite-WoWI: 17434
