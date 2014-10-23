@@ -3,14 +3,14 @@
 ## Notes: Lightweight and useful damage/healing meter.
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 2.6.1
+## Version: 2.6.2
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
-## X-Curse-Packaged-Version: 2.6.1
+## X-Curse-Packaged-Version: 2.6.2
 ## X-Curse-Project-Name: Numeration Damage Meter
 ## X-Curse-Project-ID: numeration
-## X-RelSite-WoWI: 17434
+## X-WoWI-ID: 17434
 
 Locales.lua
 Libs\LibStub.lua
