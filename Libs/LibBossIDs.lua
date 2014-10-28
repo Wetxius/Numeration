@@ -4,7 +4,7 @@ local lib = LibStub:NewLibrary("LibBossIDs", 1)
 
 local BossIDs = {
 	-------------------------------------------------------------------------------
-	-- Pandaria Raid
+	-- Pandaria Raids
 	-------------------------------------------------------------------------------
 	-- Siege of Orgrimmar
 	[71543] = true,		-- Immerseus
@@ -90,7 +90,7 @@ local BossIDs = {
 	[60491] = true,		-- Sha of Anger
 	[62346] = true,		-- Galleon
 	-------------------------------------------------------------------------------
-	-- Pandaria Dungeon
+	-- Pandaria Dungeons
 	-------------------------------------------------------------------------------
 	-- Gate of the Setting Sun
 	[56906] = true,		-- Saboteur Kip'tilak

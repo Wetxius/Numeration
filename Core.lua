@@ -471,6 +471,7 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 			self.events:RegisterEvent("PLAYER_REGEN_ENABLED")
 
 			self.events:RegisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+			self.events:RegisterEvent("ENCOUNTER_START")
 
 			updateTimer:Activate()
 			if not NumerationCharOptions.forcehide then
@@ -487,6 +488,7 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 			self.events:UnregisterEvent("PLAYER_REGEN_ENABLED")
 
 			self.events:UnregisterEvent("COMBAT_LOG_EVENT_UNFILTERED")
+			self.events:UnregisterEvent("ENCOUNTER_START")
 			updateTimer:Hide()
 			if instanceType == "none" then
 				if not NumerationCharOptions.forcehide then
@@ -539,6 +541,10 @@ function addon:PLAYER_REGEN_ENABLED()
 	end
 end
 
+function addon:ENCOUNTER_START(_, _, encounterName)
+	addon.encounterName = encounterName
+end
+
 function addon:EnterCombatEvent(timestamp, guid, name)
 	if not current.active then
 		current = newSet()
@@ -554,6 +560,10 @@ function addon:EnterCombatEvent(timestamp, guid, name)
 		if mobid then
 			current.name = mobid == true and name or mobid
 			current.boss = true
+		elseif addon.encounterName then
+			current.name = addon.encounterName
+			current.boss = true
+			addon.encounterName = nil
 		elseif not current.name then
 			current.name = name
 		end
