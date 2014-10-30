@@ -502,12 +502,25 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 	end
 end
 
-local inCombat, RaidInCombat = nil, nil
+local IsGroupInCombat = function()
+	if GetNumGroupMembers() > 0 then
+		local unit = IsInRaid() and "raid" or "party"
+		for i = 1, GetNumGroupMembers(), 1 do
+			if UnitExists(unit..i) and UnitAffectingCombat(unit..i) then
+				return true
+			end
+		end
+	end
+	return false
+end
+
+local inCombat = nil
 local combatTimer = CreateFrame("Frame")
 combatTimer:Hide()
 combatTimer:SetScript("OnUpdate", function(self, elapsed)
 	self.timer = self.timer - elapsed
 	if self.timer > 0 then return end
+	if IsGroupInCombat() then self.timer = s.combatseconds return end
 	addon:LeaveCombatEvent()
 	self:Hide()
 end)
