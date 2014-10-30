@@ -67,6 +67,13 @@ local MergeSpells = {
 	[157736] = 348,		-- Immolate
 	[108685] = 17962,	-- Conflagrate
 	[114654] = 29722,	-- Incinerate
+	[131737] = 980,		-- Agony (Drain Soul)
+	[131740] = 146739,	-- Corruption (Drain Soul)
+	[131736] = 30108,	-- Unstable Affliction (Drain Soul)
+	[87385] = 27285,	-- Seed of Corruption
+	[114790] = 27285,	-- Seed of Corruption
+	[132566] = 27285,	-- Seed of Corruption
+	[27243] = 27285,	-- Seed of Corruption
 }
 
 local deathData, tblCache = {}, {}
