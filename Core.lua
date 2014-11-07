@@ -558,6 +558,7 @@ function addon:EnterCombatEvent(timestamp, guid, name)
 		if mobid then
 			current.name = mobid == true and name or mobid
 			current.boss = true
+			addon.encounterName = nil
 		elseif addon.encounterName then
 			current.name = addon.encounterName
 			current.boss = true
