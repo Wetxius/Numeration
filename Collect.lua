@@ -8,12 +8,12 @@ local deathlogHealFilter = {
 	[spellName[115547]] = true,	-- Glyph of Avenging Wrath
 	[spellName[15290]] = true,	-- Vampiric Embrace
 	[spellName[127626]] = true,	-- Devouring Plague
-	[spellName[112974]] = true,	-- Leeching Poison
 	[spellName[5394]] = true,	-- Healing Stream Totem
 	[spellName[108503]] = true,	-- Grimoire of Sacrifice
 	[spellName[63106]] = true,	-- Siphon Life
 	[spellName[108366]] = true,	-- Soul Leech
 	[spellName[117313]] = true,	-- Bloodthirst Heal
+	[spellName[143924]] = true,	-- Leech
 }
 local deathlogTrackBuffs = {
 	-- Death Knight
