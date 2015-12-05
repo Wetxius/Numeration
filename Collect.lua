@@ -337,7 +337,7 @@ function collect.ENVIRONMENTAL_DAMAGE(timestamp, _, _, srcFlags, dstGUID, dstNam
 	collect.SPELL_DAMAGE(timestamp, ENVIRONMENT_SUBHEADER, ENVIRONMENT_SUBHEADER, srcFlags, dstGUID, dstName, dstFlags, EnviromentTypes, EnviromentTypes, 0x01, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 end
 
-function collect.SPELL_MISSED(timestamp, _, srcName, _, dstGUID, dstName, _, spellId, _, spellSchool, missType, _, amountMissed)
+function collect.SPELL_MISSED(timestamp, _, srcName, _, dstGUID, dstName, _, spellId, _, spellSchool, missType, _, _, amountMissed)
 	if addon.guidToClass[dstGUID] then
 		if addon.ids.deathlog then
 			addDeathlogEvent(dstGUID, dstName, fmtMiss, timestamp, srcName, spellId, spellSchool, missType, amountMissed)
