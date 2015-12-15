@@ -3,11 +3,11 @@
 ## Notes: Lightweight and useful damage/healing meter.
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 2.7.1
+## Version: 2.7.2
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
-## X-Curse-Packaged-Version: 2.7.1
+## X-Curse-Packaged-Version: 2.7.2
 ## X-Curse-Project-Name: Numeration Damage Meter
 ## X-Curse-Project-ID: numeration
 ## X-WoWI-ID: 17434
