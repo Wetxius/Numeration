@@ -304,12 +304,14 @@ local shields = {}
 function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, dstGUID, dstName, _, spellId, _, spellSchool, amount, overkill, _, resisted, blocked, absorbed, critical, glancing, crushing)
 	local srcFriend = addon.guidToClass[srcGUID]
 	local dstFriend = addon.guidToClass[dstGUID]
+	local _, _, _, _, _, dstID = strsplit("-", dstGUID)
 	if dstFriend then
 		if srcFriend then
 			EVENT("ff", srcGUID, dstName, spellId, amount)
 		elseif srcGUID ~= ENVIRONMENT_SUBHEADER then
 			addon:EnterCombatEvent(timestamp, srcGUID, srcName)
 		end
+		if dstID == "76933" then return end		-- Ignore Prismatic Crystal
 		EVENT("dt", dstGUID, srcName, spellId, amount)
 		if addon.ids.deathlog then
 			addDeathlogEvent(dstGUID, dstName, fmtDamage, timestamp, srcName, spellId, spellSchool, amount, overkill, resisted, blocked, absorbed, critical, glancing, crushing)
