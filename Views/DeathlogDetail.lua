@@ -28,7 +28,7 @@ function view:Init()
 	if not entry then return end
 
 	local playerName = strsplit("#", entry[0])
-	addon.window:SetTitle(format("%s: %s", v.name, playerName), v.c[1], v.c[2], v.c[3])
+	addon.window:SetTitle(format("%s: %s", v.name, addon.core.remove_realm and playerName:gsub("%-[^|]+", "") or playerName), v.c[1], v.c[2], v.c[3])
 end
 
 local schoolColor = {
@@ -52,14 +52,14 @@ eventText.DT = function(event, spellId, srcName, spellSchool, amount, overkill, 
 	absorbed = (absorbed~="") and string.format("|cffFFFF00-%s|r", absorbed) or ""
 	blocked = (blocked~="") and string.format("|cffAAAAAA-%s|r", blocked) or ""
 	resisted = (resisted~="") and string.format("|cff800080-%s|r", resisted) or ""
-	return string.format("|cffFF0000%+7d%s|r%s%s%s%s [%s - |cff%s%s|r]", -tonumber(amount), modifier, overkill, absorbed, blocked, resisted, srcName, schoolColor[spellSchool] or "FFFF00", spellName[spellId] or spellId)
+	return string.format("|cffFF0000%+7d%s|r%s%s%s%s [%s - |cff%s%s|r]", -tonumber(amount), modifier, overkill, absorbed, blocked, resisted, addon.core.remove_realm and srcName:gsub("%-[^|]+", "") or srcName, schoolColor[spellSchool] or "FFFF00", spellName[spellId] or spellId)
 end
 eventText.DM = function(event, spellId, srcName, spellSchool, missType, amountMissed)
-	return string.format("  |cffAAAAAA%s|r [%s - |cff%s%s|r]", missType, srcName, schoolColor[spellSchool] or "FFFF00", spellName[spellId] or spellId)
+	return string.format("  |cffAAAAAA%s|r [%s - |cff%s%s|r]", missType, addon.core.remove_realm and srcName:gsub("%-[^|]+", "") or srcName, schoolColor[spellSchool] or "FFFF00", spellName[spellId] or spellId)
 end
 eventText.HT = function(event, spellId, srcName, amount, overhealing, modifier)
 	overhealing = (overhealing~="") and string.format("|cff00B480>%i|r", overhealing) or ""
-	return string.format("|cff00FF00%+7d%s|r%s [%s - %s]", amount, modifier, overhealing, srcName, spellName[spellId] or spellId)
+	return string.format("|cff00FF00%+7d%s|r%s [%s - %s]", amount, modifier, overhealing, addon.core.remove_realm and srcName:gsub("%-[^|]+", "") or srcName, spellName[spellId] or spellId)
 end
 eventText.AB = function(event, spellId, modifier, stacks)
 	stacks = (stacks~="") and string.format(" (%s)", stacks) or ""

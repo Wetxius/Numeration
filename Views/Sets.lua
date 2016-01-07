@@ -22,7 +22,7 @@ local setLine = function(lineid, setid, title)
 	if title then
 		line:SetLeftText(title)
 	else
-		line:SetLeftText("%i. %s", setid, set.name)
+		line:SetLeftText("%i. %s", setid, addon.core.remove_realm and set.name:gsub("%-[^|]+", "") or set.name)
 	end
 	local datetext, timetext = addon:GetDuration(set)
 	if datetext then

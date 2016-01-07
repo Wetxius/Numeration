@@ -27,9 +27,9 @@ function view:Init()
 	local t = addon.types[addon.nav.type]
 	local text
 	if u.owner then
-		text = format("%s: %s <%s>", t.name, u.name, u.owner)
+		text = format("%s: %s <%s>", t.name, u.name, addon.core.remove_realm and u.owner:gsub("%-[^|]+", "") or u.owner)
 	else
-		text = format("%s: %s", t.name, u.name)
+		text = format("%s: %s", t.name, addon.core.remove_realm and u.name:gsub("%-[^|]+", "") or u.name)
 	end
 	addon.window:SetTitle(text, t.c[1], t.c[2], t.c[3])
 	addon.window:SetBackAction(backAction)

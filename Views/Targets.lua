@@ -69,7 +69,7 @@ function view:Update(merged)
 
 		local line = addon.window:GetLine(i-self.first)
 		line:SetValues(value, maxvalue)
-		line:SetLeftText("%i. %s", i, target)
+		line:SetLeftText("%i. %s", i, addon.core.remove_realm and target:gsub("%-[^|]+", "") or target)
 		line:SetRightText("%s (%02.1f%%)", addon:ModNumber(value), value/total*100)
 		line:SetColor(c[1], c[2], c[3])
 		line.target = target

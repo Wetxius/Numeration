@@ -69,7 +69,7 @@ function view:Update(merged)
 		if u.owner then
 			line:SetLeftText("%i. %s <%s>", i, u.name, u.owner)
 		else
-			line:SetLeftText("%i. %s", i, u.name)
+			line:SetLeftText("%i. %s", i, addon.core.remove_realm and u.name:gsub("%-[^|]+", "") or u.name)
 		end
 		line:SetRightText("%s (%02.1f%%)", addon:ModNumber(value), value/total*100)
 		line:SetColor(c[1], c[2], c[3])

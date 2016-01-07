@@ -43,6 +43,7 @@ n["core"] = {
 	shortnumbers = true,					-- Use short numbers ("19.2k" instead of "19234")
 	silent_reset = false,					-- Auto confirm reset data and hide pop-up
 	merge_spells = true,					-- Merge spells with same names (from list)
+	remove_realm = true,					-- Don't show realm name
 }
 
 ----------------------------------------------------------------------------------------

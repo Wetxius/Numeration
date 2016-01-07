@@ -16,7 +16,7 @@ function view:Init()
 	local target = addon.nav.target
 
 	local t = addon.types[addon.nav.type]
-	local text = format("%s: %s", t.name, target)
+	local text = format("%s: %s", t.name, addon.core.remove_realm and target:gsub("%-[^|]+", "") or target)
 	addon.window:SetTitle(text, t.c[1], t.c[2], t.c[3])
 	addon.window:SetBackAction(backAction)
 end
@@ -66,9 +66,9 @@ function view:Update(merged)
 		local line = addon.window:GetLine(i-self.first)
 		line:SetValues(value, maxvalue)
 		if u.owner then
-			line:SetLeftText("%i. %s <%s>", i, u.name, u.owner)
+			line:SetLeftText("%i. %s <%s>", i, u.name, addon.core.remove_realm and u.owner:gsub("%-[^|]+", "") or u.owner)
 		else
-			line:SetLeftText("%i. %s", i, u.name)
+			line:SetLeftText("%i. %s", i, addon.core.remove_realm and u.name:gsub("%-[^|]+", "") or u.name)
 		end
 		line:SetRightText("%s (%02.1f%%)", addon:ModNumber(value), value/total*100)
 		line:SetColor(c[1], c[2], c[3])

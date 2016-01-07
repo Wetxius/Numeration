@@ -19,9 +19,9 @@ function view:Init()
 	local t = addon.types[addon.nav.type]
 	local text
 	if u.owner then
-		text = format("%s "..l.tar..": %s <%s>", t.name, u.name, u.owner)
+		text = format("%s "..l.tar..": %s <%s>", t.name, u.name, addon.core.remove_realm and u.owner:gsub("%-[^|]+", "") or u.owner)
 	else
-		text = format("%s "..l.tar..": %s", t.name, u.name)
+		text = format("%s "..l.tar..": %s", t.name, addon.core.remove_realm and u.name:gsub("%-[^|]+", "") or u.name)
 	end
 	addon.window:SetTitle(text, t.c[1], t.c[2], t.c[3])
 	addon.window:SetBackAction(backAction)
@@ -97,9 +97,9 @@ function view:Update(merged)
 		local line = addon.window:GetLine(i-self.first)
 		line:SetValues(value, maxvalue)
 		if petName then
-			line:SetLeftText("%i. %s <%s>", i, target, petName)
+			line:SetLeftText("%i. %s <%s>", i, addon.core.remove_realm and target:gsub("%-[^|]+", "") or target, petName)
 		else
-			line:SetLeftText("%i. %s", i, target)
+			line:SetLeftText("%i. %s", i, addon.core.remove_realm and target:gsub("%-[^|]+", "") or target)
 		end
 		line:SetRightText("%s (%02.1f%%)", addon:ModNumber(value), value/total*100)
 		line:SetColor(c[1], c[2], c[3])

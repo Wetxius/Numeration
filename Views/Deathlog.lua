@@ -47,18 +47,18 @@ eventInfo.DEATH = function(event, playerName, class, spellId, srcName, spellScho
 	if spellId == "" then
 		spellId = nil
 		icon = [[Interface\TargetingFrame\UI-TargetingFrame-Skull]]
-		text = string.format("|cff%s%s|r", colorhex[class], playerName)
+		text = string.format("|cff%s%s|r", colorhex[class], addon.core.remove_realm and playerName:gsub("%-[^|]+", "") or playerName)
 	else
 		spellId = tonumber(spellId) or spellId
 		icon = spellIcon[spellId] or ""
-		text = string.format("|cff%s%s|r < |cffFF0000%+d|r [%s - |cff%s%s|r]", colorhex[class], playerName, -tonumber(amount), srcName, schoolColor[spellSchool] or "FFFF00", spellName[spellId])
+		text = string.format("|cff%s%s|r < |cffFF0000%+d|r [%s - |cff%s%s|r]", colorhex[class], addon.core.remove_realm and playerName:gsub("%-[^|]+", "") or playerName, -tonumber(amount), addon.core.remove_realm and srcName:gsub("%-[^|]+", "") or srcName, schoolColor[spellSchool] or "FFFF00", spellName[spellId])
 	end
 	return icon, text, spellId
 end
 eventInfo.REZZ = function(event, playerName, class, spellId, rezzerName)
 	spellId = tonumber(spellId)
 	local icon = spellIcon[spellId]
-	local text = string.format("|cff%s%s|r < [%s - |cff4080D9%s|r]", colorhex[class], playerName, rezzerName, spellName[spellId])
+	local text = string.format("|cff%s%s|r < [%s - |cff4080D9%s|r]", colorhex[class], addon.core.remove_realm and playerName:gsub("%-[^|]+", "") or playerName, rezzerName, spellName[spellId])
 	return icon, text, spellId
 end
 function view:Update()
@@ -77,7 +77,7 @@ function view:Update()
 		local line = addon.window:GetLine(i-self.first)
 
 		local playerName, class, event, info = strsplit("#", entry[0])
-		local icon, text, spellId = eventInfo[event](event, playerName, class, strsplit(":", info))
+		local icon, text, spellId = eventInfo[event](event, addon.core.remove_realm and playerName:gsub("%-[^|]+", "") or playerName, class, strsplit(":", info))
 		local c = eventColors[event]
 
 		line:SetValues(set.start and (entry.time-set.start) or 1, total)

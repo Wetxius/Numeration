@@ -104,9 +104,9 @@ function view:Update(merged)
 		local line = addon.window:GetLine(i-self.first)
 		line:SetValues(value, maxvalue)
 		if u.owner then
-			line:SetLeftText("%i. %s <%s>", i, u.name, u.owner)
+			line:SetLeftText("%i. %s <%s>", i, u.name, addon.core.remove_realm and u.owner:gsub("%-[^|]+", "") or u.owner)
 		else
-			line:SetLeftText("%i. %s", i, u.name)
+			line:SetLeftText("%i. %s", i, addon.core.remove_realm and u.name:gsub("%-[^|]+", "") or u.name)
 		end
 		if time ~= 0 then
 			line:SetRightText("%s (%s, %02.1f%%)", addon:ModNumber(value), addon:ModNumber(value/time), value/total*100)
