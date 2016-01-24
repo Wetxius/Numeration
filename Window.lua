@@ -1,6 +1,6 @@
 local addon = select(2, ...)
-local l = addon.locale
-local s = addon.windows
+local L = addon.locale
+local C = addon.windows
 local window = CreateFrame("Frame", "NumerationFrame", UIParent)
 addon.window = window
 
@@ -63,10 +63,10 @@ local menuTable = {
 	},
 	{text = GAMEOPTIONS_MENU, notCheckable = true, hasArrow = true,
 		menuList = {
-			{text = l.pet_merge, arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true},
-			{text = l.only_boss, arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true},
-			{text = l.only_instance, arg1 = "onlyinstance", func = optionFunction, checked = function() return addon:GetOption("onlyinstance") end, keepShownOnClick = true},
-			{text = l.show_icon, func = function(f, a1, a2, checked) addon:MinimapIconShow(checked) end, checked = function() return not NumerationCharOptions.minimap.hide end, keepShownOnClick = true},
+			{text = L.pet_merge, arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true},
+			{text = L.only_boss, arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true},
+			{text = L.only_instance, arg1 = "onlyinstance", func = optionFunction, checked = function() return addon:GetOption("onlyinstance") end, keepShownOnClick = true},
+			{text = L.show_icon, func = function(f, a1, a2, checked) addon:MinimapIconShow(checked) end, checked = function() return not NumerationCharOptions.minimap.hide end, keepShownOnClick = true},
 		},
 	},
 	{text = "", notCheckable = true, notClickable = true},
@@ -90,9 +90,9 @@ local reportActionFunction = function(num)
 end
 
 function window:OnInitialize()
-	self.maxlines = s.maxlines
-	self:SetWidth(s.width)
-	self:SetHeight(3+s.titleheight+s.maxlines*(s.lineheight+s.linegap))
+	self.maxlines = C.maxlines
+	self:SetWidth(C.width)
+	self:SetHeight(3 + C.titleheight + C.maxlines * (C.lineheight + C.linegap))
 
 	self:SetClampedToScreen(true)
 	self:EnableMouse(true)
@@ -107,24 +107,24 @@ function window:OnInitialize()
 		local xOfs, yOfs = self:GetCenter()
 		local s = self:GetEffectiveScale()
 		local uis = UIParent:GetScale()
-		xOfs = xOfs*s - GetScreenWidth()*uis/2
-		yOfs = yOfs*s - GetScreenHeight()*uis/2
+		xOfs = xOfs * s - GetScreenWidth() * uis / 2
+		yOfs = yOfs * s - GetScreenHeight() * uis / 2
 
-		addon:SetOption("x", xOfs/uis)
-		addon:SetOption("y", yOfs/uis)
+		addon:SetOption("x", xOfs / uis)
+		addon:SetOption("y", yOfs / uis)
 	end)
 
 	self:SetBackdrop(backdrop)
-	self:SetBackdropColor(0, 0, 0, s.backgroundalpha)
+	self:SetBackdropColor(0, 0, 0, C.backgroundalpha)
 
 	local x, y = addon:GetOption("x"), addon:GetOption("y")
 	if not x or not y then
-		self:SetPoint(unpack(s.pos))
+		self:SetPoint(unpack(C.pos))
 	else
 		-- positioning code taken from recount
 		local s = self:GetEffectiveScale()
 		local uis = UIParent:GetScale()
-		self:SetPoint("CENTER", UIParent, "CENTER", x*uis/s, y*uis/s)
+		self:SetPoint("CENTER", UIParent, "CENTER", x * uis / s, y * uis / s)
 	end
 
 	local scroll = self:CreateTexture(nil, "ARTWORK")
@@ -139,38 +139,38 @@ function window:OnInitialize()
 	local reset = CreateFrame("Button", nil, self)
 	self.reset = reset
 	reset:SetBackdrop(backdrop)
-	reset:SetBackdropColor(0, 0, 0, s.titlealpha)
-	reset:SetWidth(s.titleheight)
-	reset:SetHeight(s.titleheight)
+	reset:SetBackdropColor(0, 0, 0, C.titlealpha)
+	reset:SetWidth(C.titleheight)
+	reset:SetHeight(C.titleheight)
 	reset:SetPoint("TOPRIGHT", -1, -1)
 	reset:SetScript("OnMouseUp", function()
 		updateReportChannels()
 		numReports = 9
 		EasyMenu(menuTable, dropdown, "cursor", 0 , 0, "MENU")
 	end)
-	reset:SetScript("OnEnter", function() reset:SetBackdropColor(s.highlight[1], s.highlight[2], s.highlight[3], .3) end)
-	reset:SetScript("OnLeave", function() reset:SetBackdropColor(0, 0, 0, s.titlealpha) end)
+	reset:SetScript("OnEnter", function() reset:SetBackdropColor(unpack(C.highlight)) end)
+	reset:SetScript("OnLeave", function() reset:SetBackdropColor(0, 0, 0, C.titlealpha) end)
 
 	reset.text = reset:CreateFontString(nil, "ARTWORK")
-	reset.text:SetFont(s.linefont, s.linefontsize, s.linefontstyle)
-	reset.text:SetShadowOffset(s.fontshadow and 1 or 0, s.fontshadow and -1 or 0)
+	reset.text:SetFont(C.linefont, C.linefontsize, C.linefontstyle)
+	reset.text:SetShadowOffset(C.fontshadow and 1 or 0, C.fontshadow and -1 or 0)
 	reset.text:SetPoint("CENTER", 1, 0)
 	reset.text:SetText(">")
 
 	local segment = CreateFrame("Button", nil, self)
 	self.segment = segment
 	segment:SetBackdrop(backdrop)
-	segment:SetBackdropColor(0, 0, 0, s.titlealpha/2)
-	segment:SetWidth(s.titleheight-2)
-	segment:SetHeight(s.titleheight-2)
+	segment:SetBackdropColor(0, 0, 0, C.titlealpha / 2)
+	segment:SetWidth(C.titleheight - 2)
+	segment:SetHeight(C.titleheight - 2)
 	segment:SetPoint("RIGHT", reset, "LEFT", -2, 0)
 	segment:SetScript("OnMouseUp", function() addon.nav.view = "Sets" addon.nav.set = nil addon:RefreshDisplay() dropdown:Show() end)
 	segment:SetScript("OnEnter", function()
-		segment:SetBackdropColor(s.highlight[1], s.highlight[2], s.highlight[3], .3)
+		segment:SetBackdropColor(unpack(C.highlight))
 		GameTooltip:SetOwner(segment, "ANCHOR_BOTTOMRIGHT")
 		local name = ""
 		if addon.nav.set == "current" then
-			name = l.current
+			name = L.current
 		else
 			local set = addon:GetSet(addon.nav.set)
 			if set then
@@ -180,28 +180,28 @@ function window:OnInitialize()
 		GameTooltip:AddLine(name)
 		GameTooltip:Show()
 	end)
-	segment:SetScript("OnLeave", function() segment:SetBackdropColor(0, 0, 0, s.titlealpha/2) GameTooltip:Hide() end)
+	segment:SetScript("OnLeave", function() segment:SetBackdropColor(0, 0, 0, C.titlealpha / 2) GameTooltip:Hide() end)
 
 	segment.text = segment:CreateFontString(nil, "ARTWORK")
-	segment.text:SetFont(s.linefont, s.linefontsize, s.linefontstyle)
-	segment.text:SetShadowOffset(s.fontshadow and 1 or 0, s.fontshadow and -1 or 0)
+	segment.text:SetFont(C.linefont, C.linefontsize, C.linefontstyle)
+	segment.text:SetShadowOffset(C.fontshadow and 1 or 0, C.fontshadow and -1 or 0)
 	segment.text:SetPoint("CENTER", 0, 0)
 	segment.text:SetText("")
 
 	local title = self:CreateTexture(nil, "ARTWORK")
 	self.title = title
-	title:SetTexture(s.linetexture)
-	title:SetVertexColor(.25, .66, .35, s.titlealpha)
+	title:SetTexture(C.linetexture)
+	title:SetVertexColor(.25, .66, .35, C.titlealpha)
 	title:SetPoint("TOPLEFT", 1, -1)
 	title:SetPoint("BOTTOMRIGHT", reset, "BOTTOMLEFT", -1, 0)
 
 	local font = self:CreateFontString(nil, "ARTWORK")
 	self.titletext = font
 	font:SetJustifyH("LEFT")
-	font:SetFont(s.titlefont, s.titlefontsize, s.titlefontstyle)
-	font:SetShadowOffset(s.fontshadow and 1 or 0, s.fontshadow and -1 or 0)
-	font:SetTextColor(s.titlefontcolor[1], s.titlefontcolor[2], s.titlefontcolor[3], 1)
-	font:SetHeight(s.titlefontsize)
+	font:SetFont(C.titlefont, C.titlefontsize, C.titlefontstyle)
+	font:SetShadowOffset(C.fontshadow and 1 or 0, C.fontshadow and -1 or 0)
+	font:SetTextColor(unpack(C.titlefontcolor))
+	font:SetHeight(C.titlefontsize)
 	font:SetPoint("LEFT", title, "LEFT", 4, 0)
 	font:SetPoint("RIGHT", segment, "LEFT", -1, 0)
 
@@ -233,7 +233,7 @@ function window:UpdateSegment(segment)
 end
 
 function window:SetTitle(name, r, g, b)
-	self.title:SetVertexColor(r, g, b, s.titlealpha)
+	self.title:SetVertexColor(r, g, b, C.titlealpha)
 	self.titletext:SetText(name)
 end
 
@@ -242,11 +242,11 @@ function window:GetTitle()
 end
 
 function window:SetScrollPosition(curPos, maxPos)
-	if not s.scrollbar then return end
-	if maxPos <= s.maxlines then return end
-	local total = s.maxlines*(s.lineheight+s.linegap)
-	self.scroll:SetHeight(s.maxlines/maxPos*total)
-	self.scroll:SetPoint("TOPLEFT", self.reset, "BOTTOMRIGHT", 2, -1-(curPos-1)/maxPos*total)
+	if not C.scrollbar then return end
+	if maxPos <= C.maxlines then return end
+	local total = C.maxlines * (C.lineheight + C.linegap)
+	self.scroll:SetHeight(C.maxlines / maxPos * total)
+	self.scroll:SetPoint("TOPLEFT", self.reset, "BOTTOMRIGHT", 2, -1 - (curPos - 1) / maxPos * total)
 	self.scroll:Show()
 end
 
@@ -262,11 +262,11 @@ end
 
 local SetIcon = function(f, icon)
 	if icon then
-		f:SetWidth(s.width-s.lineheight-2)
+		f:SetWidth(C.width - C.lineheight - 2)
 		f.icon:SetTexture(icon)
 		f.icon:Show()
 	else
-		f:SetWidth(s.width-2)
+		f:SetWidth(C.width - 2)
 		f.icon:Hide()
 	end
 end
@@ -280,7 +280,7 @@ local SetRightText = function(f, ...)
 end
 
 local SetColor = function(f, r, g, b, a)
-	f:SetStatusBarColor(r, g, b, a or s.linealpha)
+	f:SetStatusBarColor(r, g, b, a or C.linealpha)
 end
 
 local SetDetailAction = function(f, func)
@@ -295,7 +295,7 @@ window.SetDetailAction = SetDetailAction
 
 local onEnter = function(self)
 	if not self.spellId then return end
-	GameTooltip:SetOwner(self, s.tpos and s.tpos or "ANCHOR_BOTTOMRIGHT", 4, s.lineheight)
+	GameTooltip:SetOwner(self, C.tpos and C.tpos or "ANCHOR_BOTTOMRIGHT", 4, C.lineheight)
 	GameTooltip:SetHyperlink("spell:"..self.spellId)
 end
 local onLeave = function(self)
@@ -311,41 +311,41 @@ function window:GetLine(id)
 	f:SetScript("OnMouseDown", clickFunction)
 	f:SetScript("OnEnter", onEnter)
 	f:SetScript("OnLeave", onLeave)
-	f:SetStatusBarTexture(s.linetexture)
+	f:SetStatusBarTexture(C.linetexture)
 	f:SetStatusBarColor(.6, .6, .6, 1)
-	f:SetWidth(s.width-2)
-	f:SetHeight(s.lineheight)
+	f:SetWidth(C.width - 2)
+	f:SetHeight(C.lineheight)
 	if id == 0 then
 		f:SetPoint("TOPRIGHT", self.reset, "BOTTOMRIGHT", 0, -1)
 	else
-		f:SetPoint("TOPRIGHT", lines[id-1], "BOTTOMRIGHT", 0, -s.linegap)
+		f:SetPoint("TOPRIGHT", lines[id-1], "BOTTOMRIGHT", 0, -C.linegap)
 	end
 
 	local icon = f:CreateTexture(nil, "OVERLAY")
 	f.icon = icon
-	icon:SetWidth(s.lineheight)
-	icon:SetHeight(s.lineheight)
+	icon:SetWidth(C.lineheight)
+	icon:SetHeight(C.lineheight)
 	icon:SetPoint("RIGHT", f, "LEFT")
 	icon:SetTexCoord(0.1, 0.9, 0.1, 0.9)
 	icon:Hide()
 
 	local value = f:CreateFontString(nil, "ARTWORK")
 	f.value = value
-	value:SetHeight(s.lineheight)
+	value:SetHeight(C.lineheight)
 	value:SetJustifyH("RIGHT")
-	value:SetFont(s.linefont, s.linefontsize, s.linefontstyle)
-	value:SetShadowOffset(s.fontshadow and 1 or 0, s.fontshadow and -1 or 0)
-	value:SetTextColor(s.linefontcolor[1], s.linefontcolor[2], s.linefontcolor[3], 1)
+	value:SetFont(C.linefont, C.linefontsize, C.linefontstyle)
+	value:SetShadowOffset(C.fontshadow and 1 or 0, C.fontshadow and -1 or 0)
+	value:SetTextColor(unpack(C.linefontcolor))
 	value:SetPoint("RIGHT", -1, 0)
 
 	local name = f:CreateFontString(nil, "ARTWORK")
 	f.name = name
-	name:SetHeight(s.lineheight)
+	name:SetHeight(C.lineheight)
 	name:SetNonSpaceWrap(false)
 	name:SetJustifyH("LEFT")
-	name:SetFont(s.linefont, s.linefontsize, s.linefontstyle)
-	name:SetShadowOffset(s.fontshadow and 1 or 0, s.fontshadow and -1 or 0)
-	name:SetTextColor(s.linefontcolor[1], s.linefontcolor[2], s.linefontcolor[3], 1)
+	name:SetFont(C.linefont, C.linefontsize, C.linefontstyle)
+	name:SetShadowOffset(C.fontshadow and 1 or 0, C.fontshadow and -1 or 0)
+	name:SetTextColor(unpack(C.linefontcolor))
 	name:SetPoint("LEFT", icon, "RIGHT", 1, 0)
 	name:SetPoint("RIGHT", value, "LEFT", -1, 0)
 
@@ -361,7 +361,7 @@ function window:GetLine(id)
 end
 
 StaticPopupDialogs.RESET_DATA = {
-	text = "Numeration: "..l.reset_data,
+	text = "Numeration: "..L.reset_data,
 	button1 = ACCEPT,
 	button2 = CANCEL,
 	OnAccept = function() addon:Reset() end,
@@ -372,7 +372,7 @@ StaticPopupDialogs.RESET_DATA = {
 }
 
 StaticPopupDialogs.REPORT_DIALOG = {
-	text = "Numeration: "..l.whisp_target,
+	text = "Numeration: "..L.whisp_target,
 	OnShow = function (self)
 		if UnitCanCooperate("player", "target") then
 			self.editBox:SetText(GetUnitName("target", true))

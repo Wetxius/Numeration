@@ -1,7 +1,7 @@
 local addonname, addon = ...
 Numeration = addon
-local l = addon.locale
-local s = addon.core
+local L = addon.locale
+local C = addon.core
 local boss = LibStub("LibBossIDs")
 addon.events = CreateFrame("Frame")
 addon.events:SetScript("OnEvent", function(self, event, ...)
@@ -14,8 +14,8 @@ addon.guidToName = {}
 
 -- Keybindings
 BINDING_HEADER_NUMERATION = "Numeration"
-BINDING_NAME_NUMERATION_VISIBILITY = l.binding_visibility
-BINDING_NAME_NUMERATION_RESET = l.binding_reset
+BINDING_NAME_NUMERATION_VISIBILITY = L.binding_visibility
+BINDING_NAME_NUMERATION_RESET = L.binding_reset
 
 -- used colors
 addon.color = {
@@ -132,13 +132,13 @@ function addon:InitOptions()
 	end
 	self.nav = NumerationCharOptions.nav
 
-	self.ModNumber = s.shortnumbers and abrNumber or fullNumber
+	self.ModNumber = C.shortnumbers and abrNumber or fullNumber
 end
 
 function ldb:OnTooltipShow()
 	GameTooltip:AddLine("Numeration", 1, .8, 0)
-	GameTooltip:AddLine(l.toggle)
-	GameTooltip:AddLine(l.reset)
+	GameTooltip:AddLine(L.toggle)
+	GameTooltip:AddLine(L.reset)
 end
 
 function ldb:OnClick(button)
@@ -189,7 +189,7 @@ function addon:Reset()
 		[0] = newSet(),
 		zone = lastZone,
 	}
-	NumerationCharDB[0].name = l.overall
+	NumerationCharDB[0].name = L.overall
 	current = newSet()
 	if self.nav.set and self.nav.set ~= "total" and self.nav.set ~= "current" then
 		self.nav.set = "current"
@@ -203,7 +203,7 @@ updateTimer:Hide()
 updateTimer:SetScript("OnUpdate", function(self, elapsed)
 	self.timer = self.timer - elapsed
 	if self.timer > 0 then return end
-	self.timer = s.refreshinterval
+	self.timer = C.refreshinterval
 
 	if current.changed then
 		ldb.text = addon.views["Units"]:GetXps(current, UnitName("player"), "dd", NumerationCharOptions.petsmerged)
@@ -216,11 +216,11 @@ updateTimer:SetScript("OnUpdate", function(self, elapsed)
 	addon:RefreshDisplay(true)
 end)
 function updateTimer:Activate()
-	self.timer = s.refreshinterval
+	self.timer = C.refreshinterval
 	self:Show()
 end
 function updateTimer:Refresh()
-	self.timer = s.refreshinterval
+	self.timer = C.refreshinterval
 end
 
 function addon:RefreshDisplay(update)
@@ -247,7 +247,7 @@ function addon:Report(lines, chatType, channel)
 	if chatType == "WHISPER" then
 		whispname = StaticPopup1EditBox:GetText()
 		if whispname == nil or whispname == "" then
-			print("|cffffff00Numeration|r: "..l.bad_whisp)
+			print("|cffffff00Numeration|r: "..L.bad_whisp)
 			return
 		end
 	end
@@ -256,7 +256,7 @@ function addon:Report(lines, chatType, channel)
 	if view.Report and lines then
 		view:Report(NumerationCharOptions.petsmerged, lines)
 	else
-		print("|cffffff00Numeration|r: "..l.bad_report)
+		print("|cffffff00Numeration|r: "..L.bad_report)
 	end
 end
 
@@ -291,9 +291,9 @@ function addon:GetArea(start, total)
 	if total == 0 then return start end
 
 	local first = start
-	local last = start+self.window.maxlines-1
+	local last = start + self.window.maxlines - 1
 	if last > total then
-		first = first-last+total
+		first = first - last + total
 		last = total
 	end
 	if first < 1 then
@@ -320,8 +320,8 @@ end
 
 function addon:GetDuration(set)
 	if not set.start or not set.now then return end
-	local duration = math.ceil(set.now-set.start)
-	local durationtext = duration < 60 and format("%i"..l.s.."", duration%60) or format("%i"..l.m.."%i"..l.s.."", math.floor(duration/60), duration%60)
+	local duration = math.ceil(set.now - set.start)
+	local durationtext = duration < 60 and format("%i"..L.s.."", duration%60) or format("%i"..L.m.."%i"..L.s.."", math.floor(duration/60), duration%60)
 	return date("%H:%M", set.start), durationtext
 end
 
@@ -453,7 +453,7 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 				local curZone = GetRealZoneText()
 				if curZone ~= NumerationCharDB.zone then
 					NumerationCharDB.zone = curZone
-					if s.silent_reset then
+					if C.silent_reset then
 						addon:Reset()
 					else
 						StaticPopup_Show("RESET_DATA")
@@ -520,12 +520,12 @@ combatTimer:Hide()
 combatTimer:SetScript("OnUpdate", function(self, elapsed)
 	self.timer = self.timer - elapsed
 	if self.timer > 0 then return end
-	if IsGroupInCombat() then self.timer = s.combatseconds return end
+	if IsGroupInCombat() then self.timer = C.combatseconds return end
 	addon:LeaveCombatEvent()
 	self:Hide()
 end)
 function combatTimer:Activate()
-	self.timer = s.combatseconds
+	self.timer = C.combatseconds
 	self:Show()
 end
 
@@ -575,7 +575,7 @@ end
 function addon:LeaveCombatEvent()
 	if current.active then
 		current.active = nil
-		if ((current.now - current.start) < s.minfightlength) or (NumerationCharOptions.keeponlybosses and not current.boss) then
+		if ((current.now - current.start) < C.minfightlength) or (NumerationCharOptions.keeponlybosses and not current.boss) then
 			return
 		end
 		tinsert(NumerationCharDB, 1, current)

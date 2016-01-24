@@ -1,5 +1,5 @@
 ﻿local addon = select(2, ...)
-local s = addon.core
+local C = addon.core
 local collect = {}
 addon.collect = collect
 
@@ -318,7 +318,7 @@ function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, dstGUID, dstName, 
 		end
 	elseif srcFriend then
 		addon:EnterCombatEvent(timestamp, dstGUID, dstName)
-		if s.merge_spells then
+		if C.merge_spells then
 			spellId = MergeSpells[spellId] or spellId
 		end
 		EVENT("dd", srcGUID, dstName, spellId, amount, timestamp)
