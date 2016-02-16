@@ -21,6 +21,7 @@ n["windows"] = {
 	titlefontsize = 13,						-- Font size for title
 	titlefontcolor = {1, 1, 1, 1},			-- Font color for title
 	highlight = {1, 0.8, 0, 0.3},			-- Color for button highlight
+	title_hide = true,						-- Hide title
 
 	-- Lines
 	lineheight = 14,						-- Height for lines

@@ -19,6 +19,7 @@ if GetLocale() == "ruRU" then
 		show_icon = "Иконка у миникарты",
 		toggle = "ЛКМ, чтобы показать/скрыть окно.",
 		reset = "Shift + ЛКМ, чтобы сбросить данные.",
+		menu = "ПКМ, чтобы открыть меню.",
 		binding_visibility = "Переключение видимости",
 		binding_reset = "Сброс данных",
 		reset_data = "сбросить данные?",
@@ -66,6 +67,7 @@ elseif GetLocale() == "zhTW" then
 		show_icon = "顯示小地圖圖示",
 		toggle = "左鍵點擊隱藏/顯示窗口.",
 		reset = "SHIFT+左鍵點擊重置數據.",
+		menu = "Right-Click, to show menu.", -- Need review
 		binding_visibility = "切換可見",
 		binding_reset = "重置數據",
 		reset_data = "重置數據?",
@@ -113,6 +115,7 @@ elseif GetLocale() == "deDE" then
 		show_icon = "Zeige Minimap Icon",
 		toggle = "Links-Klick Fenster Zeigen/Verstechen.",
 		reset = "Shift+Links-Klick um Daten zurückzusetzen.",
+		menu = "Right-Click, to show menu.", -- Need review
 		binding_visibility = "Ansicht umschalten",
 		binding_reset = "Daten Zurücksetzen",
 		reset_data = "Daten Zurücksetzen?",
@@ -160,6 +163,7 @@ elseif GetLocale() == "koKR" then
 		show_icon = "미니맵 아이콘 표시",
 		toggle = "클릭 : 창 보이기/숨기기",
 		reset = "시프트+클릭 : 자료 초기화",
+		menu = "Right-Click, to show menu.", -- Need review
 		binding_visibility = "보이기/숨기기",
 		binding_reset = "자료 초기화",
 		reset_data = "자료를 초기화하겠습니까?",
@@ -207,6 +211,7 @@ else
 		show_icon = "Show Minimap Icon",
 		toggle = "Left-Click to toggle window visibility.",
 		reset = "Shift + Left-Click to reset data.",
+		menu = "Right-Click, to show menu.",
 		binding_visibility = "Toggle Visibility",
 		binding_reset = "Reset Data",
 		reset_data = "Reset Data?",

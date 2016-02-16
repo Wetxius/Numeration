@@ -136,9 +136,10 @@ function addon:InitOptions()
 end
 
 function ldb:OnTooltipShow()
-	GameTooltip:AddLine("Numeration", 1, .8, 0)
+	GameTooltip:AddLine("Numeration", 1, 1, 1)
 	GameTooltip:AddLine(L.toggle)
 	GameTooltip:AddLine(L.reset)
+	GameTooltip:AddLine(L.menu)
 end
 
 function ldb:OnClick(button)
@@ -148,6 +149,8 @@ function ldb:OnClick(button)
 		else
 			addon:ToggleVisibility()
 		end
+	else
+		addon:DropdownMenu()
 	end
 end
 
