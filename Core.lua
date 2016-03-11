@@ -63,6 +63,9 @@ function addon:ADDON_LOADED(event, addon)
 	self.events:UnregisterEvent("ADDON_LOADED")
 
 	self:InitOptions()
+	if Numeration.windows.title_hide then
+		NumerationCharOptions.minimap.hide = false
+	end
 	icon:Register("Numeration", ldb, NumerationCharOptions.minimap)
 	self.window:OnInitialize()
 	if NumerationCharOptions.forcehide then
@@ -139,7 +142,9 @@ function ldb:OnTooltipShow()
 	GameTooltip:AddLine("Numeration", 1, 1, 1)
 	GameTooltip:AddLine(L.toggle)
 	GameTooltip:AddLine(L.reset)
-	GameTooltip:AddLine(L.menu)
+	if addon.windows.title_hide then
+		GameTooltip:AddLine(L.menu)
+	end
 end
 
 function ldb:OnClick(button)
@@ -149,7 +154,7 @@ function ldb:OnClick(button)
 		else
 			addon:ToggleVisibility()
 		end
-	else
+	elseif addon.windows.title_hide then
 		addon:DropdownMenu()
 	end
 end
@@ -165,6 +170,10 @@ function addon:ToggleVisibility()
 end
 
 function addon:MinimapIconShow(show)
+	if addon.windows.title_hide then
+		NumerationCharOptions.minimap.hide = false
+		return
+	end
 	NumerationCharOptions.minimap.hide = not show
 	if show then
 		icon:Show("Numeration")
