@@ -436,7 +436,11 @@ function collect.SPELL_AURA_APPLIED_DOSE(timestamp, _, _, _, dstGUID, dstName, _
 		addDeathlogEvent(dstGUID, dstName, fmtDeBuff, timestamp, spellId, auraType, amount or 1, "+")
 	end
 end
-collect.SPELL_AURA_REMOVED_DOSE = collect.SPELL_AURA_APPLIED_DOSE
+function collect.SPELL_AURA_REMOVED_DOSE(timestamp, _, _, _, dstGUID, dstName, _, spellId, spellName, _, auraType, amount)
+	if addon.ids.deathlog and addon.guidToClass[dstGUID] and (auraType == "DEBUFF" or deathlogTrackBuffs[spellName]) then
+		addDeathlogEvent(dstGUID, dstName, fmtDeBuff, timestamp, spellId, auraType, amount or 1, "-")
+	end
+end
 
 function collect.UNIT_DIED(timestamp, _, _, _, dstGUID, dstName)
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] then
