@@ -310,7 +310,6 @@ local function EVENT(etype, playerID, targetName, spellID, amount, timestamp)
 	if timestamp then updateTime(u, etype, timestamp) end
 end
 
-local shields = {}
 -- COMBAT LOG EVENTS --
 function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, dstGUID, dstName, _, spellId, _, spellSchool, amount, overkill, _, resisted, blocked, absorbed, critical, glancing, crushing)
 	local srcFriend = addon.guidToClass[srcGUID]
@@ -322,7 +321,10 @@ function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, dstGUID, dstName, 
 		elseif srcGUID ~= ENVIRONMENT_SUBHEADER then
 			addon:EnterCombatEvent(timestamp, srcGUID, srcName)
 		end
-		if dstID == "76933" then return end		-- Ignore Prismatic Crystal
+		-- Ignore Prismatic Crystal
+		if dstID == "76933" then
+			return
+		end
 		EVENT("dt", dstGUID, srcName, spellId, amount)
 		if addon.ids.deathlog then
 			addDeathlogEvent(dstGUID, dstName, fmtDamage, timestamp, srcName, spellId, spellSchool, amount, overkill, resisted, blocked, absorbed, critical, glancing, crushing)
@@ -383,6 +385,44 @@ function collect.SPELL_HEAL(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstN
 end
 collect.SPELL_PERIODIC_HEAL = collect.SPELL_HEAL
 
+local function SPELL_ABSORBED_handler(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, spellId, spellName, _, absorb)
+	if bit.band(srcFlags, COMBATLOG_OBJECT_CONTROL_PLAYER) ~= 0 and bit.band(srcFlags, dstFlags, COMBATLOG_OBJECT_REACTION_MASK) ~= 0 then
+		if spellId == 20711 or spellId == 115069 or spellId == 157533 or spellId == 114556 then
+			return
+		end
+
+		if addon.guidToClass[srcGUID] then
+			EVENT("ga", srcGUID, dstName, spellId, absorb, timestamp)
+		end
+	end
+end
+
+function collect.SPELL_ABSORBED(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)
+	local chk = ...
+	local spellId, spellName, spellSchool, aGUID, aName, aFlags, aRaidFlags, aspellId, aspellName, aspellSchool, aAmount
+	local dstFriend = addon.guidToClass[dstGUID]
+
+	if type(chk) == "number" then
+		-- Spell event
+		spellId, spellName, spellSchool, aGUID, aName, aFlags, aRaidFlags, aspellId, aspellName, aspellSchool, aAmount = ...
+		if aAmount then
+			local asrcFriend = addon.guidToClass[aGUID]
+			if asrcFriend and dstFriend then
+				SPELL_ABSORBED_handler(timestamp, aGUID, aName, aFlags, dstGUID, dstName, dstFlags, aspellId, aspellName, _, aAmount)
+			end
+		end
+	else
+		-- Swing event
+		aGUID, aName, aFlags, aRaidFlags, aspellId, aspellName, aspellSchool, aAmount = ...
+		if aAmount then
+			local asrcFriend = addon.guidToClass[aGUID]
+			if asrcFriend and dstFriend then
+				SPELL_ABSORBED_handler(timestamp, aGUID, aName, aFlags, dstGUID, dstName, dstFlags, aspellId, aspellName, _, aAmount)
+			end
+		end
+	end
+end
+
 function collect.SPELL_DISPEL(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellId)
 	if addon.guidToClass[srcGUID] then
 		EVENT("dp", srcGUID, dstName, extraSpellId, 1)
@@ -408,38 +448,10 @@ function collect.SPELL_AURA_APPLIED(timestamp, srcGUID, _, _, dstGUID, dstName, 
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] and (auraType == "DEBUFF" or deathlogTrackBuffs[spellName]) then
 		addDeathlogEvent(dstGUID, dstName, fmtDeBuff, timestamp, spellId, auraType, 1, "+")
 	end
-	local amount = ...
-	if amount and addon.ids.ga and addon.guidToClass[srcGUID] then
-		shields[dstGUID] = shields[dstGUID] or {}
-		shields[dstGUID][spellId] = shields[dstGUID][spellId] or {}
-		shields[dstGUID][spellId][srcGUID] = amount
-	end
-end
-function collect.SPELL_AURA_REFRESH(_, srcGUID, _, _, dstGUID, dstName, _, spellId, _, _, _, ...)
-	local amount = ...
-	if amount and addon.ids.ga and addon.guidToClass[srcGUID] then
-		if shields[dstGUID] and shields[dstGUID][spellId] and shields[dstGUID][spellId][srcGUID] then
-			local absorb = shields[dstGUID][spellId][srcGUID] - amount
-			if absorb > 0 then
-				EVENT("ga", srcGUID, dstName, spellId, absorb)
-			end
-			shields[dstGUID][spellId][srcGUID] = amount
-		end
-	end
 end
 function collect.SPELL_AURA_REMOVED(timestamp, srcGUID, _, _, dstGUID, dstName, _, spellId, spellName, _, auraType, ...)
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] and (auraType == "DEBUFF" or deathlogTrackBuffs[spellName]) then
 		addDeathlogEvent(dstGUID, dstName, fmtDeBuff, timestamp, spellId, auraType, 1, "-")
-	end
-	local amount = ...
-	if amount and addon.ids.ga and addon.guidToClass[srcGUID] then
-		if shields[dstGUID] and shields[dstGUID][spellId] and shields[dstGUID][spellId][srcGUID] then
-			local absorb = shields[dstGUID][spellId][srcGUID] - amount
-			if absorb > 0 then
-				EVENT("ga", srcGUID, dstName, spellId, absorb)
-			end
-			shields[dstGUID][spellId][srcGUID] = nil
-		end
 	end
 end
 function collect.SPELL_AURA_APPLIED_DOSE(timestamp, _, _, _, dstGUID, dstName, _, spellId, spellName, _, auraType, amount)
@@ -466,10 +478,8 @@ function collect.SPELL_RESURRECT(timestamp, _, srcName, _, dstGUID, dstName, _, 
 end
 
 function collect:RemoveUnneededEvents()
-	if not addon.ids.deathlog and not addon.ids.ga then
-		collect.SPELL_AURA_APPLIED = nil
-		collect.SPELL_AURA_REFRESH = nil
-		collect.SPELL_AURA_REMOVED = nil
+	if not addon.ids.ga then
+		collect.SPELL_ABSORBED = nil
 	end
 
 	if not addon.ids.hd and not addon.ids.oh and not addon.ids.ht and not addon.ids.deathlog then
@@ -499,6 +509,9 @@ function collect:RemoveUnneededEvents()
 		collect.RANGE_MISSED = nil
 		collect.DAMAGE_SHIELD_MISSED = nil
 		collect.SWING_MISSED = nil
+
+		collect.SPELL_AURA_APPLIED = nil
+		collect.SPELL_AURA_REMOVED = nil
 
 		collect.SPELL_AURA_APPLIED_DOSE = nil
 		collect.SPELL_AURA_REMOVED_DOSE = nil
