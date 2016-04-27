@@ -20,19 +20,25 @@ local deathlogTrackBuffs = {
 	[spellName[55233]] = true,	-- Vampiric Blood
 	[spellName[48707]] = true,	-- Anti-Magic Shell
 	[spellName[48792]] = true,	-- Icebound Fortitude
+	[spellName[51052]] = true,	-- Anti-Magic Zone
 	-- Druid
 	[spellName[22812]] = true,	-- Barkskin
 	[spellName[102342]] = true,	-- Ironbark
 	[spellName[61336]] = true,	-- Survival Instincts
+	[spellName[155835]] = true,	-- Bristling Fur
 	-- Hunter
 	[spellName[19263]] = true,	-- Deterrence
 	[spellName[5384]] = true,	-- Feign Death
 	-- Mage
 	[spellName[45438]] = true,	-- Ice Block
+	[spellName[157913]] = true,	-- Evanesce
+	[spellName[108978]] = true,	-- Alter Time
 	-- Monk
 	[spellName[116849]] = true,	-- Life Cocoon
 	[spellName[122783]] = true,	-- Diffuse Magic
 	[spellName[120954]] = true,	-- Fortifying Brew
+	[spellName[115176]] = true,	-- Zen Meditation
+	[spellName[122278]] = true,	-- Dampen Harm
 	-- Paladin
 	[spellName[642]] = true,	-- Divine Shield
 	[spellName[498]] = true,	-- Divine Protection
@@ -40,11 +46,14 @@ local deathlogTrackBuffs = {
 	[spellName[1022]] = true,	-- Hand of Protection
 	[spellName[6940]] = true,	-- Hand of Sacrifice
 	[spellName[114039]] = true,	-- Hand of Purity
+	[spellName[31850]] = true,	-- Ardent Defender
+	[spellName[86659]] = true,	-- Guardian of Ancient Kings
 	-- Priest
 	[spellName[47585]] = true,	-- Dispersion
 	[spellName[33206]] = true,	-- Pain Suppression
 	[spellName[47788]] = true,	-- Guardian Spirit
 	[spellName[27827]] = true,	-- Spirit of Redemption
+	[spellName[62618]] = true,	-- Power Word: Barrier
 	-- Rogue
 	[spellName[31224]] = true,	-- Cloak of Shadows
 	[spellName[5277]] = true,	-- Evasion
@@ -52,6 +61,7 @@ local deathlogTrackBuffs = {
 	-- Shaman
 	[spellName[108271]] = true,	-- Astral Shift
 	[spellName[30823]] = true,	-- Shamanistic Rage
+	[spellName[108270]] = true,	-- Stone Bulwark Totem
 	-- Warlock
 	[spellName[110913]] = true,	-- Dark Bargain
 	[spellName[104773]] = true,	-- Unending Resolve
@@ -59,6 +69,7 @@ local deathlogTrackBuffs = {
 	[spellName[871]] = true,	-- Shield Wall
 	[spellName[12975]] = true,	-- Last Stand
 	[spellName[97463]] = true,	-- Rallying Cry
+	[spellName[118038]] = true,	-- Die by the Sword
 }
 
 local MergeSpells = {
