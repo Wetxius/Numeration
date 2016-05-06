@@ -26,7 +26,6 @@ if GetLocale() == "ruRU" then
 		whisp_target = "шепнуть цели",
 		bad_report = "Нет данных для отчета.",
 		bad_whisp = "Нет цели или неправильная.",
-		death = "Смерть",
 		m = "м",
 		s = "с",
 		-- BossIDs
@@ -74,7 +73,6 @@ elseif GetLocale() == "zhTW" then
 		whisp_target = "密語目標",
 		bad_report = "錯誤: 選擇報告類型.",
 		bad_whisp = "選擇無效或沒有目標.",
-		death = "死亡",
 		m = "分",
 		s = "秒",
 		-- BossIDs
@@ -122,7 +120,6 @@ elseif GetLocale() == "deDE" then
 		whisp_target = "Ziel anflüstern",
 		bad_report = "Error: wähle Art des Berichtes.",
 		bad_whisp = "Ungültiges oder kein Ziel angewählt.",
-		death = "Tod",
 		m = "m",
 		s = "s",
 		-- BossIDs
@@ -170,7 +167,6 @@ elseif GetLocale() == "koKR" then
 		whisp_target = "귓속말을 받을 대상",
 		bad_report = "오류: 보고할 유형을 선택하세요.",
 		bad_whisp = "잘못되었거나 선택한 대상이 없습니다.",
-		death = "죽음",
 		m = "분",
 		s = "초",
 		-- BossIDs
@@ -218,7 +214,6 @@ else
 		whisp_target = "Whisper target",
 		bad_report = "There is nothing to report.",
 		bad_whisp = "Invalid or no target selected.",
-		death = "Death",
 		m = "m",
 		s = "s",
 		-- BossIDs

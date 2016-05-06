@@ -67,7 +67,7 @@ eventText.AB = function(event, spellId, modifier, stacks)
 end
 eventText.AD = eventText.AB
 eventText.X = function(event, spellId)
-	return "    "..L.death
+	return "    "..spellName[41220]	-- Death
 end
 function view:Update()
 	local set = addon:GetSet(addon.nav.set)
@@ -130,7 +130,7 @@ reportText.AB = function(event, spellId, modifier, stacks)
 end
 reportText.AD = reportText.AB
 reportText.X = function(event, spellId)
-	return L.death
+	return spellName[41220]	-- Death
 end
 function view:Report(merged, num_lines)
 	local set = addon:GetSet(addon.nav.set)
