@@ -398,6 +398,7 @@ StaticPopupDialogs.REPORT_DIALOG = {
 		end
 	end,
 	button1 = WHISPER,
+	button2 = CANCEL,
 	timeout = 0,
 	hasEditBox = 1,
 	whileDead = 1,
