@@ -5,9 +5,7 @@ addon.collect = collect
 
 local spellName = addon.spellName
 local deathlogHealFilter = {
-	[spellName[115547]] = true,	-- Glyph of Avenging Wrath
 	[spellName[15290]] = true,	-- Vampiric Embrace
-	[spellName[127626]] = true,	-- Devouring Plague
 	[spellName[5394]] = true,	-- Healing Stream Totem
 	[spellName[108503]] = true,	-- Grimoire of Sacrifice
 	[spellName[63106]] = true,	-- Siphon Life
@@ -43,9 +41,8 @@ local deathlogTrackBuffs = {
 	[spellName[642]] = true,	-- Divine Shield
 	[spellName[498]] = true,	-- Divine Protection
 	[spellName[31821]] = true,	-- Devotion Aura
-	[spellName[1022]] = true,	-- Hand of Protection
-	[spellName[6940]] = true,	-- Hand of Sacrifice
-	[spellName[114039]] = true,	-- Hand of Purity
+	[spellName[1022]] = true,	-- Blessing of Protection
+	[spellName[6940]] = true,	-- Blessing of Sacrifice
 	[spellName[31850]] = true,	-- Ardent Defender
 	[spellName[86659]] = true,	-- Guardian of Ancient Kings
 	-- Priest
@@ -60,10 +57,8 @@ local deathlogTrackBuffs = {
 	[spellName[1966]] = true,	-- Feint
 	-- Shaman
 	[spellName[108271]] = true,	-- Astral Shift
-	[spellName[30823]] = true,	-- Shamanistic Rage
 	[spellName[108270]] = true,	-- Stone Bulwark Totem
 	-- Warlock
-	[spellName[110913]] = true,	-- Dark Bargain
 	[spellName[104773]] = true,	-- Unending Resolve
 	-- Warrior
 	[spellName[871]] = true,	-- Shield Wall
