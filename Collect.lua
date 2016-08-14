@@ -69,16 +69,7 @@ local deathlogTrackBuffs = {
 
 local MergeSpells = {
 	-- Warlock
-	[108686] = 348,		-- Immolate
 	[157736] = 348,		-- Immolate
-	[108685] = 17962,	-- Conflagrate
-	[114654] = 29722,	-- Incinerate
-	[131737] = 980,		-- Agony (Drain Soul)
-	[131740] = 146739,	-- Corruption (Drain Soul)
-	[131736] = 30108,	-- Unstable Affliction (Drain Soul)
-	[87385] = 27285,	-- Seed of Corruption
-	[114790] = 27285,	-- Seed of Corruption
-	[132566] = 27285,	-- Seed of Corruption
 	[27243] = 27285,	-- Seed of Corruption
 }
 
@@ -309,16 +300,11 @@ end
 function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, dstGUID, dstName, _, spellId, _, spellSchool, amount, overkill, _, resisted, blocked, absorbed, critical, glancing, crushing)
 	local srcFriend = addon.guidToClass[srcGUID]
 	local dstFriend = addon.guidToClass[dstGUID]
-	local _, _, _, _, _, dstID = strsplit("-", dstGUID)
 	if dstFriend then
 		if srcFriend then
 			EVENT("ff", srcGUID, dstName, spellId, amount)
 		elseif srcGUID ~= ENVIRONMENT_SUBHEADER then
 			addon:EnterCombatEvent(timestamp, srcGUID, srcName)
-		end
-		-- Ignore Prismatic Crystal
-		if dstID == "76933" then
-			return
 		end
 		EVENT("dt", dstGUID, srcName, spellId, amount)
 		if addon.ids.deathlog then
