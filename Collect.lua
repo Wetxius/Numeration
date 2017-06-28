@@ -30,7 +30,6 @@ local deathlogTrackBuffs = {
 	-- Mage
 	[spellName[45438]] = true,	-- Ice Block
 	[spellName[157913]] = true,	-- Evanesce
-	[spellName[108978]] = true,	-- Alter Time
 	-- Monk
 	[spellName[116849]] = true,	-- Life Cocoon
 	[spellName[122783]] = true,	-- Diffuse Magic
