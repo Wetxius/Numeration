@@ -4,13 +4,13 @@
 ## Notes-ruRU: Легкий и удобный измеритель урона/исцеления.
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 2.8.4
+## Version: 2.8.5
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
-## X-Curse-Packaged-Version: 2.8.4
+## X-Curse-Packaged-Version: 2.8.5
 ## X-Curse-Project-Name: Numeration Damage Meter
-## X-Curse-Project-ID: numeration
+## X-Curse-Project-ID: 75133
 ## X-WoWI-ID: 17434
 
 Locales.lua
