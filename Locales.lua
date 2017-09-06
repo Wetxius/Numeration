@@ -16,6 +16,7 @@ if GetLocale() == "ruRU" then
 		pet_merge = "Объединять питомца с хозяином",
 		only_boss = "Хранить только бои с боссами",
 		only_instance = "Запись только в подземельях",
+		combat_hide = "Скрывать окно в бою",
 		show_icon = "Иконка у миникарты",
 		toggle = "ЛКМ, чтобы показать/скрыть окно.",
 		reset = "Shift + ЛКМ, чтобы сбросить данные.",
@@ -63,6 +64,7 @@ elseif GetLocale() == "zhTW" then
 		pet_merge = "合併寵物傷害",
 		only_boss = "只保留BOSS數據",
 		only_instance = "只在副本中统計",
+		combat_hide = "Hide window in combat", -- Need review
 		show_icon = "顯示小地圖圖示",
 		toggle = "左鍵點擊隱藏/顯示窗口.",
 		reset = "SHIFT+左鍵點擊重置數據.",
@@ -110,6 +112,7 @@ elseif GetLocale() == "deDE" then
 		pet_merge = "Tiere und Besitzer zusammen",
 		only_boss = "Nur Bosskämpfe speichern",
 		only_instance = "Nur in Instanzen aufzeichnen",
+		combat_hide = "Hide window in combat", -- Need review
 		show_icon = "Zeige Minimap Icon",
 		toggle = "Links-Klick Fenster Zeigen/Verstechen.",
 		reset = "Shift+Links-Klick um Daten zurückzusetzen.",
@@ -157,6 +160,7 @@ elseif GetLocale() == "koKR" then
 		pet_merge = "소환수를 소환자에 합산",
 		only_boss = "보스 전투만 유지",
 		only_instance = "인스턴스만 기록",
+		combat_hide = "Hide window in combat", -- Need review
 		show_icon = "미니맵 아이콘 표시",
 		toggle = "클릭 : 창 보이기/숨기기",
 		reset = "시프트+클릭 : 자료 초기화",
@@ -204,6 +208,7 @@ else
 		pet_merge = "Merge Pets w/ Owners",
 		only_boss = "Keep Only Boss Segments",
 		only_instance = "Record Only In Instances",
+		combat_hide = "Hide window in combat",
 		show_icon = "Show Minimap Icon",
 		toggle = "Left-Click to toggle window visibility.",
 		reset = "Shift + Left-Click to reset data.",

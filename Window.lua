@@ -66,6 +66,7 @@ local menuTable = {
 			{text = L.pet_merge, arg1 = "petsmerged", func = optionFunction, checked = function() return addon:GetOption("petsmerged") end, keepShownOnClick = true},
 			{text = L.only_boss, arg1 = "keeponlybosses", func = optionFunction, checked = function() return addon:GetOption("keeponlybosses") end, keepShownOnClick = true},
 			{text = L.only_instance, arg1 = "onlyinstance", func = optionFunction, checked = function() return addon:GetOption("onlyinstance") end, keepShownOnClick = true},
+			{text = L.combat_hide, arg1 = "combathide", func = optionFunction, checked = function() return addon:GetOption("combathide") end, keepShownOnClick = true},
 			{text = L.show_icon, func = function(f, a1, a2, checked) addon:MinimapIconShow(checked) end, checked = function() return not NumerationCharOptions.minimap.hide end, keepShownOnClick = true},
 		},
 	},

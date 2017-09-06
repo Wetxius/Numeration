@@ -126,6 +126,9 @@ function addon:InitOptions()
 	if NumerationCharOptions.onlyinstance == nil then
 		NumerationCharOptions.onlyinstance = false
 	end
+	if NumerationCharOptions.combathide == nil then
+		NumerationCharOptions.combathide = false
+	end
 	if not NumerationCharOptions.minimap then
 		NumerationCharOptions.minimap = {
 			hide = false,
@@ -175,6 +178,19 @@ function addon:ToggleVisibility()
 end
 
 function addon:MinimapIconShow(show)
+	if addon.windows.title_hide then
+		NumerationCharOptions.minimap.hide = false
+		return
+	end
+	NumerationCharOptions.minimap.hide = not show
+	if show then
+		icon:Show("Numeration")
+	else
+		icon:Hide("Numeration")
+	end
+end
+
+function addon:CombatShow(show)
 	if addon.windows.title_hide then
 		NumerationCharOptions.minimap.hide = false
 		return
@@ -549,11 +565,22 @@ end
 function addon:PLAYER_REGEN_DISABLED()
 	inCombat = true
 	combatTimer:Hide()
+
+	if NumerationCharOptions.combathide then
+		self.window:Hide()
+	end
 end
 
 function addon:PLAYER_REGEN_ENABLED()
 	inCombat = nil
 	combatTimer:Activate()
+
+	if not NumerationCharOptions.forcehide then
+		if NumerationCharOptions.combathide then
+			self.window:Show()
+			self:RefreshDisplay()
+		end
+	end
 end
 
 function addon:ENCOUNTER_START(_, _, encounterName)
