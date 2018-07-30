@@ -1,4 +1,4 @@
-## Interface: 70300
+## Interface: 80000
 ## Title: Numeration
 ## Notes: Lightweight and useful damage/healing meter.
 ## Notes-ruRU: Легкий и удобный измеритель урона/исцеления.

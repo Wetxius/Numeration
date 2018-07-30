@@ -296,7 +296,7 @@ local function EVENT(etype, playerID, targetName, spellID, amount, timestamp)
 end
 
 -- COMBAT LOG EVENTS --
-function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, dstGUID, dstName, _, spellId, _, spellSchool, amount, overkill, _, resisted, blocked, absorbed, critical, glancing, crushing)
+function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, _, dstGUID, dstName, _, _, spellId, _, spellSchool, amount, overkill, _, resisted, blocked, absorbed, critical, glancing, crushing)
 	local srcFriend = addon.guidToClass[srcGUID]
 	local dstFriend = addon.guidToClass[dstGUID]
 	if dstFriend then
@@ -323,16 +323,16 @@ collect.SPELL_BUILDING_DAMAGE = collect.SPELL_DAMAGE
 collect.RANGE_DAMAGE = collect.SPELL_DAMAGE
 collect.DAMAGE_SPLIT = collect.SPELL_DAMAGE
 collect.DAMAGE_SHIELD = collect.SPELL_DAMAGE
-function collect.SWING_DAMAGE(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
+function collect.SWING_DAMAGE(timestamp, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 	collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, 88163, spellName[88163], 0x01, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 end
-function collect.ENVIRONMENTAL_DAMAGE(timestamp, _, _, srcFlags, dstGUID, dstName, dstFlags, environmentalType, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
+function collect.ENVIRONMENTAL_DAMAGE(timestamp, _, _, srcFlags, _, dstGUID, dstName, dstFlags, _, environmentalType, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 	local EnviromentType = string.upper(environmentalType)
 	local EnviromentTypes = _G["ACTION_ENVIRONMENTAL_DAMAGE_"..EnviromentType]
 	collect.SPELL_DAMAGE(timestamp, ENVIRONMENT_SUBHEADER, ENVIRONMENT_SUBHEADER, srcFlags, dstGUID, dstName, dstFlags, EnviromentTypes, EnviromentTypes, 0x01, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 end
 
-function collect.SPELL_MISSED(timestamp, _, srcName, _, dstGUID, dstName, _, spellId, _, spellSchool, missType, _, _, amountMissed)
+function collect.SPELL_MISSED(timestamp, _, srcName, _, _, dstGUID, dstName, _, _, spellId, _, spellSchool, missType, _, _, amountMissed)
 	if addon.guidToClass[dstGUID] then
 		if addon.ids.deathlog then
 			addDeathlogEvent(dstGUID, dstName, fmtMiss, timestamp, srcName, spellId, spellSchool, missType, amountMissed)
@@ -343,11 +343,11 @@ collect.SPELL_PERIODIC_MISSED = collect.SPELL_MISSED
 collect.SPELL_BUILDING_MISSED = collect.SPELL_MISSED
 collect.RANGE_MISSED = collect.SPELL_MISSED
 collect.DAMAGE_SHIELD_MISSED = collect.SPELL_MISSED
-function collect.SWING_MISSED(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, missType, _, amountMissed)
+function collect.SWING_MISSED(timestamp, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, missType, _, amountMissed)
 	collect.SPELL_MISSED(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, 88163, spellName[88163], 0x01, missType, amountMissed)
 end
 
-function collect.SPELL_HEAL(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, spellId, spellName, _, amount, overhealing, _, critical)
+function collect.SPELL_HEAL(timestamp, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, spellId, spellName, _, amount, overhealing, _, critical)
 	if bit.band(srcFlags, COMBATLOG_OBJECT_CONTROL_PLAYER) ~= 0 and bit.band(srcFlags, dstFlags, COMBATLOG_OBJECT_REACTION_MASK) ~= 0 then
 		if addon.guidToClass[srcGUID] then
 			if overhealing > 0 then
@@ -377,7 +377,7 @@ local function SPELL_ABSORBED_handler(timestamp, srcGUID, srcName, srcFlags, dst
 	end
 end
 
-function collect.SPELL_ABSORBED(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)
+function collect.SPELL_ABSORBED(timestamp, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, ...)
 	local chk = ...
 	local spellId, spellName, spellSchool, aGUID, aName, aFlags, aRaidFlags, aspellId, aspellName, aspellSchool, aAmount
 	local dstFriend = addon.guidToClass[dstGUID]
@@ -403,7 +403,7 @@ function collect.SPELL_ABSORBED(timestamp, srcGUID, srcName, srcFlags, dstGUID, 
 	end
 end
 
-function collect.SPELL_DISPEL(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellId)
+function collect.SPELL_DISPEL(_, srcGUID, _, _, _, _, dstName, _, _, _, _, _, extraSpellId)
 	if addon.guidToClass[srcGUID] then
 		EVENT("dp", srcGUID, dstName, extraSpellId, 1)
 	end
@@ -411,47 +411,47 @@ end
 collect.SPELL_PERIODIC_DISPEL = collect.SPELL_DISPEL
 collect.SPELL_STOLEN = collect.SPELL_DISPEL
 
-function collect.SPELL_INTERRUPT(_, srcGUID, _, _, _, dstName, _, _, _, _, extraSpellId)
+function collect.SPELL_INTERRUPT(_, srcGUID, _, _, _, _, dstName, _, _, _, _, _, extraSpellId)
 	if addon.guidToClass[srcGUID] then
 		EVENT("ir", srcGUID, dstName, extraSpellId, 1)
 	end
 end
 
-function collect.SPELL_ENERGIZE(_, _, srcName, _, dstGUID, _, _, spellId, _, _, amount)
+function collect.SPELL_ENERGIZE(_, _, srcName, _, _, dstGUID, _, _, _, spellId, _, _, amount)
 	if addon.guidToClass[dstGUID] then
 		EVENT("pg", dstGUID, srcName, spellId, amount)
 	end
 end
 collect.SPELL_PERIODIC_ENERGIZE = collect.SPELL_ENERGIZE
 
-function collect.SPELL_AURA_APPLIED(timestamp, srcGUID, _, _, dstGUID, dstName, _, spellId, spellName, _, auraType, ...)
+function collect.SPELL_AURA_APPLIED(timestamp, srcGUID, _, _, _, dstGUID, dstName, _, _, spellId, spellName, _, auraType, ...)
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] and (auraType == "DEBUFF" or deathlogTrackBuffs[spellName]) then
 		addDeathlogEvent(dstGUID, dstName, fmtDeBuff, timestamp, spellId, auraType, 1, "+")
 	end
 end
-function collect.SPELL_AURA_REMOVED(timestamp, srcGUID, _, _, dstGUID, dstName, _, spellId, spellName, _, auraType, ...)
+function collect.SPELL_AURA_REMOVED(timestamp, srcGUID, _, _, _, dstGUID, dstName, _, _, spellId, spellName, _, auraType, ...)
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] and (auraType == "DEBUFF" or deathlogTrackBuffs[spellName]) then
 		addDeathlogEvent(dstGUID, dstName, fmtDeBuff, timestamp, spellId, auraType, 1, "-")
 	end
 end
-function collect.SPELL_AURA_APPLIED_DOSE(timestamp, _, _, _, dstGUID, dstName, _, spellId, spellName, _, auraType, amount)
+function collect.SPELL_AURA_APPLIED_DOSE(timestamp, _, _, _, _, dstGUID, dstName, _, _, spellId, spellName, _, auraType, amount)
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] and (auraType == "DEBUFF" or deathlogTrackBuffs[spellName]) then
 		addDeathlogEvent(dstGUID, dstName, fmtDeBuff, timestamp, spellId, auraType, amount or 1, "+")
 	end
 end
-function collect.SPELL_AURA_REMOVED_DOSE(timestamp, _, _, _, dstGUID, dstName, _, spellId, spellName, _, auraType, amount)
+function collect.SPELL_AURA_REMOVED_DOSE(timestamp, _, _, _, _, dstGUID, dstName, _, _, spellId, spellName, _, auraType, amount)
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] and (auraType == "DEBUFF" or deathlogTrackBuffs[spellName]) then
 		addDeathlogEvent(dstGUID, dstName, fmtDeBuff, timestamp, spellId, auraType, amount or 1, "-")
 	end
 end
 
-function collect.UNIT_DIED(timestamp, _, _, _, dstGUID, dstName)
+function collect.UNIT_DIED(timestamp, _, _, _, _, dstGUID, dstName)
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] then
 		unitDied(timestamp, dstGUID, dstName)
 	end
 end
 
-function collect.SPELL_RESURRECT(timestamp, _, srcName, _, dstGUID, dstName, _, spellId)
+function collect.SPELL_RESURRECT(timestamp, _, srcName, _, _, dstGUID, dstName, _, _, spellId)
 	if addon.ids.deathlog and addon.guidToClass[dstGUID] then
 		unitRezzed(timestamp, dstGUID, dstName, spellId, srcName)
 	end

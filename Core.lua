@@ -451,9 +451,10 @@ do
 	end
 end
 
-function addon:COMBAT_LOG_EVENT_UNFILTERED(e, timestamp, eventtype, _, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, ...)
+function addon:COMBAT_LOG_EVENT_UNFILTERED(e)
+	local timestamp, eventtype, _, srcGUID, _, _, _, dstGUID, dstName, _, _ = CombatLogGetCurrentEventInfo()
 	if self.collect[eventtype] then
-		self.collect[eventtype](timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, ...)
+		self.collect[eventtype](timestamp, select(4, CombatLogGetCurrentEventInfo()))
 	end
 
 	local ClassOrOwnerGUID = self.guidToClass[srcGUID]
