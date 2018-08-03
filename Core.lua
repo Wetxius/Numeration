@@ -452,7 +452,7 @@ do
 end
 
 function addon:COMBAT_LOG_EVENT_UNFILTERED(e)
-	local timestamp, eventtype, _, srcGUID, _, _, _, dstGUID, dstName, _, _ = CombatLogGetCurrentEventInfo()
+	local timestamp, eventtype, _, srcGUID, _, _, _, dstGUID, dstName = CombatLogGetCurrentEventInfo()
 	if self.collect[eventtype] then
 		self.collect[eventtype](timestamp, select(4, CombatLogGetCurrentEventInfo()))
 	end

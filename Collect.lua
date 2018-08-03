@@ -323,16 +323,16 @@ collect.SPELL_BUILDING_DAMAGE = collect.SPELL_DAMAGE
 collect.RANGE_DAMAGE = collect.SPELL_DAMAGE
 collect.DAMAGE_SPLIT = collect.SPELL_DAMAGE
 collect.DAMAGE_SHIELD = collect.SPELL_DAMAGE
-function collect.SWING_DAMAGE(timestamp, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
-	collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, 88163, spellName[88163], 0x01, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
+function collect.SWING_DAMAGE(timestamp, srcGUID, srcName, _, _, dstGUID, dstName, _, _, amount, overkill, _, resisted, blocked, absorbed, critical, glancing, crushing)
+	collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, _, dstGUID, dstName, _, _, 88163, _, 0x01, amount, overkill, _, resisted, blocked, absorbed, critical, glancing, crushing)
 end
-function collect.ENVIRONMENTAL_DAMAGE(timestamp, _, _, srcFlags, _, dstGUID, dstName, dstFlags, _, environmentalType, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
+function collect.ENVIRONMENTAL_DAMAGE(timestamp, _, _, _, _, dstGUID, dstName, _, _, environmentalType, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
 	local EnviromentType = string.upper(environmentalType)
-	local EnviromentTypes = _G["ACTION_ENVIRONMENTAL_DAMAGE_"..EnviromentType]
-	collect.SPELL_DAMAGE(timestamp, ENVIRONMENT_SUBHEADER, ENVIRONMENT_SUBHEADER, srcFlags, dstGUID, dstName, dstFlags, EnviromentTypes, EnviromentTypes, 0x01, amount, overkill, school, resisted, blocked, absorbed, critical, glancing, crushing)
+	local spellName  = _G["ACTION_ENVIRONMENTAL_DAMAGE_"..EnviromentType]
+	collect.SPELL_DAMAGE(timestamp, ENVIRONMENT_SUBHEADER, ENVIRONMENT_SUBHEADER, _, _, dstGUID, dstName, _, _, spellName, school, 0x01, amount, overkill, _, resisted, blocked, absorbed, critical, glancing, crushing)
 end
 
-function collect.SPELL_MISSED(timestamp, _, srcName, _, _, dstGUID, dstName, _, _, spellId, _, spellSchool, missType, _, _, amountMissed)
+function collect.SPELL_MISSED(timestamp, _, srcName, _, _, dstGUID, dstName, _, _, spellId, _, spellSchool, missType, _, amountMissed)
 	if addon.guidToClass[dstGUID] then
 		if addon.ids.deathlog then
 			addDeathlogEvent(dstGUID, dstName, fmtMiss, timestamp, srcName, spellId, spellSchool, missType, amountMissed)
@@ -343,8 +343,8 @@ collect.SPELL_PERIODIC_MISSED = collect.SPELL_MISSED
 collect.SPELL_BUILDING_MISSED = collect.SPELL_MISSED
 collect.RANGE_MISSED = collect.SPELL_MISSED
 collect.DAMAGE_SHIELD_MISSED = collect.SPELL_MISSED
-function collect.SWING_MISSED(timestamp, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, missType, _, amountMissed)
-	collect.SPELL_MISSED(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, 88163, spellName[88163], 0x01, missType, amountMissed)
+function collect.SWING_MISSED(timestamp, _, srcName, _, _, dstGUID, dstName, _, _, missType, _, amountMissed)
+	collect.SPELL_MISSED(timestamp, _, srcName, _, _, dstGUID, dstName, _, _, 88163, _, 0x01, missType, _, amountMissed)
 end
 
 function collect.SPELL_HEAL(timestamp, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, spellId, spellName, _, amount, overhealing, _, critical)
