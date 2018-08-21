@@ -39,14 +39,9 @@ addon.spellIcon = setmetatable({[75] = "", [88163] = ""}, {__index = function(tb
 end})
 addon.spellName = setmetatable({}, {__index = function(tbl, i)
 	local spell, _, icon = GetSpellInfo(i)
-	if spell then
-		addon.spellIcon[i] = icon
-		tbl[i] = spell
-		return spell
-	else
-		print("|cffff0000WARNING: spell ID ["..tostring(i).."] no longer exists! Report this to author of Numeration addon.|r")
-		return "Empty"
-	end
+	addon.spellIcon[i] = icon
+	tbl[i] = spell
+	return spell
 end})
 local newSet = function()
 	return {
