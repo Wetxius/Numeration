@@ -1,7 +1,8 @@
 local addon = select(2, ...)
 local L = addon.locale
 local C = addon.windows
-local window = CreateFrame("Frame", "NumerationFrame", UIParent)
+local window = CreateFrame("Frame", "NumerationFrame", UIParent, "SecureHandlerStateTemplate")
+RegisterStateDriver(window, "visibility", C.frameVisibility)
 addon.window = window
 
 local HiddenFrame = CreateFrame("Frame")

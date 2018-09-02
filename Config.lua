@@ -12,6 +12,7 @@ n["windows"] = {
 	fontshadow = true,						-- Use shadow for all fonts
 	scrollbar = true,						-- Show scrollbar
 	tpos = "ANCHOR_BOTTOMRIGHT",			-- Tooltip anchor
+	frameVisibility = "",					-- Macro conditionals
 
 	-- Title
 	titleheight = 16,						-- Height for title
