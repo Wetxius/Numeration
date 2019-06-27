@@ -1,14 +1,14 @@
-## Interface: 80100
+## Interface: 80200
 ## Title: Numeration
 ## Notes: Lightweight and useful damage/healing meter.
 ## Notes-ruRU: Легкий и удобный измеритель урона/исцеления.
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 2.9.0
+## Version: 2.9.1
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
-## X-Curse-Packaged-Version: 2.9.0
+## X-Curse-Packaged-Version: 2.9.1
 ## X-Curse-Project-Name: Numeration Damage Meter
 ## X-Curse-Project-ID: 75133
 ## X-WoWI-ID: 17434
