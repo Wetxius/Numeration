@@ -1,8 +1,11 @@
 local addon = select(2, ...)
 local L = addon.locale
 local C = addon.windows
-local window = CreateFrame("Frame", "NumerationFrame", UIParent, "SecureHandlerStateTemplate")
-RegisterStateDriver(window, "visibility", C.frameVisibility)
+
+local stateFrame = CreateFrame("Frame", nil, UIParent, "SecureHandlerStateTemplate")
+RegisterStateDriver(stateFrame, "visibility", C.frameVisibility)
+
+local window = CreateFrame("Frame", "NumerationFrame", stateFrame)
 addon.window = window
 
 local HiddenFrame = CreateFrame("Frame")
@@ -13,7 +16,7 @@ window:SetScript("OnEvent", function(self, event)
 	if event == "PET_BATTLE_OPENING_START" then
 		window:SetParent(HiddenFrame)
 	else
-		window:SetParent(UIParent)
+		window:SetParent(stateFrame)
 	end
 end)
 
@@ -393,7 +396,7 @@ StaticPopupDialogs.RESET_DATA = {
 StaticPopupDialogs.REPORT_DIALOG = {
 	text = "Numeration: "..L.whisp_target,
 	OnShow = function (self)
-		if UnitCanCooperate("player", "target") then
+		if UnitCanCooperate("player", "target") or UnitIsUnit("player", "target") then
 			self.editBox:SetText(GetUnitName("target", true))
 			reportFunction(self, "WHISPER", StaticPopup1EditBox:GetText())
 			StaticPopup_Hide("REPORT_DIALOG")
