@@ -142,11 +142,11 @@ function addon:InitOptions()
 end
 
 function ldb:OnTooltipShow()
-	GameTooltip:AddLine("Numeration", 1, 1, 1)
-	GameTooltip:AddLine(L.toggle)
-	GameTooltip:AddLine(L.reset)
+	icon.tooltip:AddLine("Numeration", 1, 1, 1)
+	icon.tooltip:AddLine(L.toggle)
+	icon.tooltip:AddLine(L.reset)
 	if addon.windows.title_hide then
-		GameTooltip:AddLine(L.menu)
+		icon.tooltip:AddLine(L.menu)
 	end
 end
 
