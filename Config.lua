@@ -12,7 +12,6 @@ n["windows"] = {
 	fontshadow = true,						-- Use shadow for all fonts
 	scrollbar = true,						-- Show scrollbar
 	tpos = "ANCHOR_BOTTOMRIGHT",			-- Tooltip anchor
-	frameVisibility = "",					-- Macro conditionals
 
 	-- Title
 	titleheight = 16,						-- Height for title
@@ -46,6 +45,7 @@ n["core"] = {
 	silent_reset = false,					-- Auto confirm reset data and hide pop-up
 	merge_spells = true,					-- Merge spells with same names (from list)
 	remove_realm = true,					-- Don't show realm name
+	absorb_damage = true,					-- Count absorb as damage
 }
 
 ----------------------------------------------------------------------------------------

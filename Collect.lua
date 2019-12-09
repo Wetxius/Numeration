@@ -314,6 +314,11 @@ function collect.SPELL_DAMAGE(timestamp, srcGUID, srcName, _, _, dstGUID, dstNam
 		if C.merge_spells then
 			spellId = MergeSpells[spellId] or spellId
 		end
+		if C.absorb_damage then
+			if absorbed and absorbed > 0 then
+				amount = amount + absorbed
+			end
+		end
 		EVENT("dd", srcGUID, dstName, spellId, amount, timestamp)
 	end
 end
@@ -332,10 +337,22 @@ function collect.ENVIRONMENTAL_DAMAGE(timestamp, _, _, _, _, dstGUID, dstName, _
 	collect.SPELL_DAMAGE(timestamp, ENVIRONMENT_SUBHEADER, ENVIRONMENT_SUBHEADER, _, _, dstGUID, dstName, _, _, spellName, school, 0x01, amount, overkill, _, resisted, blocked, absorbed, critical, glancing, crushing)
 end
 
-function collect.SPELL_MISSED(timestamp, _, srcName, _, _, dstGUID, dstName, _, _, spellId, _, spellSchool, missType, _, amountMissed)
+function collect.SPELL_MISSED(timestamp, srcGUID, srcName, _, _, dstGUID, dstName, _, _, spellId, _, spellSchool, missType, _, amountMissed)
 	if addon.guidToClass[dstGUID] then
 		if addon.ids.deathlog then
 			addDeathlogEvent(dstGUID, dstName, fmtMiss, timestamp, srcName, spellId, spellSchool, missType, amountMissed)
+		end
+	end
+
+	if C.absorb_damage then
+		if addon.guidToClass[srcGUID] then
+			if missType == "ABSORB" and amountMissed > 0 then
+				addon:EnterCombatEvent(timestamp, dstGUID, dstName)
+				if C.merge_spells then
+					spellId = MergeSpells[spellId] or spellId
+				end
+				EVENT("dd", srcGUID, dstName, spellId, amountMissed, timestamp)
+			end
 		end
 	end
 end
@@ -343,8 +360,8 @@ collect.SPELL_PERIODIC_MISSED = collect.SPELL_MISSED
 collect.SPELL_BUILDING_MISSED = collect.SPELL_MISSED
 collect.RANGE_MISSED = collect.SPELL_MISSED
 collect.DAMAGE_SHIELD_MISSED = collect.SPELL_MISSED
-function collect.SWING_MISSED(timestamp, _, srcName, _, _, dstGUID, dstName, _, _, missType, _, amountMissed)
-	collect.SPELL_MISSED(timestamp, _, srcName, _, _, dstGUID, dstName, _, _, 88163, _, 0x01, missType, _, amountMissed)
+function collect.SWING_MISSED(timestamp, srcGUID, srcName, _, _, dstGUID, dstName, _, _, missType, _, amountMissed)
+	collect.SPELL_MISSED(timestamp, srcGUID, srcName, _, _, dstGUID, dstName, _, _, 88163, _, 0x01, missType, _, amountMissed)
 end
 
 function collect.SPELL_HEAL(timestamp, srcGUID, srcName, srcFlags, _, dstGUID, dstName, dstFlags, _, spellId, spellName, _, amount, overhealing, _, critical)
