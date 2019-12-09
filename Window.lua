@@ -13,7 +13,7 @@ window:SetScript("OnEvent", function(self, event)
 	if event == "PET_BATTLE_OPENING_START" then
 		window:SetParent(HiddenFrame)
 	else
-		window:SetParent(stateFrame)
+		window:SetParent(UIParent)
 	end
 end)
 
