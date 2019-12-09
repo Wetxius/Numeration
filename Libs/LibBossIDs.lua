@@ -1,6 +1,7 @@
 local addon = select(2, ...)
 local L = addon.locale
 local lib = LibStub:NewLibrary("LibBossIDs", 1)
+if not lib then return end
 
 local BossIDs = {
 	-------------------------------------------------------------------------------
