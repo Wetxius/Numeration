@@ -584,6 +584,10 @@ function addon:PLAYER_REGEN_ENABLED()
 			self:RefreshDisplay()
 		end
 	end
+
+	if NumerationCharOptions.combatshow then
+		self.window:Hide()
+	end
 end
 
 function addon:ENCOUNTER_START(_, _, encounterName)
