@@ -68,7 +68,7 @@ function addon:ADDON_LOADED(event, addon)
 	end
 	icon:Register("Numeration", ldb, NumerationCharOptions.minimap)
 	self.window:OnInitialize()
-	if NumerationCharOptions.forcehide then
+	if NumerationCharOptions.forcehide or NumerationCharOptions.combatshow then
 		self.window:Hide()
 	end
 
@@ -123,6 +123,12 @@ function addon:InitOptions()
 	end
 	if NumerationCharOptions.combathide == nil then
 		NumerationCharOptions.combathide = false
+	end
+	if NumerationCharOptions.combatshow == nil then
+		NumerationCharOptions.combatshow = false
+	end
+	if NumerationCharOptions.combatnone == nil then
+		NumerationCharOptions.combatnone = true
 	end
 	if not NumerationCharOptions.minimap then
 		NumerationCharOptions.minimap = {
@@ -185,17 +191,12 @@ function addon:MinimapIconShow(show)
 	end
 end
 
-function addon:CombatShow(show)
-	if addon.windows.title_hide then
-		NumerationCharOptions.minimap.hide = false
-		return
-	end
-	NumerationCharOptions.minimap.hide = not show
-	if show then
-		icon:Show("Numeration")
-	else
-		icon:Hide("Numeration")
-	end
+function addon:CombatShow(option)
+	NumerationCharOptions.combathide = false
+	NumerationCharOptions.combatshow = false
+	NumerationCharOptions.combatnone = false
+
+	NumerationCharOptions[option] = true
 end
 
 function addon:SetOption(option, value)
@@ -503,7 +504,7 @@ function addon:ZONE_CHANGED_NEW_AREA(force)
 			self.events:RegisterEvent("ENCOUNTER_START")
 
 			updateTimer:Activate()
-			if not NumerationCharOptions.forcehide then
+			if not NumerationCharOptions.forcehide and not NumerationCharOptions.combatshow then
 				self:RefreshDisplay()
 				self.window:Show()
 			end
@@ -564,6 +565,12 @@ function addon:PLAYER_REGEN_DISABLED()
 
 	if NumerationCharOptions.combathide then
 		self.window:Hide()
+	end
+	if not NumerationCharOptions.forcehide then
+		if NumerationCharOptions.combatshow then
+			self.window:Show()
+			self:RefreshDisplay()
+		end
 	end
 end
 
