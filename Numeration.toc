@@ -4,7 +4,7 @@
 ## Notes-ruRU: Легкий и удобный измеритель урона/исцеления.
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 2.9.3
+## Version: 2.9.4
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
