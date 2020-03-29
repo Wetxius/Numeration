@@ -351,6 +351,7 @@ function collect.SPELL_MISSED(timestamp, srcGUID, srcName, _, _, dstGUID, dstNam
 				if C.merge_spells then
 					spellId = MergeSpells[spellId] or spellId
 				end
+				if spellId == 315161 then return end -- Eye of Corruption
 				EVENT("dd", srcGUID, dstName, spellId, amountMissed, timestamp)
 			end
 		end
