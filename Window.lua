@@ -2,7 +2,7 @@ local addon = select(2, ...)
 local L = addon.locale
 local C = addon.windows
 
-local window = CreateFrame("Frame", "NumerationFrame", UIParent)
+local window = CreateFrame("Frame", "NumerationFrame", UIParent, "BackdropTemplate")
 addon.window = window
 
 local HiddenFrame = CreateFrame("Frame")
@@ -156,7 +156,7 @@ function window:OnInitialize()
 	scroll:SetSize(4, 4)
 	scroll:Hide()
 
-	local reset = CreateFrame("Button", nil, self)
+	local reset = CreateFrame("Button", nil, self, "BackdropTemplate")
 	self.reset = reset
 	reset:SetBackdrop(backdrop)
 	reset:SetBackdropColor(0, 0, 0, C.titlealpha)
@@ -176,7 +176,7 @@ function window:OnInitialize()
 	reset.text:SetPoint("CENTER", 1, 0)
 	reset.text:SetText(">")
 
-	local segment = CreateFrame("Button", nil, self)
+	local segment = CreateFrame("Button", nil, self, "BackdropTemplate")
 	self.segment = segment
 	segment:SetBackdrop(backdrop)
 	segment:SetBackdropColor(0, 0, 0, C.titlealpha / 2)
