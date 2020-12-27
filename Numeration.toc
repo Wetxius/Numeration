@@ -1,10 +1,10 @@
-## Interface: 90001
+## Interface: 90002
 ## Title: Numeration
 ## Notes: Lightweight and useful damage/healing meter.
 ## Notes-ruRU: Легкий и удобный измеритель урона/исцеления.
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
-## Version: 2.9.6
+## Version: 2.9.7
 ## OptionalDeps: !ClassColors
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
