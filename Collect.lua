@@ -19,13 +19,16 @@ local deathlogTrackBuffs = {
 	[spellName[48707]] = true,	-- Anti-Magic Shell
 	[spellName[48792]] = true,	-- Icebound Fortitude
 	[spellName[51052]] = true,	-- Anti-Magic Zone
+	-- Demon Hunter
+	[spellName[212800]] = true,	-- Blur
+	[spellName[196718]] = true,	-- Darkness
 	-- Druid
 	[spellName[22812]] = true,	-- Barkskin
 	[spellName[102342]] = true,	-- Ironbark
 	[spellName[61336]] = true,	-- Survival Instincts
 	[spellName[155835]] = true,	-- Bristling Fur
 	-- Hunter
-	[spellName[19263]] = true,	-- Deterrence
+	[spellName[186265]] = true,	-- Aspect of the Turtle
 	[spellName[5384]] = true,	-- Feign Death
 	-- Mage
 	[spellName[45438]] = true,	-- Ice Block
@@ -38,8 +41,9 @@ local deathlogTrackBuffs = {
 	-- Paladin
 	[spellName[642]] = true,	-- Divine Shield
 	[spellName[498]] = true,	-- Divine Protection
-	[spellName[31821]] = true,	-- Devotion Aura
+	[spellName[31821]] = true,	-- Aura Mastery
 	[spellName[1022]] = true,	-- Blessing of Protection
+	[spellName[204018]] = true,	-- Blessing of Spellwarding
 	[spellName[6940]] = true,	-- Blessing of Sacrifice
 	[spellName[31850]] = true,	-- Ardent Defender
 	[spellName[86659]] = true,	-- Guardian of Ancient Kings
