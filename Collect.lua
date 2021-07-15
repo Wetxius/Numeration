@@ -344,13 +344,12 @@ function collect.SPELL_MISSED(timestamp, srcGUID, srcName, _, _, dstGUID, dstNam
 	end
 
 	if C.absorb_damage then
-		if addon.guidToClass[srcGUID] then
+		if addon.guidToClass[srcGUID] and srcGUID ~= dstGUID then
 			if missType == "ABSORB" and amountMissed > 0 then
 				addon:EnterCombatEvent(timestamp, dstGUID, dstName)
 				if C.merge_spells then
 					spellId = MergeSpells[spellId] or spellId
 				end
-				if spellId == 315161 then return end -- Eye of Corruption
 				EVENT("dd", srcGUID, dstName, spellId, amountMissed, timestamp)
 			end
 		end
@@ -384,7 +383,7 @@ collect.SPELL_PERIODIC_HEAL = collect.SPELL_HEAL
 
 local function SPELL_ABSORBED_handler(timestamp, srcGUID, srcName, srcFlags, dstGUID, dstName, dstFlags, spellId, spellName, _, absorb)
 	if bit.band(srcFlags, COMBATLOG_OBJECT_CONTROL_PLAYER) ~= 0 and bit.band(srcFlags, dstFlags, COMBATLOG_OBJECT_REACTION_MASK) ~= 0 then
-		if spellId == 20711 or spellId == 115069 or spellId == 157533 or spellId == 114556 then
+		if spellId == 20711 or spellId == 115069 or spellId == 114556 then
 			return
 		end
 
