@@ -41,7 +41,7 @@ addon.spellName = setmetatable({}, {__index = function(tbl, i)
 	local spell, _, icon = GetSpellInfo(i)
 	addon.spellIcon[i] = icon
 	tbl[i] = spell
-	return spell
+	return spell or UNKNOWN
 end})
 local newSet = function()
 	return {
