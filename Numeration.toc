@@ -5,7 +5,7 @@
 ## Author: nekoh, Wetxius
 ## Thanks: Shestak
 ## Version: 2.9.9
-## OptionalDeps: !ClassColors
+## OptionalDeps: !ClassColors, ShestakUI
 ## SavedVariablesPerCharacter: NumerationCharDB, NumerationCharOptions
 
 ## X-Curse-Project-ID: 75133

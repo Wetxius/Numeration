@@ -1,38 +1,71 @@
 local n = select(2, ...)
 local L = n.locale
+local ShestakUI = IsAddOnLoaded("ShestakUI")
 
 ----------------------------------------------------------------------------------------
 --	Window options
 ----------------------------------------------------------------------------------------
-n["windows"] = {
-	pos = {"TOPLEFT", 4, -4},				-- Position for Main Frame
-	width = 280,							-- Width for Main Frame
-	maxlines = 9,							-- Maximum lines
-	backgroundalpha = 0.6,					-- Alpha for background
-	fontshadow = true,						-- Use shadow for all fonts
-	scrollbar = true,						-- Show scrollbar
-	tpos = "ANCHOR_BOTTOMRIGHT",			-- Tooltip anchor
+if ShestakUI then
+	n["windows"] = {
+		pos = {"TOPLEFT", 4, -4},													-- Position for Main Frame
+		width = 216,																-- Width for Main Frame
+		maxlines = 7,																-- Maximum lines
+		backgroundalpha = 0,														-- Alpha for background
+		fontshadow = false,															-- Use shadow for all fonts
+		scrollbar = false,															-- Show scrollbar
+		tpos = "ANCHOR_BOTTOMRIGHT",												-- Tooltip anchor
 
-	-- Title
-	titleheight = 16,						-- Height for title
-	titlealpha = 0.9,						-- Alpha for title
-	titlefont = [[Fonts\ARIALN.TTF]],		-- Set font for title
-	titlefontstyle = "NONE",				-- Font style for title
-	titlefontsize = 13,						-- Font size for title
-	titlefontcolor = {1, 1, 1, 1},			-- Font color for title
-	highlight = {1, 0.8, 0, 0.3},			-- Color for button highlight
-	title_hide = false,						-- Hide title
+		-- Title
+		titleheight = 16,															-- Height for title
+		titlealpha = 1,																-- Alpha for title
+		titlefont = [[Interface\AddOns\ShestakUI\Media\Fonts\Pixel.ttf]],			-- Set font for title
+		titlefontstyle = "MONOCHROMEOUTLINE",										-- Font style for title
+		titlefontsize = 8,															-- Font size for title
+		titlefontcolor = {1, 1, 1, 1},												-- Font color for title
+		highlight = {1, 1, 1, 0.3},													-- Color for button highlight
+		title_hide = false,															-- Hide title
 
-	-- Lines
-	lineheight = 14,						-- Height for lines
-	linegap = 1,							-- Height for line gap
-	linealpha = 1,							-- Alpha for lines
-	linefont = [[Fonts\ARIALN.TTF]],		-- Set font for line
-	linefontstyle = "NONE",					-- Font style for line
-	linefontsize = 11,						-- Font size for line
-	linefontcolor = {1, 1, 1, 1},			-- Font color for line
-	linetexture = [[Interface\Tooltips\UI-Tooltip-Background]],	-- Set texture for line
-}
+		-- Lines
+		lineheight = 14,															-- Height for lines
+		linegap = 7,																-- Height for line gap
+		linealpha = 1,																-- Alpha for lines
+		linefont = [[Interface\AddOns\ShestakUI\Media\Fonts\Pixel.ttf]],			-- Set font for line
+		linefontstyle = "MONOCHROMEOUTLINE",										-- Font style for line
+		linefontsize = 8,															-- Font size for line
+		linefontcolor = {1, 1, 1, 1},												-- Font color for line
+		linetexture = [[Interface\AddOns\ShestakUI\Media\Textures\Texture.tga]],	-- Set texture for line
+	}
+else
+	n["windows"] = {
+		pos = {"TOPLEFT", 4, -4},									-- Position for Main Frame
+		width = 280,												-- Width for Main Frame
+		maxlines = 9,												-- Maximum lines
+		backgroundalpha = 0.6,										-- Alpha for background
+		fontshadow = true,											-- Use shadow for all fonts
+		scrollbar = true,											-- Show scrollbar
+		tpos = "ANCHOR_BOTTOMRIGHT",								-- Tooltip anchor
+
+		-- Title
+		titleheight = 16,											-- Height for title
+		titlealpha = 0.9,											-- Alpha for title
+		titlefont = [[Fonts\ARIALN.TTF]],							-- Set font for title
+		titlefontstyle = "NONE",									-- Font style for title
+		titlefontsize = 13,											-- Font size for title
+		titlefontcolor = {1, 1, 1, 1},								-- Font color for title
+		highlight = {1, 0.8, 0, 0.3},								-- Color for button highlight
+		title_hide = false,											-- Hide title
+
+		-- Lines
+		lineheight = 14,											-- Height for lines
+		linegap = 1,												-- Height for line gap
+		linealpha = 1,												-- Alpha for lines
+		linefont = [[Fonts\ARIALN.TTF]],							-- Set font for line
+		linefontstyle = "NONE",										-- Font style for line
+		linefontsize = 11,											-- Font size for line
+		linefontcolor = {1, 1, 1, 1},								-- Font color for line
+		linetexture = [[Interface\Tooltips\UI-Tooltip-Background]],	-- Set texture for line
+	}
+end
 
 ----------------------------------------------------------------------------------------
 --	Core options

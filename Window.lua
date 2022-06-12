@@ -1,7 +1,7 @@
 local addon = select(2, ...)
 local L = addon.locale
 local C = addon.windows
-
+local ShestakUI = IsAddOnLoaded("ShestakUI")
 local window = CreateFrame("Frame", "NumerationFrame", UIParent, "BackdropTemplate")
 addon.window = window
 
@@ -132,11 +132,13 @@ function window:OnInitialize()
 		addon:SetOption("y", yOfs / uis)
 	end)
 
-	self:SetBackdrop({
-		bgFile = [[Interface\ChatFrame\ChatFrameBackground]],
-		insets = {left = 0, right = 0, top = C.title_hide and C.titleheight + 1 or 0, bottom = 0}
-	})
-	self:SetBackdropColor(0, 0, 0, C.backgroundalpha)
+	if not ShestakUI then
+		self:SetBackdrop({
+			bgFile = [[Interface\ChatFrame\ChatFrameBackground]],
+			insets = {left = 0, right = 0, top = C.title_hide and C.titleheight + 1 or 0, bottom = 0}
+		})
+		self:SetBackdropColor(0, 0, 0, C.backgroundalpha)
+	end
 
 	local x, y = addon:GetOption("x"), addon:GetOption("y")
 	if not x or not y then
@@ -159,7 +161,7 @@ function window:OnInitialize()
 	local reset = CreateFrame("Button", nil, self, "BackdropTemplate")
 	self.reset = reset
 	reset:SetBackdrop(backdrop)
-	reset:SetBackdropColor(0, 0, 0, C.titlealpha)
+	reset:SetBackdropColor(0, 0, 0, ShestakUI and 0 or C.titlealpha)
 	reset:SetSize(C.titleheight, C.titleheight)
 	reset:SetPoint("TOPRIGHT", -1, -1)
 	reset:SetScript("OnMouseUp", function()
@@ -168,18 +170,18 @@ function window:OnInitialize()
 		EasyMenu(menuTable, dropdown, "cursor", 0 , 0, "MENU")
 	end)
 	reset:SetScript("OnEnter", function() reset:SetBackdropColor(unpack(C.highlight)) end)
-	reset:SetScript("OnLeave", function() reset:SetBackdropColor(0, 0, 0, C.titlealpha) end)
+	reset:SetScript("OnLeave", function() reset:SetBackdropColor(0, 0, 0, ShestakUI and 0 or C.titlealpha) end)
 
 	reset.text = reset:CreateFontString(nil, "ARTWORK")
 	reset.text:SetFont(C.linefont, C.linefontsize, C.linefontstyle)
 	reset.text:SetShadowOffset(C.fontshadow and 1 or 0, C.fontshadow and -1 or 0)
-	reset.text:SetPoint("CENTER", 1, 0)
+	reset.text:SetPoint("CENTER", ShestakUI and 2 or 1, 0)
 	reset.text:SetText(">")
 
 	local segment = CreateFrame("Button", nil, self, "BackdropTemplate")
 	self.segment = segment
 	segment:SetBackdrop(backdrop)
-	segment:SetBackdropColor(0, 0, 0, C.titlealpha / 2)
+	segment:SetBackdropColor(0, 0, 0, ShestakUI and 0 or C.titlealpha / 2)
 	segment:SetSize(C.titleheight - 2, C.titleheight - 2)
 	segment:SetPoint("RIGHT", reset, "LEFT", -2, 0)
 	segment:SetScript("OnMouseUp", function() addon.nav.view = "Sets" addon.nav.set = nil addon:RefreshDisplay() dropdown:Show() end)
@@ -198,12 +200,12 @@ function window:OnInitialize()
 		GameTooltip:AddLine(name)
 		GameTooltip:Show()
 	end)
-	segment:SetScript("OnLeave", function() segment:SetBackdropColor(0, 0, 0, C.titlealpha / 2) GameTooltip:Hide() end)
+	segment:SetScript("OnLeave", function() segment:SetBackdropColor(0, 0, 0, ShestakUI and 0 or C.titlealpha / 2) GameTooltip:Hide() end)
 
 	segment.text = segment:CreateFontString(nil, "ARTWORK")
 	segment.text:SetFont(C.linefont, C.linefontsize, C.linefontstyle)
 	segment.text:SetShadowOffset(C.fontshadow and 1 or 0, C.fontshadow and -1 or 0)
-	segment.text:SetPoint("CENTER", 0, 0)
+	segment.text:SetPoint("CENTER", ShestakUI and 1 or 0, 0)
 	segment.text:SetText("")
 
 	local title = self:CreateTexture(nil, "ARTWORK")
@@ -211,7 +213,7 @@ function window:OnInitialize()
 	title:SetTexture(C.linetexture)
 	title:SetVertexColor(.25, .66, .35, C.titlealpha)
 	title:SetPoint("TOPLEFT", 1, -1)
-	title:SetPoint("BOTTOMRIGHT", reset, "BOTTOMLEFT", -1, 0)
+	title:SetPoint("BOTTOMRIGHT", reset, ShestakUI and "BOTTOMRIGHT" or "BOTTOMLEFT", ShestakUI and 0 or -1, 0)
 
 	local font = self:CreateFontString(nil, "ARTWORK")
 	self.titletext = font
@@ -229,6 +231,10 @@ function window:OnInitialize()
 		font:Hide()
 		segment:Hide()
 		segment.Show = function() end
+	elseif ShestakUI then
+		self:CreateBackdrop("Defalt")
+		self.backdrop:SetPoint("TOPLEFT", -1, 1)
+		self.backdrop:SetPoint("BOTTOMRIGHT", reset, 2, -2)
 	end
 
 	self.detailAction = noop
@@ -272,7 +278,7 @@ function window:SetScrollPosition(curPos, maxPos)
 	if maxPos <= C.maxlines then return end
 	local total = C.maxlines * (C.lineheight + C.linegap)
 	self.scroll:SetHeight(C.maxlines / maxPos * total)
-	self.scroll:SetPoint("TOPLEFT", self.reset, "BOTTOMRIGHT", 2, -1 - (curPos - 1) / maxPos * total)
+	self.scroll:SetPoint("TOPLEFT", self.reset, "BOTTOMRIGHT", ShestakUI and 4 or 2, -1 - (curPos - 1) / maxPos * total)
 	self.scroll:Show()
 end
 
@@ -291,9 +297,17 @@ local SetIcon = function(f, icon)
 		f:SetWidth(C.width - C.lineheight - 2)
 		f.icon:SetTexture(icon)
 		f.icon:Show()
+		if ShestakUI then
+			f.backdrop:SetPoint("TOPLEFT", -C.lineheight - 2, 2)
+			f.backdrop:SetPoint("BOTTOMRIGHT", 2, -2)
+		end
 	else
 		f:SetWidth(C.width - 2)
 		f.icon:Hide()
+		if ShestakUI then
+			f.backdrop:SetPoint("TOPLEFT", -2, 2)
+			f.backdrop:SetPoint("BOTTOMRIGHT", 2, -2)
+		end
 	end
 end
 
@@ -340,11 +354,21 @@ function window:GetLine(id)
 	f:SetStatusBarTexture(C.linetexture)
 	f:SetStatusBarColor(.6, .6, .6, 1)
 	f:SetSize(C.width - 2, C.lineheight)
+	if ShestakUI then
+		f:CreateBackdrop("Default")
+	end
 
 	if id == 0 then
-		f:SetPoint("TOPRIGHT", self.reset, "BOTTOMRIGHT", 0, -1)
+		f:SetPoint("TOPRIGHT", self.reset, "BOTTOMRIGHT", 0, ShestakUI and -7 or -1)
 	else
 		f:SetPoint("TOPRIGHT", lines[id-1], "BOTTOMRIGHT", 0, -C.linegap)
+	end
+
+	if ShestakUI then
+		f.bg = f:CreateTexture(nil, "BORDER")
+		f.bg:SetAllPoints(f)
+		f.bg:SetTexture(C.linetexture)
+		f.bg:SetVertexColor(.6, .6, .6, 0.25)
 	end
 
 	local icon = f:CreateTexture(nil, "OVERLAY")
@@ -361,7 +385,7 @@ function window:GetLine(id)
 	value:SetFont(C.linefont, C.linefontsize, C.linefontstyle)
 	value:SetShadowOffset(C.fontshadow and 1 or 0, C.fontshadow and -1 or 0)
 	value:SetTextColor(unpack(C.linefontcolor))
-	value:SetPoint("RIGHT", -1, 0)
+	value:SetPoint("RIGHT", ShestakUI and 0 or -1, 0)
 
 	local name = f:CreateFontString(nil, "ARTWORK")
 	f.name = name
@@ -371,7 +395,7 @@ function window:GetLine(id)
 	name:SetFont(C.linefont, C.linefontsize, C.linefontstyle)
 	name:SetShadowOffset(C.fontshadow and 1 or 0, C.fontshadow and -1 or 0)
 	name:SetTextColor(unpack(C.linefontcolor))
-	name:SetPoint("LEFT", icon, "RIGHT", 1, 0)
+	name:SetPoint("LEFT", icon, "RIGHT", ShestakUI and 3 or 1, 0)
 	name:SetPoint("RIGHT", value, "LEFT", -1, 0)
 
 	f.SetValues = SetValues
