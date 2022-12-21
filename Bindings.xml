@@ -1,8 +1,8 @@
 <Bindings>
-	<Binding name="NUMERATION_VISIBILITY" header="NUMERATION">
+	<Binding category="BINDING_HEADER_NUMERATION" name="NUMERATION_VISIBILITY">
 		Numeration:ToggleVisibility()
 	</Binding>
-	<Binding name="NUMERATION_RESET">
+	<Binding category="BINDING_HEADER_NUMERATION" name="NUMERATION_RESET">
 		StaticPopup_Show("RESET_DATA")
 	</Binding>
 </Bindings>
