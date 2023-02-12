@@ -13,7 +13,6 @@ addon.guidToClass = {}
 addon.guidToName = {}
 
 -- Keybindings
-BINDING_HEADER_NUMERATION = "Numeration"
 BINDING_NAME_NUMERATION_VISIBILITY = L.binding_visibility
 BINDING_NAME_NUMERATION_RESET = L.binding_reset
 
