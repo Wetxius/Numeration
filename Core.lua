@@ -12,8 +12,26 @@ addon.views = {}
 addon.guidToClass = {}
 addon.guidToName = {}
 
+-- Workaround EasyMenu
+local function EasyMenu_Initialize(frame, level, menuList)
+	for index = 1, #menuList do
+		local value = menuList[index]
+		if value.text then
+			value.index = index
+			UIDropDownMenu_AddButton(value, level)
+		end
+	end
+end
+
+function EasyMenu(menuList, menuFrame, anchor, x, y, displayMode, autoHideDelay)
+	if displayMode == "MENU" then
+		menuFrame.displayMode = displayMode
+	end
+	UIDropDownMenu_Initialize(menuFrame, EasyMenu_Initialize, displayMode, nil, menuList)
+	ToggleDropDownMenu(1, nil, menuFrame, anchor, x, y, menuList, nil, autoHideDelay)
+end
+
 -- Keybindings
-BINDING_HEADER_NUMERATION = "Numeration"
 BINDING_NAME_NUMERATION_VISIBILITY = L.binding_visibility
 BINDING_NAME_NUMERATION_RESET = L.binding_reset
 
@@ -32,16 +50,20 @@ do
 end
 
 addon.spellIcon = setmetatable({[75] = "", [88163] = ""}, {__index = function(tbl, i)
-	local spell, _, icon = GetSpellInfo(i)
-	addon.spellName[i] = spell
-	tbl[i] = icon
-	return icon
+	local spellInfo = C_Spell.GetSpellInfo(i)
+	if spellInfo then
+		addon.spellName[i] = spellInfo.name
+		tbl[i] = spellInfo.iconID
+		return spellInfo.iconID
+	end
 end})
 addon.spellName = setmetatable({}, {__index = function(tbl, i)
-	local spell, _, icon = GetSpellInfo(i)
-	addon.spellIcon[i] = icon
-	tbl[i] = spell
-	return spell or UNKNOWN
+	local spellInfo = C_Spell.GetSpellInfo(i)
+	if spellInfo then
+		addon.spellIcon[i] = spellInfo.iconID
+		tbl[i] = spellInfo.name
+		return spellInfo.name or UNKNOWN
+	end
 end})
 local newSet = function()
 	return {
