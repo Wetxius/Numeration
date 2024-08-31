@@ -1,6 +1,6 @@
 local n = select(2, ...)
 local L = n.locale
-local ShestakUI = IsAddOnLoaded("ShestakUI")
+local ShestakUI = C_AddOns.IsAddOnLoaded("ShestakUI")
 
 ----------------------------------------------------------------------------------------
 --	Window options

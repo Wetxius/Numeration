@@ -1,7 +1,7 @@
 local addon = select(2, ...)
 local L = addon.locale
 local C = addon.windows
-local ShestakUI = IsAddOnLoaded("ShestakUI")
+local ShestakUI = C_AddOns.IsAddOnLoaded("ShestakUI")
 local window = CreateFrame("Frame", "NumerationFrame", UIParent, "BackdropTemplate")
 addon.window = window
 
